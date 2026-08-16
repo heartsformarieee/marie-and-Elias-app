@@ -27,6 +27,7 @@ button {
   font-family: inherit;
 }
 
+
 /* APP */
 
 .app {
@@ -34,68 +35,139 @@ button {
 
   padding-bottom:
     calc(
-      125px +
+      115px +
       env(safe-area-inset-bottom)
     );
 }
 
-/* HERO */
+
+/* =========================
+   HERO
+========================= */
 
 .hero {
   position: relative;
 
-  min-height: 760px;
+  height: 720px;
 
   overflow: hidden;
 
   padding:
     max(24px, env(safe-area-inset-top))
     22px
-    26px;
+    22px;
 
-  background:
-    radial-gradient(
-      circle at 50% 30%,
-      rgba(170,74,102,0.14),
-      transparent 42%
-    ),
-    linear-gradient(
-      180deg,
-      rgba(17,11,18,0.25),
-      #100a11 92%
-    );
+  background: #0b070c;
 }
 
-.hero::before {
+
+/* dark fade over photo */
+
+.hero::after {
   content: "";
 
   position: absolute;
   inset: 0;
 
+  z-index: 3;
+
   background:
     linear-gradient(
       180deg,
-      rgba(0,0,0,0.03),
-      rgba(10,6,10,0.10) 58%,
-      rgba(10,6,10,0.82) 100%
+      rgba(0,0,0,0.10) 0%,
+      rgba(0,0,0,0.02) 38%,
+      rgba(8,4,8,0.18) 62%,
+      rgba(8,4,8,0.92) 100%
     );
 
   pointer-events: none;
-
-  z-index: 4;
 }
 
 .hero-darken {
   display: none;
 }
 
-/* TOP */
+
+/* =========================
+   COUPLE PHOTO
+========================= */
+
+.hero-people {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 1;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+}
+
+.couple-art {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  /*
+   * Move the photo slightly upward/downward here
+   * if you ever want to adjust the faces.
+   */
+  object-position: center 35%;
+
+  filter:
+    brightness(0.90)
+    contrast(1.03)
+    saturate(0.85);
+}
+
+
+/* =========================
+   MORI
+========================= */
+
+.mori-art {
+  position: absolute;
+
+  right: 18px;
+  bottom: 118px;
+
+  z-index: 8;
+
+  width: 105px;
+  height: 125px;
+
+  object-fit: cover;
+
+  border-radius: 18px;
+
+  border:
+    1px solid
+    rgba(255,150,180,0.18);
+
+  box-shadow:
+    0 12px 28px
+    rgba(0,0,0,0.55);
+}
+
+
+/* =========================
+   TOP TITLE
+========================= */
 
 .topbar {
   position: relative;
+
   z-index: 20;
 
   display: flex;
+
   justify-content: space-between;
   align-items: flex-start;
 
@@ -105,31 +177,48 @@ button {
 .eyebrow {
   margin: 0 0 7px;
 
-  color: #df8aa4;
+  color: #ef9bb5;
 
   font-size: 10px;
+
+  font-weight: 600;
+
   letter-spacing: 4px;
+
+  text-shadow:
+    0 2px 10px
+    rgba(0,0,0,0.75);
 }
 
 h1 {
   margin: 0;
 
-  max-width: 250px;
+  max-width: 255px;
 
   font-family:
     Georgia,
+    "Times New Roman",
     serif;
 
   font-size: 35px;
+
   font-weight: 400;
-  line-height: 1.05;
+
+  line-height: 0.98;
 
   color: #fff7fb;
+
+  text-shadow:
+    0 3px 15px
+    rgba(0,0,0,0.75);
 }
 
 h1 span {
-  color: #ff89a9;
+  color: #ff89aa;
 }
+
+
+/* HEART COUNTER */
 
 .heart-counter {
   min-width: 95px;
@@ -140,19 +229,20 @@ h1 span {
 
   border:
     1px solid
-    rgba(255,147,178,0.14);
+    rgba(255,147,178,0.16);
 
-  border-radius: 20px;
+  border-radius: 22px;
 
   background:
-    rgba(30,19,29,0.72);
+    rgba(28,16,27,0.72);
 
   backdrop-filter: blur(16px);
+
   -webkit-backdrop-filter: blur(16px);
 
   box-shadow:
-    0 14px 30px
-    rgba(0,0,0,0.2);
+    0 12px 30px
+    rgba(0,0,0,0.28);
 }
 
 .heart-counter div {
@@ -165,144 +255,106 @@ h1 span {
 
   margin-top: 3px;
 
-  color: #d887a1;
+  color: #dc8ca4;
 
   font-size: 10px;
 }
 
-/* HERO IMAGE */
 
-.hero-people {
-  position: absolute;
-
-  left: 0;
-  right: 0;
-  top: 0;
-
-  width: 100%;
-  height: 690px;
-
-  z-index: 2;
-
-  overflow: hidden;
-}
-
-.couple-art {
-  position: absolute;
-
-  left: 50%;
-  top: 0;
-
-  transform: translateX(-50%);
-
-  width: 100%;
-  height: 100%;
-
-  object-fit: cover;
-  object-position: center top;
-
-  filter:
-    brightness(0.92)
-    contrast(1.02)
-    saturate(0.9);
-}
-
-.mori-art {
-  position: absolute;
-
-  right: 18px;
-  bottom: 26px;
-
-  width: 105px;
-  height: auto;
-
-  z-index: 8;
-
-  border-radius: 14px;
-
-  filter:
-    drop-shadow(
-      0 10px 16px
-      rgba(0,0,0,0.6)
-    );
-}
-
-/* DIALOGUE */
+/* =========================
+   ELIAS DIALOGUE
+========================= */
 
 .elias-dialogue {
   position: absolute;
 
   left: 22px;
-  right: 22px;
 
-  bottom: 28px;
+  /*
+   * Mori lives on the right,
+   * so leave him some room.
+   */
+  right: 125px;
+
+  bottom: 108px;
 
   z-index: 15;
 
-  width: auto;
-  max-width: 365px;
-
-  padding: 17px 18px;
+  padding: 16px 18px;
 
   border:
     1px solid
-    rgba(255,126,163,0.26);
+    rgba(255,126,163,0.28);
 
   border-radius: 22px;
 
   background:
-    rgba(22,13,22,0.88);
+    rgba(19,10,18,0.88);
 
   backdrop-filter: blur(18px);
+
   -webkit-backdrop-filter: blur(18px);
 
   box-shadow:
-    0 18px 32px
-    rgba(0,0,0,0.35);
+    0 18px 35px
+    rgba(0,0,0,0.42);
 }
 
 .speaker {
   margin-bottom: 9px;
 
-  color: #ff8fae;
+  color: #ff91ae;
 
   font-size: 13px;
+
   font-weight: 700;
 }
 
 .elias-dialogue p {
   margin: 0;
 
-  color: #f7e8ef;
+  color: #fff2f7;
 
   font-size: 15px;
+
   line-height: 1.45;
 
   transition:
     opacity 0.15s ease;
 }
 
-/* DATE SECTION */
+
+/* =========================
+   DATE SECTION
+========================= */
 
 .section {
+  position: relative;
+
+  z-index: 10;
+
   padding:
-    18px
+    20px
     18px
     4px;
+
+  background: #0b070c;
 }
 
 .section h2 {
-  margin: 0 0 15px;
+  margin:
+    0
+    0
+    15px;
 
   color: #df93aa;
 
   text-align: center;
 
   font-size: 15px;
+
   font-weight: 500;
 }
-
-/* DATE GRID */
 
 .date-grid {
   display: grid;
@@ -310,19 +362,21 @@ h1 span {
   grid-template-columns:
     repeat(4, 1fr);
 
-  gap: 8px;
+  gap: 7px;
 }
 
 .date-card {
-  min-height: 172px;
+  min-height: 168px;
+
+  padding:
+    8px
+    6px;
 
   border:
     1px solid
-    rgba(255,128,166,0.13);
+    rgba(255,128,166,0.14);
 
-  border-radius: 20px;
-
-  padding: 10px 7px;
+  border-radius: 19px;
 
   background:
     linear-gradient(
@@ -334,14 +388,16 @@ h1 span {
   color: #f5e5ec;
 
   display: flex;
+
   flex-direction: column;
 
   justify-content: space-between;
+
   align-items: center;
 
   box-shadow:
-    0 14px 25px
-    rgba(0,0,0,0.15);
+    0 12px 24px
+    rgba(0,0,0,0.18);
 
   transition:
     transform 0.1s ease;
@@ -353,26 +409,19 @@ h1 span {
 
 .date-image {
   width: 100%;
-  height: 88px;
 
-  border-radius: 14px;
+  height: 84px;
 
   overflow: hidden;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  border-radius: 14px;
 
-  background:
-    radial-gradient(
-      circle,
-      rgba(255,116,155,0.12),
-      rgba(255,255,255,0.02)
-    );
+  background: #160e15;
 }
 
 .date-image img {
   width: 100%;
+
   height: 100%;
 
   object-fit: cover;
@@ -381,15 +430,17 @@ h1 span {
 }
 
 .date-card > span {
-  min-height: 36px;
+  min-height: 35px;
 
   display: flex;
+
   align-items: center;
+
   justify-content: center;
 
   text-align: center;
 
-  font-size: 12px;
+  font-size: 11px;
 }
 
 .date-card small {
@@ -398,21 +449,26 @@ h1 span {
   font-size: 11px;
 }
 
-/* MEMORIES */
+
+/* =========================
+   MEMORIES
+========================= */
 
 .memory-area {
   display: grid;
 
   grid-template-columns:
     1fr
-    112px;
+    110px;
 
   gap: 10px;
 
   padding:
     18px
     18px
-    135px;
+    125px;
+
+  background: #0b070c;
 }
 
 .memories-card,
@@ -443,6 +499,7 @@ h1 span {
   display: flex;
 
   justify-content: space-between;
+
   align-items: center;
 
   gap: 10px;
@@ -456,6 +513,7 @@ h1 span {
   color: #ed9bb3;
 
   font-size: 16px;
+
   font-weight: 500;
 }
 
@@ -467,6 +525,7 @@ h1 span {
 
 .memory-list {
   display: flex;
+
   flex-direction: column;
 
   gap: 9px;
@@ -494,10 +553,13 @@ h1 span {
 
 .memory-icon {
   width: 44px;
+
   height: 44px;
 
   display: flex;
+
   align-items: center;
+
   justify-content: center;
 
   border-radius: 12px;
@@ -510,6 +572,7 @@ h1 span {
 
 .memory-text {
   font-size: 11px;
+
   line-height: 1.35;
 
   color: #ebdae3;
@@ -531,21 +594,22 @@ h1 span {
   font-size: 11px;
 }
 
-/* RANDOM CARD */
+
+/* RANDOM EVENT */
 
 .random-card {
-  border:
-    1px solid
-    rgba(255,132,168,0.12);
-
-  padding: 15px 10px;
+  padding:
+    15px
+    10px;
 
   color: white;
 
   display: flex;
+
   flex-direction: column;
 
   align-items: center;
+
   justify-content: space-between;
 
   text-align: center;
@@ -555,6 +619,7 @@ h1 span {
   color: #e990ab;
 
   font-size: 14px;
+
   line-height: 1.25;
 }
 
@@ -572,20 +637,26 @@ h1 span {
   color: #c9aab5;
 
   font-size: 10px;
+
   line-height: 1.3;
 }
 
-/* OTHER PAGES */
+
+/* =========================
+   MORI / ALBUM / SETTINGS
+========================= */
 
 .page {
   padding:
     25px
     20px
-    140px;
+    130px;
 }
 
 .page-inner {
   min-height: 430px;
+
+  padding: 25px;
 
   border:
     1px solid
@@ -601,45 +672,50 @@ h1 span {
     );
 
   display: flex;
+
   flex-direction: column;
 
   align-items: center;
+
   justify-content: center;
 
   text-align: center;
-
-  padding: 25px;
 }
 
 .big-icon {
-  font-size: 75px;
-
   margin-bottom: 10px;
+
+  font-size: 75px;
 }
 
 .mori-page-image {
-  width: 180px;
-  height: auto;
+  width: 190px;
 
-  margin-bottom: 12px;
+  max-height: 240px;
 
-  border-radius: 20px;
+  object-fit: cover;
 
-  filter:
-    drop-shadow(
-      0 15px 20px
-      rgba(0,0,0,0.4)
-    );
+  margin-bottom: 14px;
+
+  border-radius: 22px;
+
+  box-shadow:
+    0 15px 30px
+    rgba(0,0,0,0.35);
 }
 
 .page h2 {
-  margin: 0 0 10px;
+  margin:
+    0
+    0
+    10px;
 
   font-family:
     Georgia,
     serif;
 
   font-size: 28px;
+
   font-weight: 400;
 }
 
@@ -655,12 +731,16 @@ h1 span {
 
   min-height: 50px;
 
+  padding:
+    0
+    20px;
+
   border: none;
+
   border-radius: 17px;
 
-  padding: 0 20px;
-
   font-size: 14px;
+
   font-weight: 700;
 }
 
@@ -676,34 +756,38 @@ h1 span {
   color: #ff9cb5;
 }
 
-/* NAV */
+
+/* =========================
+   BOTTOM NAV
+========================= */
 
 .bottom-nav {
   position: fixed;
 
-  left: 14px;
-  right: 14px;
+  left: 16px;
+
+  right: 16px;
 
   bottom:
     max(
-      12px,
+      14px,
       env(safe-area-inset-bottom)
     );
 
   z-index: 100;
 
-  min-height: 68px;
+  height: 68px;
 
   display: grid;
 
   grid-template-columns:
     repeat(5, 1fr);
 
-  padding: 7px;
+  padding: 6px;
 
   border:
     1px solid
-    rgba(255,126,163,0.09);
+    rgba(255,126,163,0.10);
 
   border-radius: 22px;
 
@@ -711,11 +795,12 @@ h1 span {
     rgba(27,17,27,0.94);
 
   backdrop-filter: blur(20px);
+
   -webkit-backdrop-filter: blur(20px);
 
   box-shadow:
-    0 12px 30px
-    rgba(0,0,0,0.45);
+    0 12px 35px
+    rgba(0,0,0,0.5);
 }
 
 .nav-button {
@@ -726,12 +811,14 @@ h1 span {
   color: #9d8190;
 
   display: flex;
+
   flex-direction: column;
 
   align-items: center;
+
   justify-content: center;
 
-  gap: 3px;
+  gap: 2px;
 
   font-size: 9px;
 }
@@ -744,59 +831,63 @@ h1 span {
   color: #ff91ae;
 
   background:
-    rgba(255,122,161,0.055);
+    rgba(255,122,161,0.06);
 
   border-radius: 16px;
 }
+
+
+/* HIDDEN */
 
 .hidden {
   display: none !important;
 }
 
-/* IPHONE 13 / SIMILAR WIDTH */
+
+/* =========================
+   IPHONE 13
+========================= */
 
 @media (max-width: 430px) {
 
   .hero {
-    min-height: 730px;
-  }
-
-  .hero-people {
-    height: 660px;
+    height: 690px;
   }
 
   .couple-art {
-    object-position: center top;
-  }
-
-  .mori-art {
-    right: 14px;
-    bottom: 30px;
-
-    width: 95px;
+    object-position:
+      center
+      35%;
   }
 
   .elias-dialogue {
-    left: 20px;
-    right: 95px;
+    left: 18px;
 
-    bottom: 24px;
+    right: 122px;
 
-    max-width: none;
+    bottom: 100px;
+
+    padding:
+      15px
+      16px;
   }
 
-  .date-grid {
-    gap: 6px;
+  .mori-art {
+    right: 15px;
+
+    bottom: 105px;
+
+    width: 95px;
+
+    height: 112px;
   }
 
   .date-card {
-    min-height: 160px;
-
-    padding: 8px 5px;
+    min-height: 156px;
   }
 
   .date-image {
-    height: 76px;
+    height: 74px;
   }
 
   .date-card > span {
