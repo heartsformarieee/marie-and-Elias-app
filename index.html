@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
   <meta charset="UTF-8">
 
   <meta
@@ -15,26 +14,20 @@
     content="#100a11"
   >
 
-  <title>
-    Our Little World
-  </title>
+  <title>Our Little World</title>
 
   <link
     rel="stylesheet"
     href="style.css"
   >
-
 </head>
-
 
 <body>
 
   <main class="app">
 
 
-    <!-- =========================
-         HOME
-    ========================== -->
+    <!-- HOME -->
 
     <section id="homePage">
 
@@ -48,7 +41,6 @@
           class="couple-art"
           alt="Marie and Elias"
         >
-
 
         <div class="hero-overlay"></div>
 
@@ -107,9 +99,72 @@
       </section>
 
 
-      <!-- =========================
-           DATE OPTIONS
-      ========================== -->
+      <!-- RELATIONSHIP LEVEL -->
+
+      <section class="relationship-section">
+
+        <div class="relationship-card">
+
+          <div class="relationship-top">
+
+            <div>
+
+              <p class="relationship-label">
+                OUR RELATIONSHIP
+              </p>
+
+              <h2 id="relationshipName">
+                Just Us ♡
+              </h2>
+
+            </div>
+
+            <div
+              id="relationshipIcon"
+              class="relationship-icon"
+            >
+              🤍
+            </div>
+
+          </div>
+
+
+          <p
+            id="relationshipDescription"
+            class="relationship-description"
+          >
+            Our little world is only getting started.
+          </p>
+
+
+          <div class="relationship-progress-text">
+
+            <span id="relationshipProgressText">
+              0 / 25 hearts
+            </span>
+
+            <span id="nextLevelText">
+              Next: Attached
+            </span>
+
+          </div>
+
+
+          <div class="relationship-progress">
+
+            <div
+              id="relationshipProgressFill"
+              class="relationship-progress-fill"
+            ></div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- DATE OPTIONS -->
 
       <section class="section">
 
@@ -119,7 +174,6 @@
 
 
         <div class="date-grid">
-
 
           <button
             class="date-card"
@@ -195,7 +249,7 @@
 
             <img
               src="home.PNG"
-              alt="Stay Home"
+              alt="Stay Home with Mori"
             >
 
             <span>
@@ -209,18 +263,14 @@
 
           </button>
 
-
         </div>
 
       </section>
 
 
-      <!-- =========================
-           MEMORIES
-      ========================== -->
+      <!-- MEMORIES -->
 
       <section class="memory-area">
-
 
         <div class="memories-card">
 
@@ -245,8 +295,6 @@
         </div>
 
 
-        <!-- RANDOM EVENT -->
-
         <button
           id="randomEventButton"
           class="random-card"
@@ -269,15 +317,12 @@
 
         </button>
 
-
       </section>
 
     </section>
 
 
-    <!-- =========================
-         MORI PAGE
-    ========================== -->
+    <!-- MORI PAGE -->
 
     <section
       id="moriPage"
@@ -313,9 +358,7 @@
     </section>
 
 
-    <!-- =========================
-         ALBUM PAGE
-    ========================== -->
+    <!-- ALBUM PAGE -->
 
     <section
       id="albumPage"
@@ -365,9 +408,7 @@
     </section>
 
 
-    <!-- =========================
-         SETTINGS
-    ========================== -->
+    <!-- SETTINGS -->
 
     <section
       id="settingsPage"
@@ -388,6 +429,24 @@
           Our little world is saved on this device.
         </p>
 
+
+        <div class="settings-level">
+
+          <small>
+            RELATIONSHIP LEVEL
+          </small>
+
+          <strong id="settingsRelationshipName">
+            Just Us ♡
+          </strong>
+
+          <span id="settingsHeartCount">
+            0 hearts
+          </span>
+
+        </div>
+
+
         <button
           id="resetButton"
           class="danger-button"
@@ -401,9 +460,7 @@
     </section>
 
 
-    <!-- =========================
-         SCENE POPUP
-    ========================== -->
+    <!-- SCENE POPUP -->
 
     <div
       id="sceneOverlay"
@@ -433,11 +490,9 @@
           MARIE × ELIAS
         </p>
 
-
         <h2 id="sceneTitle">
           Date
         </h2>
-
 
         <p
           id="sceneText"
@@ -445,7 +500,6 @@
         >
           ...
         </p>
-
 
         <div
           id="sceneChoices"
@@ -457,9 +511,48 @@
     </div>
 
 
-    <!-- =========================
-         PHOTO VIEWER
-    ========================== -->
+    <!-- LEVEL-UP POPUP -->
+
+    <div
+      id="levelOverlay"
+      class="level-overlay hidden"
+    >
+
+      <div class="level-up-card">
+
+        <div
+          id="levelUpIcon"
+          class="level-up-icon"
+        >
+          💗
+        </div>
+
+        <p class="level-small">
+          RELATIONSHIP LEVEL UP
+        </p>
+
+        <h2 id="levelUpName">
+          Attached
+        </h2>
+
+        <p id="levelUpText">
+          Somehow we got even closer.
+        </p>
+
+        <button
+          id="closeLevelUp"
+          class="level-button"
+          type="button"
+        >
+          Continue ♡
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- PHOTO VIEWER -->
 
     <div
       id="photoOverlay"
@@ -505,25 +598,17 @@
     </div>
 
 
-    <!-- =========================
-         NAVIGATION
-    ========================== -->
+    <!-- NAVIGATION -->
 
     <nav class="bottom-nav">
-
 
       <button
         class="nav-button active"
         data-page="home"
         type="button"
       >
-
-        <span>
-          ⌂
-        </span>
-
+        <span>⌂</span>
         Home
-
       </button>
 
 
@@ -532,13 +617,8 @@
         data-page="memories"
         type="button"
       >
-
-        <span>
-          ▧
-        </span>
-
+        <span>▧</span>
         Memories
-
       </button>
 
 
@@ -547,13 +627,8 @@
         data-page="mori"
         type="button"
       >
-
-        <span>
-          🐈‍⬛
-        </span>
-
+        <span>🐈‍⬛</span>
         Mori
-
       </button>
 
 
@@ -562,13 +637,8 @@
         data-page="album"
         type="button"
       >
-
-        <span>
-          ♡
-        </span>
-
+        <span>♡</span>
         Album
-
       </button>
 
 
@@ -577,15 +647,9 @@
         data-page="settings"
         type="button"
       >
-
-        <span>
-          ⚙︎
-        </span>
-
+        <span>⚙︎</span>
         Settings
-
       </button>
-
 
     </nav>
 
@@ -595,5 +659,4 @@
   <script src="script.js"></script>
 
 </body>
-
 </html>
