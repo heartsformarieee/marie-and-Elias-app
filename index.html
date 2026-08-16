@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  >
+
+  <meta name="theme-color" content="#100a11">
+
+  <title>Our Little World</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <main class="app">
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+      <div class="hero-darken"></div>
+
+      <div class="topbar">
+
+        <div>
+          <p class="eyebrow">
+            MARIE × ELIAS
+          </p>
+
+          <h1>
+            Our Little World
+            <span>♡</span>
+          </h1>
+        </div>
+
+        <div class="heart-counter">
+          <div>
+            💗
+            <span id="heartCount">0</span>
+          </div>
+
+          <small>our hearts</small>
+        </div>
+
+      </div>
+
+
+      <div class="hero-people">
+
+        <div class="person marie">
+          M
+        </div>
+
+        <div class="person elias">
+          E
+        </div>
+
+        <div class="hero-mori">
+          🐈‍⬛
+        </div>
+
+      </div>
+
+
+      <div class="elias-dialogue">
+
+        <div class="speaker">
+          ♥ Elias
+        </div>
+
+        <p id="heroDialogue">
+          There you are.<br>
+          What are we doing tonight?
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- DATE OPTIONS -->
+
+    <section class="section">
+
+      <h2>
+        ← What should we do? →
+      </h2>
+
+      <div class="date-grid">
+
+        <button
+          class="date-card"
+          data-date="sushi"
+        >
+
+          <div class="date-image">
+            🍣
+          </div>
+
+          <span>
+            Sushi Date
+          </span>
+
+          <small>
+            💗 +3
+          </small>
+
+        </button>
+
+
+        <button
+          class="date-card"
+          data-date="movie"
+        >
+
+          <div class="date-image">
+            🍿
+          </div>
+
+          <span>
+            Movie Night
+          </span>
+
+          <small>
+            💗 +2
+          </small>
+
+        </button>
+
+
+        <button
+          class="date-card"
+          data-date="walk"
+        >
+
+          <div class="date-image">
+            🌙
+          </div>
+
+          <span>
+            Night Walk
+          </span>
+
+          <small>
+            💗 +4
+          </small>
+
+        </button>
+
+
+        <button
+          class="date-card"
+          data-date="home"
+        >
+
+          <div class="date-image">
+            🐈‍⬛
+          </div>
+
+          <span>
+            Stay Home<br>
+            with Mori
+          </span>
+
+          <small>
+            💗 +2
+          </small>
+
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- MEMORIES + RANDOM EVENT -->
+
+    <section class="memory-area">
+
+      <div class="memories-card">
+
+        <div class="memories-heading">
+
+          <h2>
+            Memories ♡
+          </h2>
+
+          <span id="memoryCount">
+            0 unlocked
+          </span>
+
+        </div>
+
+
+        <div
+          id="memoriesList"
+          class="memory-list"
+        >
+        </div>
+
+      </div>
+
+
+      <button
+        id="randomEventButton"
+        class="random-card"
+      >
+
+        <span class="random-title">
+          Something<br>
+          happens...
+        </span>
+
+        <span class="random-heart">
+          💗
+        </span>
+
+        <small>
+          Tap for a<br>
+          random event!
+        </small>
+
+      </button>
+
+    </section>
+
+
+    <!-- PAGES -->
+
+    <section
+      id="moriPage"
+      class="page hidden"
+    >
+
+      <div class="page-inner">
+
+        <div class="big-icon">
+          🐈‍⬛
+        </div>
+
+        <h2>
+          Mori
+        </h2>
+
+        <p id="moriText">
+          Mori is currently judging both of you.
+        </p>
+
+        <button
+          id="petMoriButton"
+          class="pink-button"
+        >
+          Pet Mori
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <section
+      id="albumPage"
+      class="page hidden"
+    >
+
+      <div class="page-inner">
+
+        <div class="big-icon">
+          📷
+        </div>
+
+        <h2>
+          Our Album
+        </h2>
+
+        <p>
+          Your future photo memories will live here ♡
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <section
+      id="settingsPage"
+      class="page hidden"
+    >
+
+      <div class="page-inner">
+
+        <div class="big-icon">
+          ⚙️
+        </div>
+
+        <h2>
+          Settings
+        </h2>
+
+        <button
+          id="resetButton"
+          class="danger-button"
+        >
+          Reset Progress
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- BOTTOM NAV -->
+
+    <nav class="bottom-nav">
+
+      <button
+        class="nav-button active"
+        data-page="home"
+      >
+        <span>⌂</span>
+        Home
+      </button>
+
+
+      <button
+        class="nav-button"
+        data-page="memories"
+      >
+        <span>▧</span>
+        Memories
+      </button>
+
+
+      <button
+        class="nav-button"
+        data-page="mori"
+      >
+        <span>🐈‍⬛</span>
+        Mori
+      </button>
+
+
+      <button
+        class="nav-button"
+        data-page="album"
+      >
+        <span>♡</span>
+        Album
+      </button>
+
+
+      <button
+        class="nav-button"
+        data-page="settings"
+      >
+        <span>⚙︎</span>
+        Settings
+      </button>
+
+    </nav>
+
+  </main>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>
