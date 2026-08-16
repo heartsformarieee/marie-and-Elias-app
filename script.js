@@ -1,6 +1,6 @@
 // ========================================
-// OUR LITTLE WORLD 1.5
-// RELATIONSHIP LEVELS
+// OUR LITTLE WORLD 1.6
+// DAILY CHECK-IN + STREAKS
 // ========================================
 
 
@@ -48,6 +48,79 @@ const navButtons =
   document.querySelectorAll(".nav-button");
 
 
+// DAILY
+
+const dailyCheckInButton =
+  document.getElementById(
+    "dailyCheckInButton"
+  );
+
+const todayTitle =
+  document.getElementById(
+    "todayTitle"
+  );
+
+const todayText =
+  document.getElementById(
+    "todayText"
+  );
+
+const streakCount =
+  document.getElementById(
+    "streakCount"
+  );
+
+const currentStreakText =
+  document.getElementById(
+    "currentStreakText"
+  );
+
+const bestStreakText =
+  document.getElementById(
+    "bestStreakText"
+  );
+
+const settingsStreak =
+  document.getElementById(
+    "settingsStreak"
+  );
+
+const settingsBestStreak =
+  document.getElementById(
+    "settingsBestStreak"
+  );
+
+const dailyOverlay =
+  document.getElementById(
+    "dailyOverlay"
+  );
+
+const dailyPopupIcon =
+  document.getElementById(
+    "dailyPopupIcon"
+  );
+
+const dailyPopupTitle =
+  document.getElementById(
+    "dailyPopupTitle"
+  );
+
+const dailyPopupText =
+  document.getElementById(
+    "dailyPopupText"
+  );
+
+const dailyRewardText =
+  document.getElementById(
+    "dailyRewardText"
+  );
+
+const closeDaily =
+  document.getElementById(
+    "closeDaily"
+  );
+
+
 // RELATIONSHIP
 
 const relationshipName =
@@ -91,7 +164,7 @@ const settingsHeartCount =
   );
 
 
-// LEVEL POPUP
+// LEVEL UP
 
 const levelOverlay =
   document.getElementById(
@@ -122,31 +195,47 @@ const closeLevelUp =
 // SCENE
 
 const sceneOverlay =
-  document.getElementById("sceneOverlay");
+  document.getElementById(
+    "sceneOverlay"
+  );
 
 const sceneImage =
-  document.getElementById("sceneImage");
+  document.getElementById(
+    "sceneImage"
+  );
 
 const sceneTitle =
-  document.getElementById("sceneTitle");
+  document.getElementById(
+    "sceneTitle"
+  );
 
 const sceneText =
-  document.getElementById("sceneText");
+  document.getElementById(
+    "sceneText"
+  );
 
 const sceneChoices =
-  document.getElementById("sceneChoices");
+  document.getElementById(
+    "sceneChoices"
+  );
 
 const closeScene =
-  document.getElementById("closeScene");
+  document.getElementById(
+    "closeScene"
+  );
 
 
 // ALBUM
 
 const albumGrid =
-  document.getElementById("albumGrid");
+  document.getElementById(
+    "albumGrid"
+  );
 
 const albumProgress =
-  document.getElementById("albumProgress");
+  document.getElementById(
+    "albumProgress"
+  );
 
 const albumProgressFill =
   document.getElementById(
@@ -154,10 +243,12 @@ const albumProgressFill =
   );
 
 
-// PHOTO VIEWER
+// PHOTO
 
 const photoOverlay =
-  document.getElementById("photoOverlay");
+  document.getElementById(
+    "photoOverlay"
+  );
 
 const photoViewerImage =
   document.getElementById(
@@ -175,11 +266,13 @@ const photoViewerCaption =
   );
 
 const closePhoto =
-  document.getElementById("closePhoto");
+  document.getElementById(
+    "closePhoto"
+  );
 
 
 // ========================================
-// DATA
+// SAVED DATA
 // ========================================
 
 let hearts =
@@ -190,7 +283,7 @@ let hearts =
   ) || 0;
 
 
-let memories;
+let memories = [];
 
 try {
 
@@ -213,22 +306,415 @@ let savedRelationshipLevel =
     localStorage.getItem(
       "littleWorldRelationshipLevel"
     )
-  );
+  ) || 0;
 
 
-if (
-  Number.isNaN(
-    savedRelationshipLevel
-  )
-) {
+let currentStreak =
+  Number(
+    localStorage.getItem(
+      "littleWorldCurrentStreak"
+    )
+  ) || 0;
 
-  savedRelationshipLevel = 0;
 
-}
+let bestStreak =
+  Number(
+    localStorage.getItem(
+      "littleWorldBestStreak"
+    )
+  ) || 0;
+
+
+let lastVisit =
+  localStorage.getItem(
+    "littleWorldLastVisit"
+  ) || "";
 
 
 heartCount.textContent =
   hearts;
+
+
+// ========================================
+// DATE HELPERS
+// ========================================
+
+function getTodayString() {
+
+  const now =
+    new Date();
+
+
+  const year =
+    now.getFullYear();
+
+
+  const month =
+    String(
+      now.getMonth() + 1
+    )
+    .padStart(
+      2,
+      "0"
+    );
+
+
+  const day =
+    String(
+      now.getDate()
+    )
+    .padStart(
+      2,
+      "0"
+    );
+
+
+  return (
+    `${year}-${month}-${day}`
+  );
+
+}
+
+
+function getYesterdayString() {
+
+  const yesterday =
+    new Date();
+
+
+  yesterday.setDate(
+    yesterday.getDate() - 1
+  );
+
+
+  const year =
+    yesterday.getFullYear();
+
+
+  const month =
+    String(
+      yesterday.getMonth() + 1
+    )
+    .padStart(
+      2,
+      "0"
+    );
+
+
+  const day =
+    String(
+      yesterday.getDate()
+    )
+    .padStart(
+      2,
+      "0"
+    );
+
+
+  return (
+    `${year}-${month}-${day}`
+  );
+
+}
+
+
+// ========================================
+// DAILY EVENTS
+// ========================================
+
+const dailyEvents = [
+
+  {
+    icon: "☀️",
+
+    title:
+      "Morning, Sleepy",
+
+    text:
+      "Elias looks at you for a second. “You look like you need five more minutes.”",
+
+    reward:
+      3,
+
+    memory:
+      "Daily check-in — Elias tried to convince you to stay in bed five more minutes."
+  },
+
+  {
+    icon: "💗",
+
+    title:
+      "There You Are",
+
+    text:
+      "Elias notices you immediately. “I was wondering when you'd show up.”",
+
+    reward:
+      4,
+
+    memory:
+      "Daily check-in — Elias was waiting for you."
+  },
+
+  {
+    icon: "🐈‍⬛",
+
+    title:
+      "Mori Says Hi",
+
+    text:
+      "Mori appears first. Elias sighs. “Of course he gets to greet you before I do.”",
+
+    reward:
+      3,
+
+    memory:
+      "Daily check-in — Mori beat Elias to the greeting."
+  },
+
+  {
+    icon: "🌙",
+
+    title:
+      "Late Again",
+
+    text:
+      "Elias glances at the time. “You're seriously checking in this late?” He makes room beside him anyway.",
+
+    reward:
+      5,
+
+    memory:
+      "Daily check-in — you showed up late and Elias still made room for you."
+  },
+
+  {
+    icon: "🖤",
+
+    title:
+      "Hoodie Privileges",
+
+    text:
+      "Elias tosses you his hoodie without explanation. “Don't make a thing out of it.”",
+
+    reward:
+      4,
+
+    memory:
+      "Daily check-in — Elias gave you his hoodie for the day."
+  },
+
+  {
+    icon: "🫶",
+
+    title:
+      "Come Here",
+
+    text:
+      "Elias reaches for your hand. “No reason. Just come here.”",
+
+    reward:
+      5,
+
+    memory:
+      "Daily check-in — Elias just wanted you close."
+  }
+
+];
+
+
+function getDailyEvent() {
+
+  const today =
+    getTodayString();
+
+
+  let total =
+    0;
+
+
+  for (
+    let i = 0;
+    i < today.length;
+    i++
+  ) {
+
+    total +=
+      today.charCodeAt(i);
+
+  }
+
+
+  return dailyEvents[
+    total %
+    dailyEvents.length
+  ];
+
+}
+
+
+// ========================================
+// DAILY STREAK
+// ========================================
+
+function hasCheckedInToday() {
+
+  return (
+    lastVisit ===
+    getTodayString()
+  );
+
+}
+
+
+function updateStreakBeforeCheckIn() {
+
+  const today =
+    getTodayString();
+
+
+  const yesterday =
+    getYesterdayString();
+
+
+  if (
+    lastVisit === today
+  ) {
+
+    return;
+
+  }
+
+
+  if (
+    lastVisit === yesterday
+  ) {
+
+    currentStreak += 1;
+
+  }
+
+  else {
+
+    currentStreak = 1;
+
+  }
+
+
+  if (
+    currentStreak >
+    bestStreak
+  ) {
+
+    bestStreak =
+      currentStreak;
+
+  }
+
+
+  lastVisit =
+    today;
+
+
+  localStorage.setItem(
+    "littleWorldCurrentStreak",
+    currentStreak
+  );
+
+
+  localStorage.setItem(
+    "littleWorldBestStreak",
+    bestStreak
+  );
+
+
+  localStorage.setItem(
+    "littleWorldLastVisit",
+    lastVisit
+  );
+
+}
+
+
+function renderDaily() {
+
+  streakCount.textContent =
+    currentStreak;
+
+
+  currentStreakText.textContent =
+    `${currentStreak} ${
+      currentStreak === 1
+        ? "day"
+        : "days"
+    }`;
+
+
+  bestStreakText.textContent =
+    `${bestStreak} ${
+      bestStreak === 1
+        ? "day"
+        : "days"
+    }`;
+
+
+  settingsStreak.textContent =
+    `${currentStreak} ${
+      currentStreak === 1
+        ? "day"
+        : "days"
+    }`;
+
+
+  settingsBestStreak.textContent =
+    `Best: ${bestStreak} ${
+      bestStreak === 1
+        ? "day"
+        : "days"
+    }`;
+
+
+  if (
+    hasCheckedInToday()
+  ) {
+
+    todayTitle.textContent =
+      "You're Here ♡";
+
+
+    todayText.textContent =
+      "Today's little moment is already tucked safely into our memories.";
+
+
+    dailyCheckInButton.textContent =
+      "Checked in today ✓";
+
+
+    dailyCheckInButton.disabled =
+      true;
+
+  }
+
+  else {
+
+    todayTitle.textContent =
+      "Daily Check-In ♡";
+
+
+    todayText.textContent =
+      "Come say hi and collect today's little moment.";
+
+
+    dailyCheckInButton.textContent =
+      "Check in for today ♡";
+
+
+    dailyCheckInButton.disabled =
+      false;
+
+  }
+
+}
 
 
 // ========================================
@@ -239,7 +725,6 @@ const relationshipLevels = [
 
   {
     minimum: 0,
-    maximum: 24,
     name: "Just Us ♡",
     icon: "🤍",
 
@@ -250,10 +735,8 @@ const relationshipLevels = [
       "Okay, this is officially becoming a thing."
   },
 
-
   {
     minimum: 25,
-    maximum: 49,
     name: "Attached",
     icon: "💗",
 
@@ -264,10 +747,8 @@ const relationshipLevels = [
       "Apparently I got attached. Shocking."
   },
 
-
   {
     minimum: 50,
-    maximum: 99,
     name: "Inseparable",
     icon: "🫶",
 
@@ -278,10 +759,8 @@ const relationshipLevels = [
       "Yeah. We're kind of a package deal now."
   },
 
-
   {
     minimum: 100,
-    maximum: 199,
     name: "My Favorite Person",
     icon: "💞",
 
@@ -292,10 +771,8 @@ const relationshipLevels = [
       "You're my favorite person. Don't make this weird."
   },
 
-
   {
     minimum: 200,
-    maximum: 399,
     name: "Disgustingly In Love",
     icon: "💘",
 
@@ -306,10 +783,8 @@ const relationshipLevels = [
       "This is getting embarrassing. I adore you."
   },
 
-
   {
     minimum: 400,
-    maximum: Infinity,
     name: "Endgame ♡",
     icon: "💍",
 
@@ -325,10 +800,15 @@ const relationshipLevels = [
 
 function getRelationshipLevel() {
 
+  let index =
+    0;
+
+
   for (
-    let i = relationshipLevels.length - 1;
-    i >= 0;
-    i--
+    let i = 0;
+    i <
+    relationshipLevels.length;
+    i++
   ) {
 
     if (
@@ -336,10 +816,8 @@ function getRelationshipLevel() {
       relationshipLevels[i].minimum
     ) {
 
-      return {
-        index: i,
-        data: relationshipLevels[i]
-      };
+      index =
+        i;
 
     }
 
@@ -347,8 +825,11 @@ function getRelationshipLevel() {
 
 
   return {
-    index: 0,
-    data: relationshipLevels[0]
+    index:
+      index,
+
+    data:
+      relationshipLevels[index]
   };
 
 }
@@ -412,33 +893,36 @@ function renderRelationship() {
     ];
 
 
-  const currentMinimum =
+  const currentMin =
     level.minimum;
 
 
-  const nextMinimum =
+  const nextMin =
     next.minimum;
 
 
   const progress =
     hearts -
-    currentMinimum;
+    currentMin;
 
 
   const needed =
-    nextMinimum -
-    currentMinimum;
+    nextMin -
+    currentMin;
 
 
   const percent =
     Math.min(
       100,
-      (progress / needed) * 100
+      (
+        progress /
+        needed
+      ) * 100
     );
 
 
   relationshipProgressText.textContent =
-    `${hearts} / ${nextMinimum} hearts`;
+    `${hearts} / ${nextMin} hearts`;
 
 
   nextLevelText.textContent =
@@ -450,10 +934,6 @@ function renderRelationship() {
 
 }
 
-
-// ========================================
-// LEVEL UP
-// ========================================
 
 function checkRelationshipLevelUp() {
 
@@ -515,18 +995,6 @@ function checkRelationshipLevelUp() {
 }
 
 
-closeLevelUp.addEventListener(
-  "click",
-  function() {
-
-    levelOverlay.classList.add(
-      "hidden"
-    );
-
-  }
-);
-
-
 // ========================================
 // DATE SCENES
 // ========================================
@@ -547,54 +1015,40 @@ const dateScenes = {
     choices: [
 
       {
-
         text:
           "Steal one of his sushi pieces.",
 
         result:
-          "Elias looks at the empty spot on his plate, then at you. “You know you could've just asked.” He pushes another piece toward you anyway.",
+          "Elias looks at the empty spot on his plate, then at you. “You know you could've just asked.” He gives you another piece anyway.",
 
         hearts:
           3,
 
         memory: {
-
-          icon:
-            "🍣",
-
+          icon: "🍣",
           text:
             "Sushi date — you stole Elias's sushi and he gave you another piece anyway."
-
         }
-
       },
 
-
       {
-
         text:
           "Rest your head on his shoulder.",
 
         result:
-          "He goes still for half a second, then quietly leans his head against yours. “Comfortable?”",
+          "He goes still for half a second, then leans his head against yours. “Comfortable?”",
 
         hearts:
           5,
 
         memory: {
-
-          icon:
-            "🖤",
-
+          icon: "🖤",
           text:
             "Sushi date — you rested against Elias while waiting for dessert."
-
         }
-
       }
 
     ]
-
   },
 
 
@@ -607,59 +1061,45 @@ const dateScenes = {
       "movie.PNG",
 
     intro:
-      "The lights are off, the movie has barely started, and Elias has somehow already taken most of the blanket.",
+      "The movie has barely started and Elias has already taken most of the blanket.",
 
     choices: [
 
       {
-
         text:
           "Steal the blanket back.",
 
         result:
-          "You tug it toward yourself. Elias looks offended for two seconds before pulling you closer so you both fit underneath it.",
+          "Elias looks offended for two seconds before pulling you closer so you both fit.",
 
         hearts:
           4,
 
         memory: {
-
-          icon:
-            "🎬",
-
+          icon: "🎬",
           text:
             "Movie night — the blanket fight ended with both of you squeezed underneath it."
-
         }
-
       },
 
-
       {
-
         text:
           "Pretend to fall asleep on him.",
 
         result:
-          "Elias lowers the volume and stops moving. A few minutes later he whispers, “I know you're awake, by the way.”",
+          "He lowers the volume. A few minutes later: “I know you're awake, by the way.”",
 
         hearts:
           5,
 
         memory: {
-
-          icon:
-            "🍿",
-
+          icon: "🍿",
           text:
             "Movie night — Elias knew you were pretending to sleep but let you stay there."
-
         }
-
       }
 
     ]
-
   },
 
 
@@ -672,12 +1112,11 @@ const dateScenes = {
       "walk.PNG",
 
     intro:
-      "The streets are quiet and cool. Elias notices your hands are cold before you say anything.",
+      "The streets are quiet and cool. Elias notices your hands are cold.",
 
     choices: [
 
       {
-
         text:
           "Reach for his hand.",
 
@@ -688,43 +1127,30 @@ const dateScenes = {
           5,
 
         memory: {
-
-          icon:
-            "🌙",
-
+          icon: "🌙",
           text:
             "Night walk — you held hands the entire way home."
-
         }
-
       },
 
-
       {
-
         text:
           "Tell him you're freezing.",
 
         result:
-          "Elias keeps you tucked against his side. “You're dramatic.” He doesn't let go, though.",
+          "Elias keeps you tucked against his side. “You're dramatic.” He doesn't let go.",
 
         hearts:
           4,
 
         memory: {
-
-          icon:
-            "✨",
-
+          icon: "✨",
           text:
             "Night walk — Elias called you dramatic while keeping you warm."
-
         }
-
       }
 
     ]
-
   },
 
 
@@ -737,59 +1163,45 @@ const dateScenes = {
       "home.PNG",
 
     intro:
-      "You barely sit down before Mori climbs between you and Elias like he personally planned the evening.",
+      "Mori climbs between you and Elias like he personally planned the evening.",
 
     choices: [
 
       {
-
         text:
           "Give Mori all your attention.",
 
         result:
-          "Mori starts purring immediately. Elias watches from beside you. “Wow. Okay. I see where I rank.”",
+          "Mori starts purring. Elias: “Wow. Okay. I see where I rank.”",
 
         hearts:
           3,
 
         memory: {
-
-          icon:
-            "🐈‍⬛",
-
+          icon: "🐈‍⬛",
           text:
             "Stayed home — Mori stole all your attention and Elias pretended not to care."
-
         }
-
       },
 
-
       {
-
         text:
           "Pull Elias closer too.",
 
         result:
-          "Mori stays on your lap while Elias leans against you. He sighs. “Fine. Shared custody.”",
+          "Mori stays on your lap while Elias leans against you. “Fine. Shared custody.”",
 
         hearts:
           6,
 
         memory: {
-
-          icon:
-            "♡",
-
+          icon: "♡",
           text:
             "Stayed home — you ended up cuddling Elias and Mori at the same time."
-
         }
-
       }
 
     ]
-
   }
 
 };
@@ -802,7 +1214,6 @@ const dateScenes = {
 const randomScenes = [
 
   {
-
     title:
       "Mori Stole My Spot",
 
@@ -815,59 +1226,44 @@ const randomScenes = [
     choices: [
 
       {
-
         text:
           "Let Mori stay.",
 
         result:
-          "Elias sits on your other side and mutters, “Unbelievable.” Mori looks extremely pleased.",
+          "Elias sits on your other side. “Unbelievable.” Mori looks very pleased.",
 
         hearts:
           2,
 
         memory: {
-
-          icon:
-            "🐈‍⬛",
-
+          icon: "🐈‍⬛",
           text:
             "Mori stole Elias's spot and looked very proud of himself."
-
         }
-
       },
 
-
       {
-
         text:
           "Pull Elias beside you too.",
 
         result:
-          "You make room for both of them. Elias sighs. “Fine. This works.”",
+          "You make room for both. Elias sighs. “Fine. This works.”",
 
         hearts:
           5,
 
         memory: {
-
-          icon:
-            "🤍",
-
+          icon: "🤍",
           text:
             "You refused to choose between Elias and Mori, so both stayed."
-
         }
-
       }
 
     ]
-
   },
 
 
   {
-
     title:
       "Caught Staring",
 
@@ -875,12 +1271,11 @@ const randomScenes = [
       "couple.PNG",
 
     intro:
-      "You look up and catch Elias staring at you. He looks away half a second too late.",
+      "You catch Elias staring at you. He looks away half a second too late.",
 
     choices: [
 
       {
-
         text:
           "Ask, “What?”",
 
@@ -891,48 +1286,34 @@ const randomScenes = [
           4,
 
         memory: {
-
-          icon:
-            "👀",
-
+          icon: "👀",
           text:
             "You caught Elias staring and forced him to admit why."
-
         }
-
       },
 
-
       {
-
         text:
           "Stare back.",
 
         result:
-          "Elias finally breaks first. “Okay, this is getting weird.”",
+          "Elias breaks first. “Okay, this is getting weird.”",
 
         hearts:
           3,
 
         memory: {
-
-          icon:
-            "😭",
-
+          icon: "😭",
           text:
             "A staring contest somehow became a relationship moment."
-
         }
-
       }
 
     ]
-
   },
 
 
   {
-
     title:
       "Phone Thief",
 
@@ -940,12 +1321,11 @@ const randomScenes = [
       "couple.PNG",
 
     intro:
-      "Elias casually steals your phone and immediately opens the camera.",
+      "Elias steals your phone and immediately opens the camera.",
 
     choices: [
 
       {
-
         text:
           "Grab it back.",
 
@@ -956,20 +1336,13 @@ const randomScenes = [
           3,
 
         memory: {
-
-          icon:
-            "📱",
-
+          icon: "📱",
           text:
             "Elias stole your phone and took an absolutely terrible selfie."
-
         }
-
       },
 
-
       {
-
         text:
           "Pose dramatically.",
 
@@ -980,24 +1353,17 @@ const randomScenes = [
           4,
 
         memory: {
-
-          icon:
-            "📸",
-
+          icon: "📸",
           text:
             "You turned Elias's phone theft into a dramatic photoshoot."
-
         }
-
       }
 
     ]
-
   },
 
 
   {
-
     title:
       "Too Sleepy",
 
@@ -1010,31 +1376,23 @@ const randomScenes = [
     choices: [
 
       {
-
         text:
           "Fall asleep on him.",
 
         result:
-          "You wake up later and realize Elias barely moved so he wouldn't wake you.",
+          "You wake later and realize Elias barely moved so he wouldn't wake you.",
 
         hearts:
           6,
 
         memory: {
-
-          icon:
-            "🌙",
-
+          icon: "🌙",
           text:
             "You fell asleep on Elias and he stayed still so you could sleep."
-
         }
-
       },
 
-
       {
-
         text:
           "Insist you're awake.",
 
@@ -1045,98 +1403,23 @@ const randomScenes = [
           4,
 
         memory: {
-
-          icon:
-            "😴",
-
+          icon: "😴",
           text:
             "You insisted you weren't tired and immediately proved yourself wrong."
-
         }
-
       }
 
     ]
-
-  },
-
-
-  {
-
-    title:
-      "The Hoodie",
-
-    image:
-      "home.PNG",
-
-    intro:
-      "You steal one of Elias's hoodies. He notices instantly.",
-
-    choices: [
-
-      {
-
-        text:
-          "Act innocent.",
-
-        result:
-          "“Interesting. Didn't know my clothes had relocated.” He lets you keep it.",
-
-        hearts:
-          5,
-
-        memory: {
-
-          icon:
-            "🖤",
-
-          text:
-            "You stole Elias's hoodie and he quietly decided it belonged to you."
-
-        }
-
-      },
-
-
-      {
-
-        text:
-          "Tell him it's yours.",
-
-        result:
-          "“Oh, is it?” He pulls the hood over your face. “Fine. Keep it.”",
-
-        hearts:
-          5,
-
-        memory: {
-
-          icon:
-            "🧥",
-
-          text:
-            "You officially claimed one of Elias's hoodies."
-
-        }
-
-      }
-
-    ]
-
   }
 
 ];
 
 
-// ========================================
-// SPECIAL RANDOM SCENES
-// ========================================
-
 const specialRandomScenes = [
 
   {
-
-    minimumHearts: 25,
+    minimumHearts:
+      25,
 
     scene: {
 
@@ -1152,7 +1435,6 @@ const specialRandomScenes = [
       choices: [
 
         {
-
           text:
             "Sit back down.",
 
@@ -1163,20 +1445,13 @@ const specialRandomScenes = [
             6,
 
           memory: {
-
-            icon:
-              "🤍",
-
+            icon: "🤍",
             text:
               "Elias asked you to stay, so you did."
-
           }
-
         },
 
-
         {
-
           text:
             "Ask if he missed you.",
 
@@ -1187,27 +1462,20 @@ const specialRandomScenes = [
             7,
 
           memory: {
-
-            icon:
-              "😭",
-
+            icon: "😭",
             text:
               "Elias admitted he missed you after approximately three seconds."
-
           }
-
         }
 
       ]
-
     }
-
   },
 
 
   {
-
-    minimumHearts: 50,
+    minimumHearts:
+      50,
 
     scene: {
 
@@ -1223,7 +1491,6 @@ const specialRandomScenes = [
       choices: [
 
         {
-
           text:
             "Tell him he's yours too.",
 
@@ -1234,20 +1501,13 @@ const specialRandomScenes = [
             8,
 
           memory: {
-
-            icon:
-              "💞",
-
+            icon: "💞",
             text:
               "You and Elias admitted you're each other's favorite person."
-
           }
-
         },
 
-
         {
-
           text:
             "Tease him.",
 
@@ -1258,27 +1518,20 @@ const specialRandomScenes = [
             6,
 
           memory: {
-
-            icon:
-              "🫶",
-
+            icon: "🫶",
             text:
               "You teased Elias for being sentimental and he failed to hide his smile."
-
           }
-
         }
 
       ]
-
     }
-
   },
 
 
   {
-
-    minimumHearts: 100,
+    minimumHearts:
+      100,
 
     scene: {
 
@@ -1294,7 +1547,6 @@ const specialRandomScenes = [
       choices: [
 
         {
-
           text:
             "Lean into him.",
 
@@ -1305,20 +1557,13 @@ const specialRandomScenes = [
             10,
 
           memory: {
-
-            icon:
-              "💗",
-
+            icon: "💗",
             text:
               "At 100 hearts, Elias told you how much he loves your little world together."
-
           }
-
         },
 
-
         {
-
           text:
             "Tell him you do too.",
 
@@ -1329,28 +1574,21 @@ const specialRandomScenes = [
             10,
 
           memory: {
-
-            icon:
-              "♡",
-
+            icon: "♡",
             text:
               "You reached 100 hearts and chose each other all over again."
-
           }
-
         }
 
       ]
-
     }
-
   }
 
 ];
 
 
 // ========================================
-// MORI
+// MORI EVENTS
 // ========================================
 
 const moriEvents = [
@@ -1375,7 +1613,6 @@ const moriEvents = [
 const albumPhotos = [
 
   {
-
     title:
       "Us ♡",
 
@@ -1394,12 +1631,10 @@ const albumPhotos = [
 
     lockedText:
       "Reach 10 hearts"
-
   },
 
 
   {
-
     title:
       "Sushi Date",
 
@@ -1420,12 +1655,10 @@ const albumPhotos = [
 
     lockedText:
       "Go on a sushi date"
-
   },
 
 
   {
-
     title:
       "Movie Night",
 
@@ -1446,12 +1679,10 @@ const albumPhotos = [
 
     lockedText:
       "Have a movie night"
-
   },
 
 
   {
-
     title:
       "Night Walk",
 
@@ -1472,12 +1703,10 @@ const albumPhotos = [
 
     lockedText:
       "Take a night walk"
-
   },
 
 
   {
-
     title:
       "Home ♡",
 
@@ -1498,12 +1727,10 @@ const albumPhotos = [
 
     lockedText:
       "Stay home together"
-
   },
 
 
   {
-
     title:
       "Mori",
 
@@ -1525,7 +1752,6 @@ const albumPhotos = [
 
     lockedText:
       "Make a memory with Mori"
-
   }
 
 ];
@@ -1555,9 +1781,12 @@ function saveData() {
 // HEARTS
 // ========================================
 
-function addHearts(amount) {
+function addHearts(
+  amount
+) {
 
-  hearts += amount;
+  hearts +=
+    amount;
 
 
   heartCount.textContent =
@@ -1579,7 +1808,9 @@ function addHearts(amount) {
 // DIALOGUE
 // ========================================
 
-function setDialogue(text) {
+function setDialogue(
+  text
+) {
 
   heroDialogue.style.opacity =
     "0";
@@ -1607,7 +1838,9 @@ function setDialogue(text) {
 // MEMORIES
 // ========================================
 
-function memoryContains(text) {
+function memoryContains(
+  text
+) {
 
   return memories.some(
     function(memory) {
@@ -1624,7 +1857,9 @@ function memoryContains(text) {
 }
 
 
-function unlockMemory(memory) {
+function unlockMemory(
+  memory
+) {
 
   const exists =
     memories.some(
@@ -1641,7 +1876,10 @@ function unlockMemory(memory) {
 
   if (!exists) {
 
-    memories.push(memory);
+    memories.push(
+      memory
+    );
+
 
     saveData();
 
@@ -1674,6 +1912,7 @@ function renderMemories() {
         Your memories will appear here ♡
       </div>
       `;
+
 
     return;
 
@@ -1732,20 +1971,22 @@ function renderAlbum() {
     "";
 
 
-  let unlockedCount =
+  let unlocked =
     0;
 
 
   albumPhotos.forEach(
     function(photo) {
 
-      const unlocked =
+      const isUnlocked =
         photo.requirement();
 
 
-      if (unlocked) {
+      if (
+        isUnlocked
+      ) {
 
-        unlockedCount++;
+        unlocked++;
 
       }
 
@@ -1761,7 +2002,7 @@ function renderAlbum() {
 
 
       card.className =
-        unlocked
+        isUnlocked
           ? "album-photo"
           : "album-photo locked";
 
@@ -1776,18 +2017,22 @@ function renderAlbum() {
         photo.image;
 
 
-      image.alt =
-        photo.title;
-
-
       image.className =
         "album-photo-image";
 
 
-      card.appendChild(image);
+      image.alt =
+        photo.title;
 
 
-      if (!unlocked) {
+      card.appendChild(
+        image
+      );
+
+
+      if (
+        !isUnlocked
+      ) {
 
         const lock =
           document.createElement(
@@ -1802,14 +2047,15 @@ function renderAlbum() {
         lock.innerHTML =
           `
           <span>🔒</span>
-
           <small>
             ${photo.lockedText}
           </small>
           `;
 
 
-        card.appendChild(lock);
+        card.appendChild(
+          lock
+        );
 
       }
 
@@ -1828,7 +2074,7 @@ function renderAlbum() {
         `
         <strong>
           ${
-            unlocked
+            isUnlocked
               ? photo.title
               : "Locked Memory"
           }
@@ -1836,7 +2082,7 @@ function renderAlbum() {
 
         <small>
           ${
-            unlocked
+            isUnlocked
               ? "Tap to open ♡"
               : "Keep making memories..."
           }
@@ -1844,16 +2090,22 @@ function renderAlbum() {
         `;
 
 
-      card.appendChild(info);
+      card.appendChild(
+        info
+      );
 
 
-      if (unlocked) {
+      if (
+        isUnlocked
+      ) {
 
         card.addEventListener(
           "click",
           function() {
 
-            openPhoto(photo);
+            openPhoto(
+              photo
+            );
 
           }
         );
@@ -1861,20 +2113,22 @@ function renderAlbum() {
       }
 
 
-      albumGrid.appendChild(card);
+      albumGrid.appendChild(
+        card
+      );
 
     }
   );
 
 
   albumProgress.textContent =
-    `${unlockedCount} / ${albumPhotos.length} unlocked`;
+    `${unlocked} / ${albumPhotos.length} unlocked`;
 
 
   albumProgressFill.style.width =
     `${
       (
-        unlockedCount /
+        unlocked /
         albumPhotos.length
       ) * 100
     }%`;
@@ -1886,7 +2140,9 @@ function renderAlbum() {
 // PHOTO VIEWER
 // ========================================
 
-function openPhoto(photo) {
+function openPhoto(
+  photo
+) {
 
   photoViewerImage.src =
     photo.image;
@@ -1919,30 +2175,13 @@ closePhoto.addEventListener(
 );
 
 
-photoOverlay.addEventListener(
-  "click",
-  function(event) {
-
-    if (
-      event.target ===
-      photoOverlay
-    ) {
-
-      photoOverlay.classList.add(
-        "hidden"
-      );
-
-    }
-
-  }
-);
-
-
 // ========================================
-// SCENES
+// GENERIC SCENES
 // ========================================
 
-function openScene(scene) {
+function openScene(
+  scene
+) {
 
   sceneImage.src =
     scene.image;
@@ -2008,7 +2247,9 @@ function openScene(scene) {
 }
 
 
-function chooseSceneOption(choice) {
+function chooseSceneOption(
+  choice
+) {
 
   sceneChoices.innerHTML =
     "";
@@ -2085,7 +2326,9 @@ function chooseSceneOption(choice) {
 }
 
 
+// ========================================
 // DATE BUTTONS
+// ========================================
 
 document
   .querySelectorAll(
@@ -2104,9 +2347,13 @@ document
             ];
 
 
-          if (scene) {
+          if (
+            scene
+          ) {
 
-            openScene(scene);
+            openScene(
+              scene
+            );
 
           }
 
@@ -2117,11 +2364,13 @@ document
   );
 
 
-// RANDOM
+// ========================================
+// RANDOM EVENT
+// ========================================
 
 function getRandomScene() {
 
-  const availableSpecials =
+  const specials =
     specialRandomScenes.filter(
       function(item) {
 
@@ -2135,14 +2384,14 @@ function getRandomScene() {
 
 
   if (
-    availableSpecials.length > 0 &&
+    specials.length > 0 &&
     Math.random() < 0.25
   ) {
 
-    return availableSpecials[
+    return specials[
       Math.floor(
         Math.random() *
-        availableSpecials.length
+        specials.length
       )
     ].scene;
 
@@ -2171,13 +2420,71 @@ randomEventButton.addEventListener(
 );
 
 
-// CLOSE SCENE
+// ========================================
+// DAILY CHECK-IN
+// ========================================
 
-closeScene.addEventListener(
+dailyCheckInButton.addEventListener(
   "click",
   function() {
 
-    sceneOverlay.classList.add(
+    if (
+      hasCheckedInToday()
+    ) {
+
+      return;
+
+    }
+
+
+    updateStreakBeforeCheckIn();
+
+
+    const daily =
+      getDailyEvent();
+
+
+    addHearts(
+      daily.reward
+    );
+
+
+    unlockMemory({
+
+      icon:
+        daily.icon,
+
+      text:
+        daily.memory
+
+    });
+
+
+    dailyPopupIcon.textContent =
+      daily.icon;
+
+
+    dailyPopupTitle.textContent =
+      daily.title;
+
+
+    dailyPopupText.textContent =
+      daily.text;
+
+
+    dailyRewardText.textContent =
+      `+${daily.reward} hearts`;
+
+
+    setDialogue(
+      daily.text
+    );
+
+
+    renderDaily();
+
+
+    dailyOverlay.classList.remove(
       "hidden"
     );
 
@@ -2185,20 +2492,13 @@ closeScene.addEventListener(
 );
 
 
-sceneOverlay.addEventListener(
+closeDaily.addEventListener(
   "click",
-  function(event) {
+  function() {
 
-    if (
-      event.target ===
-      sceneOverlay
-    ) {
-
-      sceneOverlay.classList.add(
-        "hidden"
-      );
-
-    }
+    dailyOverlay.classList.add(
+      "hidden"
+    );
 
   }
 );
@@ -2225,7 +2525,75 @@ petMoriButton.addEventListener(
       event;
 
 
-    addHearts(1);
+    addHearts(
+      1
+    );
+
+  }
+);
+
+
+// ========================================
+// CLOSE OVERLAYS
+// ========================================
+
+closeScene.addEventListener(
+  "click",
+  function() {
+
+    sceneOverlay.classList.add(
+      "hidden"
+    );
+
+  }
+);
+
+
+closeLevelUp.addEventListener(
+  "click",
+  function() {
+
+    levelOverlay.classList.add(
+      "hidden"
+    );
+
+  }
+);
+
+
+sceneOverlay.addEventListener(
+  "click",
+  function(event) {
+
+    if (
+      event.target ===
+      sceneOverlay
+    ) {
+
+      sceneOverlay.classList.add(
+        "hidden"
+      );
+
+    }
+
+  }
+);
+
+
+photoOverlay.addEventListener(
+  "click",
+  function(event) {
+
+    if (
+      event.target ===
+      photoOverlay
+    ) {
+
+      photoOverlay.classList.add(
+        "hidden"
+      );
+
+    }
 
   }
 );
@@ -2256,7 +2624,9 @@ function hideAllPages() {
 }
 
 
-function setActiveNav(pageName) {
+function setActiveNav(
+  page
+) {
 
   navButtons.forEach(
     function(button) {
@@ -2264,7 +2634,7 @@ function setActiveNav(pageName) {
       button.classList.toggle(
         "active",
         button.dataset.page ===
-          pageName
+          page
       );
 
     }
@@ -2372,6 +2742,8 @@ navButtons.forEach(
 
           renderRelationship();
 
+          renderDaily();
+
 
           settingsPage.classList.remove(
             "hidden"
@@ -2380,7 +2752,9 @@ navButtons.forEach(
         }
 
 
-        setActiveNav(page);
+        setActiveNav(
+          page
+        );
 
 
         window.scrollTo({
@@ -2409,37 +2783,61 @@ resetButton.addEventListener(
 
     const confirmed =
       confirm(
-        "Reset all hearts, memories and relationship progress?"
+        "Reset all hearts, memories, levels and daily streaks?"
       );
 
 
-    if (!confirmed) {
+    if (
+      !confirmed
+    ) {
 
       return;
 
     }
 
 
-    hearts = 0;
-
-    memories = [];
-
-    savedRelationshipLevel = 0;
-
-
     localStorage.removeItem(
       "littleWorldHearts"
     );
-
 
     localStorage.removeItem(
       "littleWorldMemories"
     );
 
-
     localStorage.removeItem(
       "littleWorldRelationshipLevel"
     );
+
+    localStorage.removeItem(
+      "littleWorldCurrentStreak"
+    );
+
+    localStorage.removeItem(
+      "littleWorldBestStreak"
+    );
+
+    localStorage.removeItem(
+      "littleWorldLastVisit"
+    );
+
+
+    hearts =
+      0;
+
+    memories =
+      [];
+
+    savedRelationshipLevel =
+      0;
+
+    currentStreak =
+      0;
+
+    bestStreak =
+      0;
+
+    lastVisit =
+      "";
 
 
     heartCount.textContent =
@@ -2451,6 +2849,8 @@ resetButton.addEventListener(
     renderAlbum();
 
     renderRelationship();
+
+    renderDaily();
 
 
     setDialogue(
@@ -2475,7 +2875,7 @@ resetButton.addEventListener(
 
 
 // ========================================
-// GREETING
+// STARTUP GREETING
 // ========================================
 
 function startupGreeting() {
@@ -2486,7 +2886,54 @@ function startupGreeting() {
 
 
   if (
-    hour >= 0 &&
+    hasCheckedInToday()
+  ) {
+
+    if (
+      hour < 5
+    ) {
+
+      setDialogue(
+        "You're back again?<br>Come here, night owl."
+      );
+
+    }
+
+    else if (
+      hour < 12
+    ) {
+
+      setDialogue(
+        "Morning again.<br>I already saved today's little moment."
+      );
+
+    }
+
+    else if (
+      hour < 18
+    ) {
+
+      setDialogue(
+        "There you are again.<br>Missed me already?"
+      );
+
+    }
+
+    else {
+
+      setDialogue(
+        "Back for the evening?<br>I approve."
+      );
+
+    }
+
+
+    return;
+
+  }
+
+
+  if (
     hour < 5
   ) {
 
@@ -2495,7 +2942,6 @@ function startupGreeting() {
     );
 
   }
-
 
   else if (
     hour < 10
@@ -2507,7 +2953,6 @@ function startupGreeting() {
 
   }
 
-
   else if (
     hour < 18
   ) {
@@ -2517,7 +2962,6 @@ function startupGreeting() {
     );
 
   }
-
 
   else {
 
@@ -2539,5 +2983,7 @@ renderMemories();
 renderAlbum();
 
 renderRelationship();
+
+renderDaily();
 
 startupGreeting();
