@@ -39,37 +39,28 @@ button {
 }
 
 
-/* =========================
-   HERO
-========================= */
+/* HERO */
 
 .hero {
   position: relative;
-
   height: 690px;
-
   overflow: hidden;
-
   background: #0b070c;
 }
 
 .couple-art {
   position: absolute;
-
   inset: 0;
 
   width: 100%;
   height: 100%;
 
   object-fit: cover;
-
-  object-position:
-    center 35%;
+  object-position: center 35%;
 }
 
 .hero-overlay {
   position: absolute;
-
   inset: 0;
 
   z-index: 2;
@@ -87,9 +78,7 @@ button {
 }
 
 
-/* =========================
-   HEADER
-========================= */
+/* HEADER */
 
 .topbar {
   position: absolute;
@@ -106,7 +95,6 @@ button {
   z-index: 10;
 
   display: flex;
-
   justify-content: space-between;
   align-items: flex-start;
 
@@ -142,7 +130,6 @@ h1 {
   font-size: 34px;
 
   font-weight: 400;
-
   line-height: 1;
 
   text-shadow:
@@ -171,15 +158,10 @@ h1 {
   font-size: 20px;
   font-weight: 700;
 
-  backdrop-filter:
-    blur(16px);
+  backdrop-filter: blur(16px);
 
   -webkit-backdrop-filter:
     blur(16px);
-
-  box-shadow:
-    0 12px 30px
-    rgba(0,0,0,0.25);
 }
 
 .heart-counter small {
@@ -194,9 +176,7 @@ h1 {
 }
 
 
-/* =========================
-   MORI HERO
-========================= */
+/* MORI */
 
 .mori-art {
   position: absolute;
@@ -223,9 +203,7 @@ h1 {
 }
 
 
-/* =========================
-   ELIAS DIALOGUE
-========================= */
+/* DIALOGUE */
 
 .elias-dialogue {
   position: absolute;
@@ -250,15 +228,10 @@ h1 {
   background:
     rgba(18,10,18,0.88);
 
-  backdrop-filter:
-    blur(16px);
+  backdrop-filter: blur(16px);
 
   -webkit-backdrop-filter:
     blur(16px);
-
-  box-shadow:
-    0 16px 32px
-    rgba(0,0,0,0.4);
 }
 
 .speaker {
@@ -267,7 +240,6 @@ h1 {
   color: #ff92af;
 
   font-size: 13px;
-
   font-weight: 700;
 }
 
@@ -281,15 +253,157 @@ h1 {
   line-height: 1.45;
 
   transition:
-    opacity
-    0.15s
+    opacity 0.15s ease;
+}
+
+
+/* RELATIONSHIP CARD */
+
+.relationship-section {
+  padding:
+    18px
+    16px
+    0;
+
+  background: #0b070c;
+}
+
+.relationship-card {
+  padding: 17px;
+
+  border:
+    1px solid
+    rgba(255,139,171,0.14);
+
+  border-radius: 22px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #25151f,
+      #120b13
+    );
+
+  box-shadow:
+    0 14px 30px
+    rgba(0,0,0,0.22);
+}
+
+.relationship-top {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 15px;
+}
+
+.relationship-label {
+  margin:
+    0
+    0
+    5px;
+
+  color: #c77892;
+
+  font-size: 8px;
+  font-weight: 700;
+
+  letter-spacing: 3px;
+}
+
+.relationship-card h2 {
+  margin: 0;
+
+  color: #fff0f5;
+
+  font-family:
+    Georgia,
+    serif;
+
+  font-size: 24px;
+
+  font-weight: 400;
+}
+
+.relationship-icon {
+  width: 48px;
+  height: 48px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background:
+    rgba(255,135,168,0.08);
+
+  font-size: 25px;
+}
+
+.relationship-description {
+  margin:
+    10px
+    0
+    15px;
+
+  color: #ad8a98;
+
+  font-size: 12px;
+
+  line-height: 1.45;
+}
+
+.relationship-progress-text {
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 10px;
+
+  margin-bottom: 7px;
+
+  color: #c58ca0;
+
+  font-size: 9px;
+}
+
+.relationship-progress {
+  height: 8px;
+
+  overflow: hidden;
+
+  border-radius: 100px;
+
+  background:
+    rgba(255,255,255,0.055);
+}
+
+.relationship-progress-fill {
+  width: 0%;
+  height: 100%;
+
+  border-radius: 100px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #a94266,
+      #f49ab4
+    );
+
+  transition:
+    width
+    0.35s
     ease;
 }
 
 
-/* =========================
-   DATE CARDS
-========================= */
+/* DATE AREA */
 
 .section {
   padding:
@@ -311,7 +425,6 @@ h1 {
   text-align: center;
 
   font-size: 15px;
-
   font-weight: 500;
 }
 
@@ -352,16 +465,10 @@ h1 {
 
   align-items: center;
   justify-content: space-between;
-
-  transition:
-    transform
-    0.1s
-    ease;
 }
 
 .date-card:active {
-  transform:
-    scale(0.96);
+  transform: scale(0.96);
 }
 
 .date-card img {
@@ -393,9 +500,7 @@ h1 {
 }
 
 
-/* =========================
-   MEMORIES
-========================= */
+/* MEMORIES */
 
 .memory-area {
   display: grid;
@@ -410,8 +515,6 @@ h1 {
     18px
     16px
     125px;
-
-  background: #0b070c;
 }
 
 .memories-card,
@@ -437,8 +540,8 @@ h1 {
 .memories-heading {
   display: flex;
 
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
 
   gap: 8px;
 
@@ -451,7 +554,6 @@ h1 {
   color: #ed9bb3;
 
   font-size: 16px;
-
   font-weight: 500;
 }
 
@@ -521,9 +623,7 @@ h1 {
 }
 
 .empty {
-  padding:
-    20px
-    5px;
+  padding: 20px 5px;
 
   color: #876a76;
 
@@ -533,18 +633,12 @@ h1 {
 }
 
 
-/* =========================
-   RANDOM
-========================= */
+/* RANDOM */
 
 .random-card {
   padding:
     14px
     7px;
-
-  border:
-    1px solid
-    rgba(255,132,168,0.12);
 
   color: white;
 
@@ -579,9 +673,7 @@ h1 {
 }
 
 
-/* =========================
-   OTHER PAGES
-========================= */
+/* OTHER PAGES */
 
 .page {
   padding:
@@ -620,7 +712,6 @@ h1 {
 
 .mori-page-image {
   width: 190px;
-
   max-height: 240px;
 
   object-fit: cover;
@@ -647,7 +738,6 @@ h1 {
     serif;
 
   font-size: 28px;
-
   font-weight: 400;
 }
 
@@ -658,7 +748,8 @@ h1 {
 }
 
 .primary-button,
-.danger-button {
+.danger-button,
+.level-button {
   margin-top: 14px;
 
   min-height: 50px;
@@ -674,7 +765,8 @@ h1 {
   font-weight: 700;
 }
 
-.primary-button {
+.primary-button,
+.level-button {
   background: #ef9ab2;
 
   color: #24131c;
@@ -687,17 +779,58 @@ h1 {
 }
 
 
-/* =========================
-   ALBUM
-========================= */
+/* SETTINGS LEVEL */
 
-.album-page {
-  padding-top:
-    max(
-      28px,
-      env(safe-area-inset-top)
-    );
+.settings-level {
+  width: 100%;
+
+  margin:
+    20px
+    0
+    6px;
+
+  padding: 16px;
+
+  border-radius: 18px;
+
+  background:
+    rgba(255,255,255,0.035);
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 6px;
 }
+
+.settings-level small {
+  color: #b87089;
+
+  font-size: 8px;
+
+  letter-spacing: 2px;
+}
+
+.settings-level strong {
+  color: #f5dbe5;
+
+  font-family:
+    Georgia,
+    serif;
+
+  font-size: 21px;
+
+  font-weight: 400;
+}
+
+.settings-level span {
+  color: #a88996;
+
+  font-size: 11px;
+}
+
+
+/* ALBUM */
 
 .album-header {
   margin-bottom: 22px;
@@ -733,7 +866,6 @@ h1 {
     serif;
 
   font-size: 34px;
-
   font-weight: 400;
 }
 
@@ -752,10 +884,6 @@ h1 {
   padding:
     13px
     14px;
-
-  border:
-    1px solid
-    rgba(255,140,170,0.10);
 
   border-radius: 16px;
 
@@ -796,11 +924,6 @@ h1 {
       #b94d70,
       #f494af
     );
-
-  transition:
-    width
-    0.35s
-    ease;
 }
 
 .album-grid {
@@ -868,11 +991,6 @@ h1 {
   font-size: 9px;
 }
 
-.album-photo:active {
-  transform:
-    scale(0.98);
-}
-
 .album-photo.locked {
   pointer-events: none;
 }
@@ -882,8 +1000,7 @@ h1 {
     blur(8px)
     brightness(0.25);
 
-  transform:
-    scale(1.08);
+  transform: scale(1.08);
 }
 
 .album-lock {
@@ -893,8 +1010,6 @@ h1 {
     0
     0
     50px;
-
-  z-index: 4;
 
   display: flex;
 
@@ -926,155 +1041,11 @@ h1 {
 }
 
 
-/* =========================
-   PHOTO VIEWER
-========================= */
+/* SCENE POPUP */
 
+.scene-overlay,
+.level-overlay,
 .photo-overlay {
-  position: fixed;
-
-  inset: 0;
-
-  z-index: 700;
-
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  padding:
-    max(
-      25px,
-      env(safe-area-inset-top)
-    )
-    18px
-    max(
-      25px,
-      env(safe-area-inset-bottom)
-    );
-
-  background:
-    rgba(4,2,5,0.92);
-
-  backdrop-filter:
-    blur(18px);
-
-  -webkit-backdrop-filter:
-    blur(18px);
-}
-
-.photo-viewer {
-  position: relative;
-
-  width: 100%;
-
-  max-width: 430px;
-
-  overflow: hidden;
-
-  border:
-    1px solid
-    rgba(255,135,171,0.17);
-
-  border-radius: 28px;
-
-  background:
-    #130c13;
-
-  box-shadow:
-    0 30px 70px
-    rgba(0,0,0,0.65);
-}
-
-.photo-viewer img {
-  display: block;
-
-  width: 100%;
-
-  max-height: 60vh;
-
-  object-fit: cover;
-}
-
-.photo-close {
-  position: absolute;
-
-  top: 12px;
-  right: 12px;
-
-  z-index: 5;
-
-  width: 40px;
-  height: 40px;
-
-  border: none;
-
-  border-radius: 50%;
-
-  background:
-    rgba(5,2,5,0.7);
-
-  color: white;
-
-  font-size: 27px;
-}
-
-.photo-viewer-text {
-  padding:
-    18px
-    18px
-    22px;
-}
-
-.photo-small-title {
-  margin:
-    0
-    0
-    5px !important;
-
-  color:
-    #da8ba4 !important;
-
-  font-size: 8px !important;
-
-  font-weight: 700;
-
-  letter-spacing: 3px;
-}
-
-.photo-viewer-text h2 {
-  margin:
-    0
-    0
-    8px;
-
-  color: #fff1f6;
-
-  font-family:
-    Georgia,
-    serif;
-
-  font-size: 25px;
-
-  font-weight: 400;
-}
-
-.photo-viewer-text p:last-child {
-  margin: 0;
-
-  color: #c2a3af;
-
-  font-size: 13px;
-
-  line-height: 1.5;
-}
-
-
-/* =========================
-   SCENE POPUP
-========================= */
-
-.scene-overlay {
   position: fixed;
 
   inset: 0;
@@ -1098,21 +1069,28 @@ h1 {
   justify-content: center;
 
   background:
-    rgba(5,2,6,0.84);
+    rgba(5,2,6,0.87);
 
-  backdrop-filter:
-    blur(14px);
+  backdrop-filter: blur(14px);
 
   -webkit-backdrop-filter:
     blur(14px);
+}
+
+.level-overlay {
+  z-index: 650;
+}
+
+.photo-overlay {
+  z-index: 700;
 }
 
 .scene-card {
   position: relative;
 
   width: 100%;
-
   max-width: 410px;
+
   max-height: 88vh;
 
   overflow-y: auto;
@@ -1131,13 +1109,10 @@ h1 {
       #241520,
       #100910
     );
-
-  box-shadow:
-    0 25px 60px
-    rgba(0,0,0,0.55);
 }
 
-.scene-close {
+.scene-close,
+.photo-close {
   position: absolute;
 
   top: 11px;
@@ -1149,7 +1124,6 @@ h1 {
   height: 38px;
 
   border: none;
-
   border-radius: 50%;
 
   background:
@@ -1249,11 +1223,6 @@ h1 {
   font-size: 14px;
 }
 
-.scene-choice:active {
-  transform:
-    scale(0.97);
-}
-
 .scene-result {
   padding: 15px;
 
@@ -1270,9 +1239,178 @@ h1 {
 }
 
 
-/* =========================
-   NAVIGATION
-========================= */
+/* LEVEL UP */
+
+.level-up-card {
+  width: 100%;
+  max-width: 350px;
+
+  padding:
+    32px
+    24px;
+
+  border:
+    1px solid
+    rgba(255,142,174,0.18);
+
+  border-radius: 28px;
+
+  background:
+    radial-gradient(
+      circle at top,
+      #3a1d2b,
+      #150c14 65%
+    );
+
+  text-align: center;
+
+  box-shadow:
+    0 25px 70px
+    rgba(0,0,0,0.6);
+}
+
+.level-up-icon {
+  width: 75px;
+  height: 75px;
+
+  margin:
+    0
+    auto
+    18px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background:
+    rgba(255,135,170,0.08);
+
+  font-size: 38px;
+}
+
+.level-small {
+  margin:
+    0
+    0
+    7px;
+
+  color: #d57f9a;
+
+  font-size: 8px;
+
+  font-weight: 700;
+
+  letter-spacing: 3px;
+}
+
+.level-up-card h2 {
+  margin:
+    0
+    0
+    10px;
+
+  color: #fff0f6;
+
+  font-family:
+    Georgia,
+    serif;
+
+  font-size: 31px;
+
+  font-weight: 400;
+}
+
+.level-up-card > p:last-of-type {
+  margin:
+    0
+    0
+    5px;
+
+  color: #c2a0ad;
+
+  font-size: 13px;
+
+  line-height: 1.5;
+}
+
+
+/* PHOTO VIEWER */
+
+.photo-viewer {
+  position: relative;
+
+  width: 100%;
+  max-width: 430px;
+
+  overflow: hidden;
+
+  border-radius: 28px;
+
+  background: #130c13;
+}
+
+.photo-viewer img {
+  display: block;
+
+  width: 100%;
+
+  max-height: 60vh;
+
+  object-fit: cover;
+}
+
+.photo-viewer-text {
+  padding:
+    18px
+    18px
+    22px;
+}
+
+.photo-small-title {
+  margin:
+    0
+    0
+    5px !important;
+
+  color: #da8ba4 !important;
+
+  font-size: 8px !important;
+
+  letter-spacing: 3px;
+}
+
+.photo-viewer-text h2 {
+  margin:
+    0
+    0
+    8px;
+
+  color: #fff1f6;
+
+  font-family:
+    Georgia,
+    serif;
+
+  font-size: 25px;
+
+  font-weight: 400;
+}
+
+.photo-viewer-text p:last-child {
+  margin: 0;
+
+  color: #c2a3af;
+
+  font-size: 13px;
+
+  line-height: 1.5;
+}
+
+
+/* NAV */
 
 .bottom-nav {
   position: fixed;
@@ -1306,15 +1444,10 @@ h1 {
   background:
     rgba(27,17,27,0.94);
 
-  backdrop-filter:
-    blur(20px);
+  backdrop-filter: blur(20px);
 
   -webkit-backdrop-filter:
     blur(20px);
-
-  box-shadow:
-    0 12px 35px
-    rgba(0,0,0,0.5);
 }
 
 .nav-button {
@@ -1348,7 +1481,6 @@ h1 {
 
   border-radius: 16px;
 }
-
 
 .hidden {
   display: none !important;
