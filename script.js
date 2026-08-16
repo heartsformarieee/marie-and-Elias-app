@@ -1,6 +1,6 @@
 // ========================================
-// OUR LITTLE WORLD 1.4
-// DATE SCENES + RANDOM EVENTS + ALBUM
+// OUR LITTLE WORLD 1.5
+// RELATIONSHIP LEVELS
 // ========================================
 
 
@@ -48,6 +48,77 @@ const navButtons =
   document.querySelectorAll(".nav-button");
 
 
+// RELATIONSHIP
+
+const relationshipName =
+  document.getElementById(
+    "relationshipName"
+  );
+
+const relationshipIcon =
+  document.getElementById(
+    "relationshipIcon"
+  );
+
+const relationshipDescription =
+  document.getElementById(
+    "relationshipDescription"
+  );
+
+const relationshipProgressText =
+  document.getElementById(
+    "relationshipProgressText"
+  );
+
+const nextLevelText =
+  document.getElementById(
+    "nextLevelText"
+  );
+
+const relationshipProgressFill =
+  document.getElementById(
+    "relationshipProgressFill"
+  );
+
+const settingsRelationshipName =
+  document.getElementById(
+    "settingsRelationshipName"
+  );
+
+const settingsHeartCount =
+  document.getElementById(
+    "settingsHeartCount"
+  );
+
+
+// LEVEL POPUP
+
+const levelOverlay =
+  document.getElementById(
+    "levelOverlay"
+  );
+
+const levelUpIcon =
+  document.getElementById(
+    "levelUpIcon"
+  );
+
+const levelUpName =
+  document.getElementById(
+    "levelUpName"
+  );
+
+const levelUpText =
+  document.getElementById(
+    "levelUpText"
+  );
+
+const closeLevelUp =
+  document.getElementById(
+    "closeLevelUp"
+  );
+
+
 // SCENE
 
 const sceneOverlay =
@@ -78,7 +149,9 @@ const albumProgress =
   document.getElementById("albumProgress");
 
 const albumProgressFill =
-  document.getElementById("albumProgressFill");
+  document.getElementById(
+    "albumProgressFill"
+  );
 
 
 // PHOTO VIEWER
@@ -87,20 +160,26 @@ const photoOverlay =
   document.getElementById("photoOverlay");
 
 const photoViewerImage =
-  document.getElementById("photoViewerImage");
+  document.getElementById(
+    "photoViewerImage"
+  );
 
 const photoViewerTitle =
-  document.getElementById("photoViewerTitle");
+  document.getElementById(
+    "photoViewerTitle"
+  );
 
 const photoViewerCaption =
-  document.getElementById("photoViewerCaption");
+  document.getElementById(
+    "photoViewerCaption"
+  );
 
 const closePhoto =
   document.getElementById("closePhoto");
 
 
 // ========================================
-// SAVED DATA
+// DATA
 // ========================================
 
 let hearts =
@@ -129,8 +208,323 @@ try {
 }
 
 
+let savedRelationshipLevel =
+  Number(
+    localStorage.getItem(
+      "littleWorldRelationshipLevel"
+    )
+  );
+
+
+if (
+  Number.isNaN(
+    savedRelationshipLevel
+  )
+) {
+
+  savedRelationshipLevel = 0;
+
+}
+
+
 heartCount.textContent =
   hearts;
+
+
+// ========================================
+// RELATIONSHIP LEVELS
+// ========================================
+
+const relationshipLevels = [
+
+  {
+    minimum: 0,
+    maximum: 24,
+    name: "Just Us ♡",
+    icon: "🤍",
+
+    description:
+      "Our little world is only getting started.",
+
+    levelUpText:
+      "Okay, this is officially becoming a thing."
+  },
+
+
+  {
+    minimum: 25,
+    maximum: 49,
+    name: "Attached",
+    icon: "💗",
+
+    description:
+      "You're becoming suspiciously difficult to stay away from.",
+
+    levelUpText:
+      "Apparently I got attached. Shocking."
+  },
+
+
+  {
+    minimum: 50,
+    maximum: 99,
+    name: "Inseparable",
+    icon: "🫶",
+
+    description:
+      "At this point, wherever you are is probably where I am too.",
+
+    levelUpText:
+      "Yeah. We're kind of a package deal now."
+  },
+
+
+  {
+    minimum: 100,
+    maximum: 199,
+    name: "My Favorite Person",
+    icon: "💞",
+
+    description:
+      "Mori can complain all he wants. You're still my favorite.",
+
+    levelUpText:
+      "You're my favorite person. Don't make this weird."
+  },
+
+
+  {
+    minimum: 200,
+    maximum: 399,
+    name: "Disgustingly In Love",
+    icon: "💘",
+
+    description:
+      "We're officially the couple everybody else has to tolerate.",
+
+    levelUpText:
+      "This is getting embarrassing. I adore you."
+  },
+
+
+  {
+    minimum: 400,
+    maximum: Infinity,
+    name: "Endgame ♡",
+    icon: "💍",
+
+    description:
+      "No next level. Just us, indefinitely.",
+
+    levelUpText:
+      "Looks like you reached the end. You're stuck with me now."
+  }
+
+];
+
+
+function getRelationshipLevel() {
+
+  for (
+    let i = relationshipLevels.length - 1;
+    i >= 0;
+    i--
+  ) {
+
+    if (
+      hearts >=
+      relationshipLevels[i].minimum
+    ) {
+
+      return {
+        index: i,
+        data: relationshipLevels[i]
+      };
+
+    }
+
+  }
+
+
+  return {
+    index: 0,
+    data: relationshipLevels[0]
+  };
+
+}
+
+
+function renderRelationship() {
+
+  const current =
+    getRelationshipLevel();
+
+
+  const level =
+    current.data;
+
+
+  relationshipName.textContent =
+    level.name;
+
+
+  relationshipIcon.textContent =
+    level.icon;
+
+
+  relationshipDescription.textContent =
+    level.description;
+
+
+  settingsRelationshipName.textContent =
+    level.name;
+
+
+  settingsHeartCount.textContent =
+    `${hearts} hearts`;
+
+
+  if (
+    current.index ===
+    relationshipLevels.length - 1
+  ) {
+
+    relationshipProgressText.textContent =
+      `${hearts} hearts`;
+
+
+    nextLevelText.textContent =
+      "Maximum level ♡";
+
+
+    relationshipProgressFill.style.width =
+      "100%";
+
+
+    return;
+
+  }
+
+
+  const next =
+    relationshipLevels[
+      current.index + 1
+    ];
+
+
+  const currentMinimum =
+    level.minimum;
+
+
+  const nextMinimum =
+    next.minimum;
+
+
+  const progress =
+    hearts -
+    currentMinimum;
+
+
+  const needed =
+    nextMinimum -
+    currentMinimum;
+
+
+  const percent =
+    Math.min(
+      100,
+      (progress / needed) * 100
+    );
+
+
+  relationshipProgressText.textContent =
+    `${hearts} / ${nextMinimum} hearts`;
+
+
+  nextLevelText.textContent =
+    `Next: ${next.name}`;
+
+
+  relationshipProgressFill.style.width =
+    `${percent}%`;
+
+}
+
+
+// ========================================
+// LEVEL UP
+// ========================================
+
+function checkRelationshipLevelUp() {
+
+  const current =
+    getRelationshipLevel();
+
+
+  if (
+    current.index <=
+    savedRelationshipLevel
+  ) {
+
+    return;
+
+  }
+
+
+  savedRelationshipLevel =
+    current.index;
+
+
+  localStorage.setItem(
+    "littleWorldRelationshipLevel",
+    savedRelationshipLevel
+  );
+
+
+  const level =
+    current.data;
+
+
+  levelUpIcon.textContent =
+    level.icon;
+
+
+  levelUpName.textContent =
+    level.name;
+
+
+  levelUpText.textContent =
+    level.levelUpText;
+
+
+  unlockMemory({
+
+    icon:
+      level.icon,
+
+    text:
+      `Relationship level reached — ${level.name}.`
+
+  });
+
+
+  levelOverlay.classList.remove(
+    "hidden"
+  );
+
+}
+
+
+closeLevelUp.addEventListener(
+  "click",
+  function() {
+
+    levelOverlay.classList.add(
+      "hidden"
+    );
+
+  }
+);
 
 
 // ========================================
@@ -416,7 +810,7 @@ const randomScenes = [
       "morii.PNG",
 
     intro:
-      "You sit down for maybe three seconds before Mori climbs straight into the spot beside you. Elias stops in front of the couch and stares at him.",
+      "Mori climbs straight into the spot beside you. Elias stops and stares at him.",
 
     choices: [
 
@@ -426,7 +820,7 @@ const randomScenes = [
           "Let Mori stay.",
 
         result:
-          "You keep petting Mori. Elias slowly sits on the other side and mutters, “Unbelievable.” Mori looks extremely pleased with himself.",
+          "Elias sits on your other side and mutters, “Unbelievable.” Mori looks extremely pleased.",
 
         hearts:
           2,
@@ -447,10 +841,10 @@ const randomScenes = [
       {
 
         text:
-          "Pull Elias down beside you too.",
+          "Pull Elias beside you too.",
 
         result:
-          "You grab Elias's sleeve and make room. He sits down against you while Mori stays put. “Okay. Fine. This works.”",
+          "You make room for both of them. Elias sighs. “Fine. This works.”",
 
         hearts:
           5,
@@ -481,7 +875,7 @@ const randomScenes = [
       "couple.PNG",
 
     intro:
-      "You look up and catch Elias staring at you from across the room. He looks away approximately half a second too late.",
+      "You look up and catch Elias staring at you. He looks away half a second too late.",
 
     choices: [
 
@@ -491,7 +885,7 @@ const randomScenes = [
           "Ask, “What?”",
 
         result:
-          "Elias shrugs. “Nothing.” You keep staring. “…You're pretty. Happy?”",
+          "“Nothing.” You keep staring. “…You're pretty. Happy?”",
 
         hearts:
           4,
@@ -512,10 +906,10 @@ const randomScenes = [
       {
 
         text:
-          "Just stare back.",
+          "Stare back.",
 
         result:
-          "Neither of you says anything. Elias eventually breaks first. “Okay, this is getting weird.”",
+          "Elias finally breaks first. “Okay, this is getting weird.”",
 
         hearts:
           3,
@@ -546,17 +940,17 @@ const randomScenes = [
       "couple.PNG",
 
     intro:
-      "Elias casually takes your phone out of your hand and immediately opens the camera.",
+      "Elias casually steals your phone and immediately opens the camera.",
 
     choices: [
 
       {
 
         text:
-          "Try to grab it back.",
+          "Grab it back.",
 
         result:
-          "He holds it out of reach and takes a horribly timed selfie. “Perfect. Album material.”",
+          "He takes a horribly timed selfie. “Perfect. Album material.”",
 
         hearts:
           3,
@@ -580,7 +974,7 @@ const randomScenes = [
           "Pose dramatically.",
 
         result:
-          "You pose like it's a magazine cover. Elias starts laughing. “Why did you commit that hard?”",
+          "You commit completely. Elias starts laughing. “Why are you like this?”",
 
         hearts:
           4,
@@ -611,7 +1005,7 @@ const randomScenes = [
       "home.PNG",
 
     intro:
-      "You end up half asleep beside Elias. He notices your eyes closing and lowers his voice immediately.",
+      "You end up half asleep beside Elias. He notices immediately.",
 
     choices: [
 
@@ -621,7 +1015,7 @@ const randomScenes = [
           "Fall asleep on him.",
 
         result:
-          "You wake up later in almost the exact same position. Elias clearly refused to move because he didn't want to wake you.",
+          "You wake up later and realize Elias barely moved so he wouldn't wake you.",
 
         hearts:
           6,
@@ -642,10 +1036,10 @@ const randomScenes = [
       {
 
         text:
-          "Mumble that you're not tired.",
+          "Insist you're awake.",
 
         result:
-          "Elias raises an eyebrow. “Sure.” Less than five minutes later, you're asleep anyway.",
+          "“Sure.” Five minutes later, you're asleep.",
 
         hearts:
           4,
@@ -676,17 +1070,17 @@ const randomScenes = [
       "home.PNG",
 
     intro:
-      "You find one of Elias's hoodies nearby and put it on without asking. He notices instantly.",
+      "You steal one of Elias's hoodies. He notices instantly.",
 
     choices: [
 
       {
 
         text:
-          "Act completely innocent.",
+          "Act innocent.",
 
         result:
-          "Elias looks at the hoodie, then at you. “Interesting. Didn't know my clothes had relocated.” He makes no attempt to take it back.",
+          "“Interesting. Didn't know my clothes had relocated.” He lets you keep it.",
 
         hearts:
           5,
@@ -697,7 +1091,7 @@ const randomScenes = [
             "🖤",
 
           text:
-            "You stole Elias's hoodie and he quietly decided it belonged to you now."
+            "You stole Elias's hoodie and he quietly decided it belonged to you."
 
         }
 
@@ -707,10 +1101,10 @@ const randomScenes = [
       {
 
         text:
-          "Tell him it's yours now.",
+          "Tell him it's yours.",
 
         result:
-          "“Oh, is it?” Elias says. He pulls the hood over your face. “Fine. Keep it.”",
+          "“Oh, is it?” He pulls the hood over your face. “Fine. Keep it.”",
 
         hearts:
           5,
@@ -735,15 +1129,14 @@ const randomScenes = [
 
 
 // ========================================
-// SPECIAL EVENTS
+// SPECIAL RANDOM SCENES
 // ========================================
 
 const specialRandomScenes = [
 
   {
 
-    minimumHearts:
-      25,
+    minimumHearts: 25,
 
     scene: {
 
@@ -754,7 +1147,7 @@ const specialRandomScenes = [
         "couple.PNG",
 
       intro:
-        "You're about to get up when Elias catches your hand gently. “Where are you going?”",
+        "You're about to get up when Elias catches your hand. “Where are you going?”",
 
       choices: [
 
@@ -764,7 +1157,7 @@ const specialRandomScenes = [
             "Sit back down.",
 
           result:
-            "You sit beside him again. Elias looks far too satisfied. “Good choice.”",
+            "Elias looks far too satisfied. “Good choice.”",
 
           hearts:
             6,
@@ -785,10 +1178,10 @@ const specialRandomScenes = [
         {
 
           text:
-            "Ask if he missed you already.",
+            "Ask if he missed you.",
 
           result:
-            "Elias gives you a look. “You were gone for three seconds.” A pause. “…Yes.”",
+            "“You were gone for three seconds.” A pause. “…Yes.”",
 
           hearts:
             7,
@@ -814,8 +1207,7 @@ const specialRandomScenes = [
 
   {
 
-    minimumHearts:
-      50,
+    minimumHearts: 50,
 
     scene: {
 
@@ -826,7 +1218,7 @@ const specialRandomScenes = [
         "couple.PNG",
 
       intro:
-        "Elias is unusually quiet before saying, “You know you're my favorite person, right?”",
+        "Elias quietly says, “You know you're my favorite person, right?”",
 
       choices: [
 
@@ -836,7 +1228,7 @@ const specialRandomScenes = [
             "Tell him he's yours too.",
 
           result:
-            "His expression softens immediately. “Yeah? Good.”",
+            "His expression softens. “Yeah? Good.”",
 
           hearts:
             8,
@@ -857,10 +1249,10 @@ const specialRandomScenes = [
         {
 
           text:
-            "Tease him about being sentimental.",
+            "Tease him.",
 
           result:
-            "Elias groans. “Forget I said anything.” He is very obviously smiling.",
+            "“Forget I said anything.” He's obviously smiling.",
 
           hearts:
             6,
@@ -886,8 +1278,7 @@ const specialRandomScenes = [
 
   {
 
-    minimumHearts:
-      100,
+    minimumHearts: 100,
 
     scene: {
 
@@ -898,7 +1289,7 @@ const specialRandomScenes = [
         "couple.PNG",
 
       intro:
-        "Elias looks at you and smiles slightly. “I really like this. Us, I mean.”",
+        "Elias smiles slightly. “I really like this. Us, I mean.”",
 
       choices: [
 
@@ -908,7 +1299,7 @@ const specialRandomScenes = [
             "Lean into him.",
 
           result:
-            "You lean against him. Elias rests his cheek against your hair. “Yeah. Exactly this.”",
+            "He rests his cheek against your hair. “Yeah. Exactly this.”",
 
           hearts:
             10,
@@ -932,7 +1323,7 @@ const specialRandomScenes = [
             "Tell him you do too.",
 
           result:
-            "Elias looks at you for a second, then quietly says, “Good. Because I'm keeping you.”",
+            "“Good. Because I'm keeping you.”",
 
           hearts:
             10,
@@ -959,18 +1350,18 @@ const specialRandomScenes = [
 
 
 // ========================================
-// MORI EVENTS
+// MORI
 // ========================================
 
 const moriEvents = [
 
-  "Mori purrs immediately. Elias looks offended that it was apparently that easy.",
+  "Mori purrs immediately. Elias looks offended.",
 
   "Mori headbutts your hand for more attention.",
 
   "Mori flops dramatically onto his side.",
 
-  "Mori stares at Elias while you pet him. Elias: “Don't start.”",
+  "Mori stares at Elias. Elias: “Don't start.”",
 
   "Mori has decided your lap belongs to him now."
 
@@ -985,9 +1376,6 @@ const albumPhotos = [
 
   {
 
-    id:
-      "couple",
-
     title:
       "Us ♡",
 
@@ -1000,9 +1388,7 @@ const albumPhotos = [
     requirement:
       function() {
 
-        return (
-          hearts >= 10
-        );
+        return hearts >= 10;
 
       },
 
@@ -1013,9 +1399,6 @@ const albumPhotos = [
 
 
   {
-
-    id:
-      "sushi",
 
     title:
       "Sushi Date",
@@ -1043,9 +1426,6 @@ const albumPhotos = [
 
   {
 
-    id:
-      "movie",
-
     title:
       "Movie Night",
 
@@ -1071,9 +1451,6 @@ const albumPhotos = [
 
 
   {
-
-    id:
-      "walk",
 
     title:
       "Night Walk",
@@ -1101,9 +1478,6 @@ const albumPhotos = [
 
   {
 
-    id:
-      "home",
-
     title:
       "Home ♡",
 
@@ -1130,9 +1504,6 @@ const albumPhotos = [
 
   {
 
-    id:
-      "mori",
-
     title:
       "Mori",
 
@@ -1140,7 +1511,7 @@ const albumPhotos = [
       "morii.PNG",
 
     caption:
-      "Third wheel? No. Mori owns the relationship and we merely live in it.",
+      "Mori owns the relationship. We merely live in it.",
 
     requirement:
       function() {
@@ -1188,12 +1559,18 @@ function addHearts(amount) {
 
   hearts += amount;
 
+
   heartCount.textContent =
     hearts;
 
+
   saveData();
 
+  renderRelationship();
+
   renderAlbum();
+
+  checkRelationshipLevelUp();
 
 }
 
@@ -1213,6 +1590,7 @@ function setDialogue(text) {
 
       heroDialogue.innerHTML =
         text;
+
 
       heroDialogue.style.opacity =
         "1";
@@ -1345,7 +1723,7 @@ function renderMemories() {
 
 
 // ========================================
-// ALBUM RENDERING
+// ALBUM
 // ========================================
 
 function renderAlbum() {
@@ -1406,9 +1784,7 @@ function renderAlbum() {
         "album-photo-image";
 
 
-      card.appendChild(
-        image
-      );
+      card.appendChild(image);
 
 
       if (!unlocked) {
@@ -1426,15 +1802,14 @@ function renderAlbum() {
         lock.innerHTML =
           `
           <span>🔒</span>
+
           <small>
             ${photo.lockedText}
           </small>
           `;
 
 
-        card.appendChild(
-          lock
-        );
+        card.appendChild(lock);
 
       }
 
@@ -1469,9 +1844,7 @@ function renderAlbum() {
         `;
 
 
-      card.appendChild(
-        info
-      );
+      card.appendChild(info);
 
 
       if (unlocked) {
@@ -1480,9 +1853,7 @@ function renderAlbum() {
           "click",
           function() {
 
-            openPhoto(
-              photo
-            );
+            openPhoto(photo);
 
           }
         );
@@ -1490,9 +1861,7 @@ function renderAlbum() {
       }
 
 
-      albumGrid.appendChild(
-        card
-      );
+      albumGrid.appendChild(card);
 
     }
   );
@@ -1502,15 +1871,13 @@ function renderAlbum() {
     `${unlockedCount} / ${albumPhotos.length} unlocked`;
 
 
-  const percent =
-    (
-      unlockedCount /
-      albumPhotos.length
-    ) * 100;
-
-
   albumProgressFill.style.width =
-    `${percent}%`;
+    `${
+      (
+        unlockedCount /
+        albumPhotos.length
+      ) * 100
+    }%`;
 
 }
 
@@ -1523,10 +1890,6 @@ function openPhoto(photo) {
 
   photoViewerImage.src =
     photo.image;
-
-
-  photoViewerImage.alt =
-    photo.title;
 
 
   photoViewerTitle.textContent =
@@ -1544,18 +1907,15 @@ function openPhoto(photo) {
 }
 
 
-function closePhotoViewer() {
-
-  photoOverlay.classList.add(
-    "hidden"
-  );
-
-}
-
-
 closePhoto.addEventListener(
   "click",
-  closePhotoViewer
+  function() {
+
+    photoOverlay.classList.add(
+      "hidden"
+    );
+
+  }
 );
 
 
@@ -1568,7 +1928,9 @@ photoOverlay.addEventListener(
       photoOverlay
     ) {
 
-      closePhotoViewer();
+      photoOverlay.classList.add(
+        "hidden"
+      );
 
     }
 
@@ -1577,17 +1939,13 @@ photoOverlay.addEventListener(
 
 
 // ========================================
-// GENERIC SCENE
+// SCENES
 // ========================================
 
 function openScene(scene) {
 
   sceneImage.src =
     scene.image;
-
-
-  sceneImage.alt =
-    scene.title;
 
 
   sceneTitle.textContent =
@@ -1649,10 +2007,6 @@ function openScene(scene) {
 
 }
 
-
-// ========================================
-// CHOOSE SCENE OPTION
-// ========================================
 
 function chooseSceneOption(choice) {
 
@@ -1731,9 +2085,7 @@ function chooseSceneOption(choice) {
 }
 
 
-// ========================================
 // DATE BUTTONS
-// ========================================
 
 document
   .querySelectorAll(
@@ -1754,9 +2106,7 @@ document
 
           if (scene) {
 
-            openScene(
-              scene
-            );
+            openScene(scene);
 
           }
 
@@ -1767,9 +2117,7 @@ document
   );
 
 
-// ========================================
-// RANDOM EVENTS
-// ========================================
+// RANDOM
 
 function getRandomScene() {
 
@@ -1791,16 +2139,12 @@ function getRandomScene() {
     Math.random() < 0.25
   ) {
 
-    const special =
-      availableSpecials[
-        Math.floor(
-          Math.random() *
-          availableSpecials.length
-        )
-      ];
-
-
-    return special.scene;
+    return availableSpecials[
+      Math.floor(
+        Math.random() *
+        availableSpecials.length
+      )
+    ].scene;
 
   }
 
@@ -1827,9 +2171,7 @@ randomEventButton.addEventListener(
 );
 
 
-// ========================================
 // CLOSE SCENE
-// ========================================
 
 closeScene.addEventListener(
   "click",
@@ -1883,16 +2225,14 @@ petMoriButton.addEventListener(
       event;
 
 
-    addHearts(
-      1
-    );
+    addHearts(1);
 
   }
 );
 
 
 // ========================================
-// PAGE NAVIGATION
+// NAVIGATION
 // ========================================
 
 function hideAllPages() {
@@ -1916,9 +2256,7 @@ function hideAllPages() {
 }
 
 
-function setActiveNav(
-  pageName
-) {
+function setActiveNav(pageName) {
 
   navButtons.forEach(
     function(button) {
@@ -1993,8 +2331,7 @@ navButtons.forEach(
 
 
         if (
-          page ===
-          "home"
+          page === "home"
         ) {
 
           homePage.classList.remove(
@@ -2005,8 +2342,7 @@ navButtons.forEach(
 
 
         if (
-          page ===
-          "mori"
+          page === "mori"
         ) {
 
           moriPage.classList.remove(
@@ -2017,8 +2353,7 @@ navButtons.forEach(
 
 
         if (
-          page ===
-          "album"
+          page === "album"
         ) {
 
           renderAlbum();
@@ -2032,9 +2367,11 @@ navButtons.forEach(
 
 
         if (
-          page ===
-          "settings"
+          page === "settings"
         ) {
+
+          renderRelationship();
+
 
           settingsPage.classList.remove(
             "hidden"
@@ -2043,15 +2380,12 @@ navButtons.forEach(
         }
 
 
-        setActiveNav(
-          page
-        );
+        setActiveNav(page);
 
 
         window.scrollTo({
 
-          top:
-            0,
+          top: 0,
 
           behavior:
             "smooth"
@@ -2075,7 +2409,7 @@ resetButton.addEventListener(
 
     const confirmed =
       confirm(
-        "Reset all hearts and memories?"
+        "Reset all hearts, memories and relationship progress?"
       );
 
 
@@ -2086,24 +2420,37 @@ resetButton.addEventListener(
     }
 
 
-    hearts =
-      0;
+    hearts = 0;
+
+    memories = [];
+
+    savedRelationshipLevel = 0;
 
 
-    memories =
-      [];
+    localStorage.removeItem(
+      "littleWorldHearts"
+    );
 
 
-    saveData();
+    localStorage.removeItem(
+      "littleWorldMemories"
+    );
+
+
+    localStorage.removeItem(
+      "littleWorldRelationshipLevel"
+    );
 
 
     heartCount.textContent =
-      hearts;
+      "0";
 
 
     renderMemories();
 
     renderAlbum();
+
+    renderRelationship();
 
 
     setDialogue(
@@ -2128,7 +2475,7 @@ resetButton.addEventListener(
 
 
 // ========================================
-// STARTUP GREETING
+// GREETING
 // ========================================
 
 function startupGreeting() {
@@ -2190,5 +2537,7 @@ function startupGreeting() {
 renderMemories();
 
 renderAlbum();
+
+renderRelationship();
 
 startupGreeting();
