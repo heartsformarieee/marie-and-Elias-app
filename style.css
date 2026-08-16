@@ -7,11 +7,8 @@ html,
 body {
   margin: 0;
   padding: 0;
-
   min-height: 100%;
-
   background: #0b070c;
-
   color: #f7edf4;
 
   font-family:
@@ -30,7 +27,6 @@ button {
   font-family: inherit;
 }
 
-
 /* APP */
 
 .app {
@@ -38,39 +34,35 @@ button {
 
   padding-bottom:
     calc(
-      95px +
+      125px +
       env(safe-area-inset-bottom)
     );
 }
-
 
 /* HERO */
 
 .hero {
   position: relative;
 
-  min-height: 660px;
+  min-height: 760px;
 
   overflow: hidden;
 
   padding:
-    max(
-      26px,
-      env(safe-area-inset-top)
-    )
+    max(24px, env(safe-area-inset-top))
     22px
-    28px;
+    26px;
 
   background:
     radial-gradient(
-      circle at 50% 32%,
-      rgba(170,74,102,0.18),
+      circle at 50% 30%,
+      rgba(170,74,102,0.14),
       transparent 42%
     ),
     linear-gradient(
       180deg,
-      rgba(17,11,18,0.4),
-      #100a11 86%
+      rgba(17,11,18,0.25),
+      #100a11 92%
     );
 }
 
@@ -81,30 +73,11 @@ button {
   inset: 0;
 
   background:
-    radial-gradient(
-      circle at 20% 20%,
-      rgba(255,120,150,0.08),
-      transparent 25%
-    ),
-    radial-gradient(
-      circle at 80% 20%,
-      rgba(180,80,130,0.08),
-      transparent 25%
-    );
-
-  pointer-events: none;
-}
-
-.hero-darken {
-  position: absolute;
-  inset: 0;
-
-  background:
     linear-gradient(
       180deg,
-      transparent,
-      rgba(10,6,10,0.2) 45%,
-      rgba(10,6,10,0.9) 100%
+      rgba(0,0,0,0.03),
+      rgba(10,6,10,0.10) 58%,
+      rgba(10,6,10,0.82) 100%
     );
 
   pointer-events: none;
@@ -112,8 +85,11 @@ button {
   z-index: 4;
 }
 
+.hero-darken {
+  display: none;
+}
 
-/* TOPBAR */
+/* TOP */
 
 .topbar {
   position: relative;
@@ -127,7 +103,7 @@ button {
 }
 
 .eyebrow {
-  margin: 0 0 6px;
+  margin: 0 0 7px;
 
   color: #df8aa4;
 
@@ -164,7 +140,7 @@ h1 span {
 
   border:
     1px solid
-    rgba(255,147,178,0.12);
+    rgba(255,147,178,0.14);
 
   border-radius: 20px;
 
@@ -194,66 +170,62 @@ h1 span {
   font-size: 10px;
 }
 
-
-/* HERO ART */
+/* HERO IMAGE */
 
 .hero-people {
   position: absolute;
 
-  left: 50%;
-  bottom: 22px;
+  left: 0;
+  right: 0;
+  top: 0;
 
-  transform: translateX(-50%);
+  width: 100%;
+  height: 690px;
 
-  width: min(100%, 430px);
-  height: 500px;
+  z-index: 2;
 
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-
-  z-index: 3;
+  overflow: hidden;
 }
 
 .couple-art {
   position: absolute;
 
   left: 50%;
-  bottom: 0;
+  top: 0;
 
   transform: translateX(-50%);
 
   width: 100%;
-  max-width: 430px;
-  height: auto;
+  height: 100%;
 
-  object-fit: contain;
+  object-fit: cover;
+  object-position: center top;
 
   filter:
-    drop-shadow(
-      0 20px 35px
-      rgba(0,0,0,0.45)
-    );
+    brightness(0.92)
+    contrast(1.02)
+    saturate(0.9);
 }
 
 .mori-art {
   position: absolute;
 
-  right: 5px;
-  bottom: 22px;
+  right: 18px;
+  bottom: 26px;
 
-  width: 95px;
+  width: 105px;
   height: auto;
 
-  z-index: 7;
+  z-index: 8;
+
+  border-radius: 14px;
 
   filter:
     drop-shadow(
-      0 10px 14px
-      rgba(0,0,0,0.55)
+      0 10px 16px
+      rgba(0,0,0,0.6)
     );
 }
-
 
 /* DIALOGUE */
 
@@ -261,29 +233,32 @@ h1 span {
   position: absolute;
 
   left: 22px;
-  bottom: 34px;
+  right: 22px;
 
-  z-index: 12;
+  bottom: 28px;
 
-  width: min(78%, 330px);
+  z-index: 15;
 
-  padding: 16px 18px;
+  width: auto;
+  max-width: 365px;
+
+  padding: 17px 18px;
 
   border:
     1px solid
-    rgba(255,126,163,0.24);
+    rgba(255,126,163,0.26);
 
   border-radius: 22px;
 
   background:
-    rgba(22,13,22,0.86);
+    rgba(22,13,22,0.88);
 
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
 
   box-shadow:
     0 18px 32px
-    rgba(0,0,0,0.32);
+    rgba(0,0,0,0.35);
 }
 
 .speaker {
@@ -307,11 +282,13 @@ h1 span {
     opacity 0.15s ease;
 }
 
-
-/* GENERAL SECTIONS */
+/* DATE SECTION */
 
 .section {
-  padding: 20px 18px 4px;
+  padding:
+    18px
+    18px
+    4px;
 }
 
 .section h2 {
@@ -324,7 +301,6 @@ h1 span {
   font-size: 15px;
   font-weight: 500;
 }
-
 
 /* DATE GRID */
 
@@ -377,7 +353,7 @@ h1 span {
 
 .date-image {
   width: 100%;
-  height: 86px;
+  height: 88px;
 
   border-radius: 14px;
 
@@ -422,7 +398,6 @@ h1 span {
   font-size: 11px;
 }
 
-
 /* MEMORIES */
 
 .memory-area {
@@ -434,7 +409,10 @@ h1 span {
 
   gap: 10px;
 
-  padding: 18px;
+  padding:
+    18px
+    18px
+    135px;
 }
 
 .memories-card,
@@ -553,7 +531,6 @@ h1 span {
   font-size: 11px;
 }
 
-
 /* RANDOM CARD */
 
 .random-card {
@@ -598,11 +575,13 @@ h1 span {
   line-height: 1.3;
 }
 
-
-/* PAGES */
+/* OTHER PAGES */
 
 .page {
-  padding: 25px 20px 120px;
+  padding:
+    25px
+    20px
+    140px;
 }
 
 .page-inner {
@@ -643,6 +622,8 @@ h1 span {
   height: auto;
 
   margin-bottom: 12px;
+
+  border-radius: 20px;
 
   filter:
     drop-shadow(
@@ -695,40 +676,39 @@ h1 span {
   color: #ff9cb5;
 }
 
-
-/* BOTTOM NAV */
+/* NAV */
 
 .bottom-nav {
   position: fixed;
 
-  left: 12px;
-  right: 12px;
+  left: 14px;
+  right: 14px;
 
   bottom:
     max(
-      10px,
+      12px,
       env(safe-area-inset-bottom)
     );
 
   z-index: 100;
 
-  min-height: 78px;
+  min-height: 68px;
 
   display: grid;
 
   grid-template-columns:
     repeat(5, 1fr);
 
-  padding: 8px;
+  padding: 7px;
 
   border:
     1px solid
     rgba(255,126,163,0.09);
 
-  border-radius: 24px;
+  border-radius: 22px;
 
   background:
-    rgba(27,17,27,0.92);
+    rgba(27,17,27,0.94);
 
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -751,50 +731,58 @@ h1 span {
   align-items: center;
   justify-content: center;
 
-  gap: 4px;
+  gap: 3px;
 
-  font-size: 10px;
+  font-size: 9px;
 }
 
 .nav-button span {
-  font-size: 22px;
+  font-size: 20px;
 }
 
 .nav-button.active {
   color: #ff91ae;
 
   background:
-    rgba(255,122,161,0.045);
+    rgba(255,122,161,0.055);
 
-  border-radius: 17px;
+  border-radius: 16px;
 }
-
-
-/* HIDDEN */
 
 .hidden {
   display: none !important;
 }
 
+/* IPHONE 13 / SIMILAR WIDTH */
 
-/* SMALLER IPHONES */
-
-@media (max-width: 390px) {
+@media (max-width: 430px) {
 
   .hero {
-    min-height: 620px;
+    min-height: 730px;
   }
 
   .hero-people {
-    height: 455px;
+    height: 660px;
   }
 
   .couple-art {
-    max-width: 400px;
+    object-position: center top;
   }
 
   .mori-art {
-    width: 82px;
+    right: 14px;
+    bottom: 30px;
+
+    width: 95px;
+  }
+
+  .elias-dialogue {
+    left: 20px;
+    right: 95px;
+
+    bottom: 24px;
+
+    max-width: none;
   }
 
   .date-grid {
@@ -802,13 +790,13 @@ h1 span {
   }
 
   .date-card {
-    min-height: 158px;
+    min-height: 160px;
 
     padding: 8px 5px;
   }
 
   .date-image {
-    height: 72px;
+    height: 76px;
   }
 
   .date-card > span {
