@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
 
   <meta
@@ -8,20 +10,36 @@
     content="width=device-width, initial-scale=1.0, viewport-fit=cover"
   >
 
-  <meta name="theme-color" content="#100a11">
+  <meta
+    name="theme-color"
+    content="#100a11"
+  >
 
-  <title>Our Little World</title>
+  <title>
+    Our Little World
+  </title>
 
-  <link rel="stylesheet" href="style.css">
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+
 </head>
+
 
 <body>
 
   <main class="app">
 
-    <!-- HOME -->
+
+    <!-- =========================
+         HOME
+    ========================== -->
 
     <section id="homePage">
+
+
+      <!-- HERO -->
 
       <section class="hero">
 
@@ -31,11 +49,14 @@
           alt="Marie and Elias"
         >
 
+
         <div class="hero-overlay"></div>
+
 
         <header class="topbar">
 
           <div>
+
             <p class="eyebrow">
               MARIE × ELIAS
             </p>
@@ -43,15 +64,21 @@
             <h1>
               Our Little World ♡
             </h1>
+
           </div>
 
+
           <div class="heart-counter">
+
             💗
-            <span id="heartCount">0</span>
+            <span id="heartCount">
+              0
+            </span>
 
             <small>
               our hearts
             </small>
+
           </div>
 
         </header>
@@ -80,7 +107,9 @@
       </section>
 
 
-      <!-- DATE CHOICES -->
+      <!-- =========================
+           DATE OPTIONS
+      ========================== -->
 
       <section class="section">
 
@@ -91,9 +120,11 @@
 
         <div class="date-grid">
 
+
           <button
             class="date-card"
             data-date="sushi"
+            type="button"
           >
 
             <img
@@ -115,6 +146,7 @@
           <button
             class="date-card"
             data-date="movie"
+            type="button"
           >
 
             <img
@@ -136,6 +168,7 @@
           <button
             class="date-card"
             data-date="walk"
+            type="button"
           >
 
             <img
@@ -157,11 +190,12 @@
           <button
             class="date-card"
             data-date="home"
+            type="button"
           >
 
             <img
               src="home.PNG"
-              alt="Stay Home with Mori"
+              alt="Stay Home"
             >
 
             <span>
@@ -175,14 +209,18 @@
 
           </button>
 
+
         </div>
 
       </section>
 
 
-      <!-- MEMORIES -->
+      <!-- =========================
+           MEMORIES
+      ========================== -->
 
       <section class="memory-area">
+
 
         <div class="memories-card">
 
@@ -198,6 +236,7 @@
 
           </div>
 
+
           <div
             id="memoriesList"
             class="memory-list"
@@ -206,9 +245,12 @@
         </div>
 
 
+        <!-- RANDOM EVENT -->
+
         <button
           id="randomEventButton"
           class="random-card"
+          type="button"
         >
 
           <span>
@@ -227,12 +269,15 @@
 
         </button>
 
+
       </section>
 
     </section>
 
 
-    <!-- MORI PAGE -->
+    <!-- =========================
+         MORI PAGE
+    ========================== -->
 
     <section
       id="moriPage"
@@ -258,6 +303,7 @@
         <button
           id="petMoriButton"
           class="primary-button"
+          type="button"
         >
           Pet Mori
         </button>
@@ -267,33 +313,61 @@
     </section>
 
 
-    <!-- ALBUM PAGE -->
+    <!-- =========================
+         ALBUM PAGE
+    ========================== -->
 
     <section
       id="albumPage"
-      class="page hidden"
+      class="page album-page hidden"
     >
 
-      <div class="page-card">
+      <div class="album-header">
 
-        <div class="large-icon">
-          📷
-        </div>
+        <p class="album-eyebrow">
+          MARIE × ELIAS
+        </p>
 
         <h2>
-          Our Album
+          Our Album ♡
         </h2>
 
         <p>
-          Our future photo memories will live here ♡
+          Little moments we've collected together.
         </p>
 
+
+        <div class="album-progress">
+
+          <span id="albumProgress">
+            0 / 6 unlocked
+          </span>
+
+          <div class="album-progress-bar">
+
+            <div
+              id="albumProgressFill"
+              class="album-progress-fill"
+            ></div>
+
+          </div>
+
+        </div>
+
       </div>
+
+
+      <div
+        id="albumGrid"
+        class="album-grid"
+      ></div>
 
     </section>
 
 
-    <!-- SETTINGS PAGE -->
+    <!-- =========================
+         SETTINGS
+    ========================== -->
 
     <section
       id="settingsPage"
@@ -310,9 +384,14 @@
           Settings
         </h2>
 
+        <p>
+          Our little world is saved on this device.
+        </p>
+
         <button
           id="resetButton"
           class="danger-button"
+          type="button"
         >
           Reset Progress
         </button>
@@ -322,7 +401,9 @@
     </section>
 
 
-    <!-- DATE SCENE POPUP -->
+    <!-- =========================
+         SCENE POPUP
+    ========================== -->
 
     <div
       id="sceneOverlay"
@@ -339,6 +420,7 @@
           ×
         </button>
 
+
         <img
           id="sceneImage"
           class="scene-image"
@@ -346,13 +428,16 @@
           alt=""
         >
 
+
         <p class="scene-label">
           MARIE × ELIAS
         </p>
 
+
         <h2 id="sceneTitle">
           Date
         </h2>
+
 
         <p
           id="sceneText"
@@ -360,6 +445,7 @@
         >
           ...
         </p>
+
 
         <div
           id="sceneChoices"
@@ -371,17 +457,73 @@
     </div>
 
 
-    <!-- NAV -->
+    <!-- =========================
+         PHOTO VIEWER
+    ========================== -->
+
+    <div
+      id="photoOverlay"
+      class="photo-overlay hidden"
+    >
+
+      <div class="photo-viewer">
+
+        <button
+          id="closePhoto"
+          class="photo-close"
+          type="button"
+        >
+          ×
+        </button>
+
+
+        <img
+          id="photoViewerImage"
+          src=""
+          alt=""
+        >
+
+
+        <div class="photo-viewer-text">
+
+          <p class="photo-small-title">
+            OUR LITTLE WORLD ♡
+          </p>
+
+          <h2 id="photoViewerTitle">
+            Memory
+          </h2>
+
+          <p id="photoViewerCaption">
+            ...
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- =========================
+         NAVIGATION
+    ========================== -->
 
     <nav class="bottom-nav">
+
 
       <button
         class="nav-button active"
         data-page="home"
         type="button"
       >
-        <span>⌂</span>
+
+        <span>
+          ⌂
+        </span>
+
         Home
+
       </button>
 
 
@@ -390,8 +532,13 @@
         data-page="memories"
         type="button"
       >
-        <span>▧</span>
+
+        <span>
+          ▧
+        </span>
+
         Memories
+
       </button>
 
 
@@ -400,8 +547,13 @@
         data-page="mori"
         type="button"
       >
-        <span>🐈‍⬛</span>
+
+        <span>
+          🐈‍⬛
+        </span>
+
         Mori
+
       </button>
 
 
@@ -410,8 +562,13 @@
         data-page="album"
         type="button"
       >
-        <span>♡</span>
+
+        <span>
+          ♡
+        </span>
+
         Album
+
       </button>
 
 
@@ -420,9 +577,15 @@
         data-page="settings"
         type="button"
       >
-        <span>⚙︎</span>
+
+        <span>
+          ⚙︎
+        </span>
+
         Settings
+
       </button>
+
 
     </nav>
 
@@ -432,4 +595,5 @@
   <script src="script.js"></script>
 
 </body>
+
 </html>
