@@ -1,9 +1,12 @@
 // ========================================
-// OUR LITTLE WORLD 1.0
+// OUR LITTLE WORLD 1.1
+// FULL SCRIPT
 // ========================================
 
 
+// ========================================
 // ELEMENTS
+// ========================================
 
 const heartCount =
   document.getElementById(
@@ -46,7 +49,44 @@ const resetButton =
   );
 
 
-// SAVE DATA
+// ========================================
+// DATE SCENE ELEMENTS
+// ========================================
+
+const sceneOverlay =
+  document.getElementById(
+    "sceneOverlay"
+  );
+
+const sceneImage =
+  document.getElementById(
+    "sceneImage"
+  );
+
+const sceneTitle =
+  document.getElementById(
+    "sceneTitle"
+  );
+
+const sceneText =
+  document.getElementById(
+    "sceneText"
+  );
+
+const sceneChoices =
+  document.getElementById(
+    "sceneChoices"
+  );
+
+const closeScene =
+  document.getElementById(
+    "closeScene"
+  );
+
+
+// ========================================
+// SAVED DATA
+// ========================================
 
 let hearts =
   Number(
@@ -68,81 +108,237 @@ heartCount.textContent =
   hearts;
 
 
-// DATE DATA
+// ========================================
+// DATE SCENES
+// ========================================
 
-const dates = {
+const dateScenes = {
 
   sushi: {
-    dialogue:
-      "Sushi? Sit next to me. I'm not negotiating.",
 
-    hearts:
-      3,
+    title:
+      "Sushi Date",
 
-    memory: {
-      icon:
-        "🍣",
+    image:
+      "sushi.PNG",
 
-      text:
-        "Sushi date — Elias insisted you sit beside him instead of across from him."
-    }
+    intro:
+      "The restaurant is warm and quiet. Elias immediately slides into the seat beside you instead of sitting across from you.",
+
+    choices: [
+
+      {
+        text:
+          "Steal one of his sushi pieces.",
+
+        result:
+          "Elias stares at the empty spot on his plate, then at you. “You know you could've just asked.” He pushes another piece toward you anyway.",
+
+        hearts:
+          3,
+
+        memory: {
+          icon:
+            "🍣",
+
+          text:
+            "Sushi date — you stole Elias's sushi and he gave you another piece anyway."
+        }
+      },
+
+      {
+        text:
+          "Rest your head on his shoulder.",
+
+        result:
+          "He goes completely still for half a second, then quietly leans his head against yours. “Comfortable?”",
+
+        hearts:
+          5,
+
+        memory: {
+          icon:
+            "🖤",
+
+          text:
+            "Sushi date — you rested against Elias while you waited for dessert."
+        }
+      }
+
+    ]
   },
 
 
   movie: {
-    dialogue:
-      "You pick the movie. I'm stealing half the blanket.",
 
-    hearts:
-      2,
+    title:
+      "Movie Night",
 
-    memory: {
-      icon:
-        "🎬",
+    image:
+      "movie.PNG",
 
-      text:
-        "Movie night — neither of you paid attention to the last twenty minutes."
-    }
+    intro:
+      "The lights are off, the movie has barely started, and Elias has already taken more than half the blanket.",
+
+    choices: [
+
+      {
+        text:
+          "Steal the blanket back.",
+
+        result:
+          "You yank it toward yourself. Elias looks offended for approximately two seconds before pulling you closer so you both fit underneath it.",
+
+        hearts:
+          4,
+
+        memory: {
+          icon:
+            "🎬",
+
+          text:
+            "Movie night — the blanket fight ended with both of you squeezed underneath it."
+        }
+      },
+
+      {
+        text:
+          "Pretend to fall asleep on him.",
+
+        result:
+          "Elias lowers the volume and stops moving entirely. A few minutes later he whispers, “I know you're awake, by the way.”",
+
+        hearts:
+          5,
+
+        memory: {
+          icon:
+            "🍿",
+
+          text:
+            "Movie night — Elias knew you were pretending to sleep but let you stay there anyway."
+        }
+      }
+
+    ]
   },
 
 
   walk: {
-    dialogue:
-      "Night walk? Come here. Your hand's freezing.",
 
-    hearts:
-      4,
+    title:
+      "Night Walk",
 
-    memory: {
-      icon:
-        "🌙",
+    image:
+      "walk.PNG",
 
-      text:
-        "Late-night walk — Elias held your hand the entire way home."
-    }
+    intro:
+      "The streets are quiet and cool. Elias notices your hands are cold before you even say anything.",
+
+    choices: [
+
+      {
+        text:
+          "Reach for his hand.",
+
+        result:
+          "He threads his fingers through yours immediately. “Yeah. That's better.”",
+
+        hearts:
+          5,
+
+        memory: {
+          icon:
+            "🌙",
+
+          text:
+            "Night walk — you held hands the whole way home."
+        }
+      },
+
+      {
+        text:
+          "Tell him you're freezing.",
+
+        result:
+          "Without answering, Elias pulls one sleeve over your hand and keeps you tucked against his side. “You're dramatic.”",
+
+        hearts:
+          4,
+
+        memory: {
+          icon:
+            "✨",
+
+          text:
+            "Night walk — Elias complained you were dramatic while keeping you warm."
+        }
+      }
+
+    ]
   },
 
 
   home: {
-    dialogue:
-      "Staying home sounds perfect. Unless Mori steals you again.",
 
-    hearts:
-      2,
+    title:
+      "Stay Home with Mori",
 
-    memory: {
-      icon:
-        "🐈‍⬛",
+    image:
+      "home.PNG",
 
-      text:
-        "Stayed home — Mori somehow ended up between the two of you."
-    }
+    intro:
+      "You barely sit down before Mori climbs between you and Elias like he personally arranged the evening.",
+
+    choices: [
+
+      {
+        text:
+          "Give Mori all your attention.",
+
+        result:
+          "Mori immediately starts purring. Elias watches from beside you. “Wow. Okay. I see where I rank.”",
+
+        hearts:
+          3,
+
+        memory: {
+          icon:
+            "🐈‍⬛",
+
+          text:
+            "Stayed home — Mori stole all your attention and Elias pretended not to care."
+        }
+      },
+
+      {
+        text:
+          "Pull Elias closer too.",
+
+        result:
+          "Now Mori is on your lap and Elias is leaning against you. Elias sighs. “Fine. Shared custody.”",
+
+        hearts:
+          6,
+
+        memory: {
+          icon:
+            "♡",
+
+          text:
+            "Stayed home — somehow you ended up cuddling Elias and Mori at the same time."
+        }
+      }
+
+    ]
   }
 
 };
 
 
+// ========================================
 // RANDOM EVENTS
+// ========================================
 
 const randomEvents = [
 
@@ -229,7 +425,9 @@ const randomEvents = [
 ];
 
 
+// ========================================
 // MORI EVENTS
+// ========================================
 
 const moriEvents = [
 
@@ -246,7 +444,9 @@ const moriEvents = [
 ];
 
 
-// SAVE
+// ========================================
+// SAVE DATA
+// ========================================
 
 function saveData() {
 
@@ -266,7 +466,9 @@ function saveData() {
 }
 
 
+// ========================================
 // HEARTS
+// ========================================
 
 function addHearts(
   amount
@@ -285,7 +487,9 @@ function addHearts(
 }
 
 
-// DIALOGUE
+// ========================================
+// HERO DIALOGUE
+// ========================================
 
 function setDialogue(
   text
@@ -311,7 +515,9 @@ function setDialogue(
 }
 
 
+// ========================================
 // MEMORIES
+// ========================================
 
 function unlockMemory(
   memory
@@ -409,7 +615,171 @@ function renderMemories() {
 }
 
 
-// DATE BUTTONS
+// ========================================
+// OPEN DATE SCENE
+// ========================================
+
+function openDateScene(
+  dateName
+) {
+
+  const scene =
+    dateScenes[
+      dateName
+    ];
+
+
+  if (!scene) {
+    return;
+  }
+
+
+  sceneImage.src =
+    scene.image;
+
+
+  sceneImage.alt =
+    scene.title;
+
+
+  sceneTitle.textContent =
+    scene.title;
+
+
+  sceneText.textContent =
+    scene.intro;
+
+
+  sceneChoices.innerHTML =
+    "";
+
+
+  scene.choices.forEach(
+    function(choice) {
+
+      const button =
+        document.createElement(
+          "button"
+        );
+
+
+      button.className =
+        "scene-choice";
+
+
+      button.textContent =
+        choice.text;
+
+
+      button.addEventListener(
+        "click",
+        function() {
+
+          chooseSceneOption(
+            choice
+          );
+
+        }
+      );
+
+
+      sceneChoices.appendChild(
+        button
+      );
+
+    }
+  );
+
+
+  sceneOverlay.classList.remove(
+    "hidden"
+  );
+
+}
+
+
+// ========================================
+// CHOOSE DATE OPTION
+// ========================================
+
+function chooseSceneOption(
+  choice
+) {
+
+  sceneChoices.innerHTML =
+    "";
+
+
+  const result =
+    document.createElement(
+      "div"
+    );
+
+
+  result.className =
+    "scene-result";
+
+
+  result.textContent =
+    choice.result;
+
+
+  sceneChoices.appendChild(
+    result
+  );
+
+
+  addHearts(
+    choice.hearts
+  );
+
+
+  unlockMemory(
+    choice.memory
+  );
+
+
+  setDialogue(
+    choice.result
+  );
+
+
+  const closeButton =
+    document.createElement(
+      "button"
+    );
+
+
+  closeButton.className =
+    "scene-choice";
+
+
+  closeButton.textContent =
+    `♡ Continue  +${choice.hearts}`;
+
+
+  closeButton.addEventListener(
+    "click",
+    function() {
+
+      sceneOverlay.classList.add(
+        "hidden"
+      );
+
+    }
+  );
+
+
+  sceneChoices.appendChild(
+    closeButton
+  );
+
+}
+
+
+// ========================================
+// DATE BUTTON EVENTS
+// ========================================
 
 document
   .querySelectorAll(
@@ -422,28 +792,8 @@ document
         "click",
         function() {
 
-          const dateName =
-            button.dataset.date;
-
-
-          const date =
-            dates[
-              dateName
-            ];
-
-
-          setDialogue(
-            date.dialogue
-          );
-
-
-          addHearts(
-            date.hearts
-          );
-
-
-          unlockMemory(
-            date.memory
+          openDateScene(
+            button.dataset.date
           );
 
         }
@@ -453,7 +803,44 @@ document
   );
 
 
+// ========================================
+// CLOSE SCENE
+// ========================================
+
+closeScene.addEventListener(
+  "click",
+  function() {
+
+    sceneOverlay.classList.add(
+      "hidden"
+    );
+
+  }
+);
+
+
+sceneOverlay.addEventListener(
+  "click",
+  function(event) {
+
+    if (
+      event.target ===
+      sceneOverlay
+    ) {
+
+      sceneOverlay.classList.add(
+        "hidden"
+      );
+
+    }
+
+  }
+);
+
+
+// ========================================
 // RANDOM EVENT
+// ========================================
 
 randomEventButton
   .addEventListener(
@@ -482,7 +869,9 @@ randomEventButton
   );
 
 
+// ========================================
 // MORI
+// ========================================
 
 petMoriButton
   .addEventListener(
@@ -510,7 +899,9 @@ petMoriButton
   );
 
 
+// ========================================
 // PAGE NAVIGATION
+// ========================================
 
 const navButtons =
   document.querySelectorAll(
@@ -601,6 +992,10 @@ function hideHome() {
 }
 
 
+// ========================================
+// NAV BUTTON EVENTS
+// ========================================
+
 navButtons.forEach(
   function(button) {
 
@@ -630,6 +1025,11 @@ navButtons.forEach(
         ) {
 
           showHome();
+
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+          });
 
         }
 
@@ -703,6 +1103,12 @@ navButtons.forEach(
 
           }
 
+
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+          });
+
         }
 
       }
@@ -712,7 +1118,9 @@ navButtons.forEach(
 );
 
 
-// RESET
+// ========================================
+// RESET PROGRESS
+// ========================================
 
 resetButton
   .addEventListener(
@@ -758,7 +1166,9 @@ resetButton
   );
 
 
+// ========================================
 // TIME GREETING
+// ========================================
 
 function startupGreeting() {
 
@@ -812,7 +1222,9 @@ function startupGreeting() {
 }
 
 
+// ========================================
 // START
+// ========================================
 
 renderMemories();
 
