@@ -1,112 +1,102 @@
 // ========================================
-// OUR LITTLE WORLD 1.3
-// RANDOM EVENT SCENES
+// OUR LITTLE WORLD 1.4
+// DATE SCENES + RANDOM EVENTS + ALBUM
 // ========================================
 
 
 // ========================================
-// GET ELEMENTS
+// ELEMENTS
 // ========================================
 
 const heartCount =
-  document.getElementById(
-    "heartCount"
-  );
+  document.getElementById("heartCount");
 
 const heroDialogue =
-  document.getElementById(
-    "heroDialogue"
-  );
+  document.getElementById("heroDialogue");
 
 const memoriesList =
-  document.getElementById(
-    "memoriesList"
-  );
+  document.getElementById("memoriesList");
 
 const memoryCount =
-  document.getElementById(
-    "memoryCount"
-  );
+  document.getElementById("memoryCount");
 
 const randomEventButton =
-  document.getElementById(
-    "randomEventButton"
-  );
-
-const moriPage =
-  document.getElementById(
-    "moriPage"
-  );
-
-const albumPage =
-  document.getElementById(
-    "albumPage"
-  );
-
-const settingsPage =
-  document.getElementById(
-    "settingsPage"
-  );
+  document.getElementById("randomEventButton");
 
 const homePage =
-  document.getElementById(
-    "homePage"
-  );
+  document.getElementById("homePage");
+
+const moriPage =
+  document.getElementById("moriPage");
+
+const albumPage =
+  document.getElementById("albumPage");
+
+const settingsPage =
+  document.getElementById("settingsPage");
 
 const petMoriButton =
-  document.getElementById(
-    "petMoriButton"
-  );
+  document.getElementById("petMoriButton");
 
 const moriText =
-  document.getElementById(
-    "moriText"
-  );
+  document.getElementById("moriText");
 
 const resetButton =
-  document.getElementById(
-    "resetButton"
-  );
+  document.getElementById("resetButton");
 
 const navButtons =
-  document.querySelectorAll(
-    ".nav-button"
-  );
+  document.querySelectorAll(".nav-button");
 
 
-// ========================================
-// SCENE ELEMENTS
-// ========================================
+// SCENE
 
 const sceneOverlay =
-  document.getElementById(
-    "sceneOverlay"
-  );
+  document.getElementById("sceneOverlay");
 
 const sceneImage =
-  document.getElementById(
-    "sceneImage"
-  );
+  document.getElementById("sceneImage");
 
 const sceneTitle =
-  document.getElementById(
-    "sceneTitle"
-  );
+  document.getElementById("sceneTitle");
 
 const sceneText =
-  document.getElementById(
-    "sceneText"
-  );
+  document.getElementById("sceneText");
 
 const sceneChoices =
-  document.getElementById(
-    "sceneChoices"
-  );
+  document.getElementById("sceneChoices");
 
 const closeScene =
-  document.getElementById(
-    "closeScene"
-  );
+  document.getElementById("closeScene");
+
+
+// ALBUM
+
+const albumGrid =
+  document.getElementById("albumGrid");
+
+const albumProgress =
+  document.getElementById("albumProgress");
+
+const albumProgressFill =
+  document.getElementById("albumProgressFill");
+
+
+// PHOTO VIEWER
+
+const photoOverlay =
+  document.getElementById("photoOverlay");
+
+const photoViewerImage =
+  document.getElementById("photoViewerImage");
+
+const photoViewerTitle =
+  document.getElementById("photoViewerTitle");
+
+const photoViewerCaption =
+  document.getElementById("photoViewerCaption");
+
+const closePhoto =
+  document.getElementById("closePhoto");
 
 
 // ========================================
@@ -121,12 +111,22 @@ let hearts =
   ) || 0;
 
 
-let memories =
-  JSON.parse(
-    localStorage.getItem(
-      "littleWorldMemories"
-    ) || "[]"
-  );
+let memories;
+
+try {
+
+  memories =
+    JSON.parse(
+      localStorage.getItem(
+        "littleWorldMemories"
+      ) || "[]"
+    );
+
+} catch {
+
+  memories = [];
+
+}
 
 
 heartCount.textContent =
@@ -153,6 +153,7 @@ const dateScenes = {
     choices: [
 
       {
+
         text:
           "Steal one of his sushi pieces.",
 
@@ -163,15 +164,20 @@ const dateScenes = {
           3,
 
         memory: {
+
           icon:
             "🍣",
 
           text:
             "Sushi date — you stole Elias's sushi and he gave you another piece anyway."
+
         }
+
       },
 
+
       {
+
         text:
           "Rest your head on his shoulder.",
 
@@ -182,12 +188,15 @@ const dateScenes = {
           5,
 
         memory: {
+
           icon:
             "🖤",
 
           text:
             "Sushi date — you rested against Elias while waiting for dessert."
+
         }
+
       }
 
     ]
@@ -209,6 +218,7 @@ const dateScenes = {
     choices: [
 
       {
+
         text:
           "Steal the blanket back.",
 
@@ -219,15 +229,20 @@ const dateScenes = {
           4,
 
         memory: {
+
           icon:
             "🎬",
 
           text:
             "Movie night — the blanket fight ended with both of you squeezed underneath it."
+
         }
+
       },
 
+
       {
+
         text:
           "Pretend to fall asleep on him.",
 
@@ -238,12 +253,15 @@ const dateScenes = {
           5,
 
         memory: {
+
           icon:
             "🍿",
 
           text:
             "Movie night — Elias knew you were pretending to sleep but let you stay there."
+
         }
+
       }
 
     ]
@@ -265,6 +283,7 @@ const dateScenes = {
     choices: [
 
       {
+
         text:
           "Reach for his hand.",
 
@@ -275,15 +294,20 @@ const dateScenes = {
           5,
 
         memory: {
+
           icon:
             "🌙",
 
           text:
             "Night walk — you held hands the entire way home."
+
         }
+
       },
 
+
       {
+
         text:
           "Tell him you're freezing.",
 
@@ -294,12 +318,15 @@ const dateScenes = {
           4,
 
         memory: {
+
           icon:
             "✨",
 
           text:
             "Night walk — Elias called you dramatic while keeping you warm."
+
         }
+
       }
 
     ]
@@ -321,6 +348,7 @@ const dateScenes = {
     choices: [
 
       {
+
         text:
           "Give Mori all your attention.",
 
@@ -331,15 +359,20 @@ const dateScenes = {
           3,
 
         memory: {
+
           icon:
             "🐈‍⬛",
 
           text:
             "Stayed home — Mori stole all your attention and Elias pretended not to care."
+
         }
+
       },
 
+
       {
+
         text:
           "Pull Elias closer too.",
 
@@ -350,12 +383,15 @@ const dateScenes = {
           6,
 
         memory: {
+
           icon:
             "♡",
 
           text:
             "Stayed home — you ended up cuddling Elias and Mori at the same time."
+
         }
+
       }
 
     ]
@@ -366,12 +402,13 @@ const dateScenes = {
 
 
 // ========================================
-// RANDOM EVENT SCENES
+// RANDOM SCENES
 // ========================================
 
 const randomScenes = [
 
   {
+
     title:
       "Mori Stole My Spot",
 
@@ -384,6 +421,7 @@ const randomScenes = [
     choices: [
 
       {
+
         text:
           "Let Mori stay.",
 
@@ -394,15 +432,20 @@ const randomScenes = [
           2,
 
         memory: {
+
           icon:
             "🐈‍⬛",
 
           text:
             "Mori stole Elias's spot and looked very proud of himself."
+
         }
+
       },
 
+
       {
+
         text:
           "Pull Elias down beside you too.",
 
@@ -413,12 +456,15 @@ const randomScenes = [
           5,
 
         memory: {
+
           icon:
             "🤍",
 
           text:
             "You refused to choose between Elias and Mori, so both stayed."
+
         }
+
       }
 
     ]
@@ -427,6 +473,7 @@ const randomScenes = [
 
 
   {
+
     title:
       "Caught Staring",
 
@@ -439,41 +486,50 @@ const randomScenes = [
     choices: [
 
       {
+
         text:
           "Ask, “What?”",
 
         result:
-          "Elias shrugs like nothing happened. “Nothing.” You keep looking at him. “…You're pretty. Happy?”",
+          "Elias shrugs. “Nothing.” You keep staring. “…You're pretty. Happy?”",
 
         hearts:
           4,
 
         memory: {
+
           icon:
             "👀",
 
           text:
             "You caught Elias staring and forced him to admit why."
+
         }
+
       },
 
+
       {
+
         text:
           "Just stare back.",
 
         result:
-          "Neither of you says anything for a few seconds. Elias finally breaks first. “Okay, this is getting weird.”",
+          "Neither of you says anything. Elias eventually breaks first. “Okay, this is getting weird.”",
 
         hearts:
           3,
 
         memory: {
+
           icon:
             "😭",
 
           text:
             "A staring contest somehow became a relationship moment."
+
         }
+
       }
 
     ]
@@ -482,6 +538,7 @@ const randomScenes = [
 
 
   {
+
     title:
       "Phone Thief",
 
@@ -494,41 +551,50 @@ const randomScenes = [
     choices: [
 
       {
+
         text:
           "Try to grab it back.",
 
         result:
-          "He holds it just out of reach and takes a horribly timed selfie of both of you. “Perfect. Album material.”",
+          "He holds it out of reach and takes a horribly timed selfie. “Perfect. Album material.”",
 
         hearts:
           3,
 
         memory: {
+
           icon:
             "📱",
 
           text:
             "Elias stole your phone and took an absolutely terrible selfie."
+
         }
+
       },
 
+
       {
+
         text:
           "Pose dramatically.",
 
         result:
-          "You pose like it's a magazine cover. Elias actually starts laughing. “Why did you commit that hard?”",
+          "You pose like it's a magazine cover. Elias starts laughing. “Why did you commit that hard?”",
 
         hearts:
           4,
 
         memory: {
+
           icon:
             "📸",
 
           text:
             "You turned Elias's phone theft into a dramatic photoshoot."
+
         }
+
       }
 
     ]
@@ -537,6 +603,7 @@ const randomScenes = [
 
 
   {
+
     title:
       "Too Sleepy",
 
@@ -549,6 +616,7 @@ const randomScenes = [
     choices: [
 
       {
+
         text:
           "Fall asleep on him.",
 
@@ -559,15 +627,20 @@ const randomScenes = [
           6,
 
         memory: {
+
           icon:
             "🌙",
 
           text:
             "You fell asleep on Elias and he stayed still so you could sleep."
+
         }
+
       },
 
+
       {
+
         text:
           "Mumble that you're not tired.",
 
@@ -578,12 +651,15 @@ const randomScenes = [
           4,
 
         memory: {
+
           icon:
             "😴",
 
           text:
             "You insisted you weren't tired and immediately proved yourself wrong."
+
         }
+
       }
 
     ]
@@ -592,6 +668,7 @@ const randomScenes = [
 
 
   {
+
     title:
       "The Hoodie",
 
@@ -599,11 +676,12 @@ const randomScenes = [
       "home.PNG",
 
     intro:
-      "You find one of Elias's hoodies lying nearby and put it on without asking. He notices instantly.",
+      "You find one of Elias's hoodies nearby and put it on without asking. He notices instantly.",
 
     choices: [
 
       {
+
         text:
           "Act completely innocent.",
 
@@ -614,86 +692,39 @@ const randomScenes = [
           5,
 
         memory: {
+
           icon:
             "🖤",
 
           text:
             "You stole Elias's hoodie and he quietly decided it belonged to you now."
+
         }
+
       },
 
+
       {
+
         text:
           "Tell him it's yours now.",
 
         result:
-          "“Oh, is it?” Elias says. A second later he pulls the hood over your face. “Fine. Keep it.”",
+          "“Oh, is it?” Elias says. He pulls the hood over your face. “Fine. Keep it.”",
 
         hearts:
           5,
 
         memory: {
+
           icon:
             "🧥",
 
           text:
             "You officially claimed one of Elias's hoodies."
+
         }
-      }
 
-    ]
-
-  },
-
-
-  {
-    title:
-      "Forehead Kiss",
-
-    image:
-      "couple.PNG",
-
-    intro:
-      "You're talking about something completely unrelated when Elias suddenly leans over and kisses your forehead.",
-
-    choices: [
-
-      {
-        text:
-          "Immediately call him out.",
-
-        result:
-          "He looks completely unbothered. “What? I felt like it.”",
-
-        hearts:
-          5,
-
-        memory: {
-          icon:
-            "💗",
-
-          text:
-            "Elias kissed your forehead in the middle of a conversation and refused to elaborate."
-        }
-      },
-
-      {
-        text:
-          "Pretend nothing happened.",
-
-        result:
-          "You continue talking. Elias waits a few seconds, then laughs. “You're seriously not going to say anything?”",
-
-        hearts:
-          4,
-
-        memory: {
-          icon:
-            "♡",
-
-          text:
-            "You tried to out-casual Elias after a surprise forehead kiss."
-        }
       }
 
     ]
@@ -704,12 +735,13 @@ const randomScenes = [
 
 
 // ========================================
-// SPECIAL RANDOM EVENTS
+// SPECIAL EVENTS
 // ========================================
 
 const specialRandomScenes = [
 
   {
+
     minimumHearts:
       25,
 
@@ -727,6 +759,7 @@ const specialRandomScenes = [
       choices: [
 
         {
+
           text:
             "Sit back down.",
 
@@ -737,15 +770,20 @@ const specialRandomScenes = [
             6,
 
           memory: {
+
             icon:
               "🤍",
 
             text:
               "Elias asked you to stay, so you did."
+
           }
+
         },
 
+
         {
+
           text:
             "Ask if he missed you already.",
 
@@ -756,12 +794,15 @@ const specialRandomScenes = [
             7,
 
           memory: {
+
             icon:
               "😭",
 
             text:
               "Elias admitted he missed you after approximately three seconds."
+
           }
+
         }
 
       ]
@@ -772,6 +813,7 @@ const specialRandomScenes = [
 
 
   {
+
     minimumHearts:
       50,
 
@@ -784,11 +826,12 @@ const specialRandomScenes = [
         "couple.PNG",
 
       intro:
-        "Elias is unusually quiet for a moment before saying, “You know you're my favorite person, right?”",
+        "Elias is unusually quiet before saying, “You know you're my favorite person, right?”",
 
       choices: [
 
         {
+
           text:
             "Tell him he's yours too.",
 
@@ -799,15 +842,20 @@ const specialRandomScenes = [
             8,
 
           memory: {
+
             icon:
               "💞",
 
             text:
               "You and Elias admitted you're each other's favorite person."
+
           }
+
         },
 
+
         {
+
           text:
             "Tease him about being sentimental.",
 
@@ -818,12 +866,15 @@ const specialRandomScenes = [
             6,
 
           memory: {
+
             icon:
               "🫶",
 
             text:
               "You teased Elias for being sentimental and he failed to hide his smile."
+
           }
+
         }
 
       ]
@@ -834,6 +885,7 @@ const specialRandomScenes = [
 
 
   {
+
     minimumHearts:
       100,
 
@@ -846,30 +898,36 @@ const specialRandomScenes = [
         "couple.PNG",
 
       intro:
-        "It's one of those quiet moments where neither of you is doing anything important. Elias looks at you and smiles slightly. “I really like this. Us, I mean.”",
+        "Elias looks at you and smiles slightly. “I really like this. Us, I mean.”",
 
       choices: [
 
         {
+
           text:
             "Lean into him.",
 
           result:
-            "You lean against him without saying anything. Elias rests his cheek against your hair. “Yeah. Exactly this.”",
+            "You lean against him. Elias rests his cheek against your hair. “Yeah. Exactly this.”",
 
           hearts:
             10,
 
           memory: {
+
             icon:
               "💗",
 
             text:
               "At 100 hearts, Elias told you how much he loves your little world together."
+
           }
+
         },
 
+
         {
+
           text:
             "Tell him you do too.",
 
@@ -880,12 +938,15 @@ const specialRandomScenes = [
             10,
 
           memory: {
+
             icon:
               "♡",
 
             text:
               "You reached 100 hearts and chose each other all over again."
+
           }
+
         }
 
       ]
@@ -917,7 +978,190 @@ const moriEvents = [
 
 
 // ========================================
-// SAVE DATA
+// ALBUM
+// ========================================
+
+const albumPhotos = [
+
+  {
+
+    id:
+      "couple",
+
+    title:
+      "Us ♡",
+
+    image:
+      "couple.PNG",
+
+    caption:
+      "Our little world started here.",
+
+    requirement:
+      function() {
+
+        return (
+          hearts >= 10
+        );
+
+      },
+
+    lockedText:
+      "Reach 10 hearts"
+
+  },
+
+
+  {
+
+    id:
+      "sushi",
+
+    title:
+      "Sushi Date",
+
+    image:
+      "sushi.PNG",
+
+    caption:
+      "Sushi tastes better when we're sitting way too close.",
+
+    requirement:
+      function() {
+
+        return memoryContains(
+          "Sushi date"
+        );
+
+      },
+
+    lockedText:
+      "Go on a sushi date"
+
+  },
+
+
+  {
+
+    id:
+      "movie",
+
+    title:
+      "Movie Night",
+
+    image:
+      "movie.PNG",
+
+    caption:
+      "We definitely watched the entire movie. Definitely.",
+
+    requirement:
+      function() {
+
+        return memoryContains(
+          "Movie night"
+        );
+
+      },
+
+    lockedText:
+      "Have a movie night"
+
+  },
+
+
+  {
+
+    id:
+      "walk",
+
+    title:
+      "Night Walk",
+
+    image:
+      "walk.PNG",
+
+    caption:
+      "Cold hands, quiet streets, and you beside me.",
+
+    requirement:
+      function() {
+
+        return memoryContains(
+          "Night walk"
+        );
+
+      },
+
+    lockedText:
+      "Take a night walk"
+
+  },
+
+
+  {
+
+    id:
+      "home",
+
+    title:
+      "Home ♡",
+
+    image:
+      "home.PNG",
+
+    caption:
+      "Sometimes staying home together is the best date.",
+
+    requirement:
+      function() {
+
+        return memoryContains(
+          "Stayed home"
+        );
+
+      },
+
+    lockedText:
+      "Stay home together"
+
+  },
+
+
+  {
+
+    id:
+      "mori",
+
+    title:
+      "Mori",
+
+    image:
+      "morii.PNG",
+
+    caption:
+      "Third wheel? No. Mori owns the relationship and we merely live in it.",
+
+    requirement:
+      function() {
+
+        return (
+          memoryContains("Mori") ||
+          hearts >= 25
+        );
+
+      },
+
+    lockedText:
+      "Make a memory with Mori"
+
+  }
+
+];
+
+
+// ========================================
+// SAVE
 // ========================================
 
 function saveData() {
@@ -930,9 +1174,7 @@ function saveData() {
 
   localStorage.setItem(
     "littleWorldMemories",
-    JSON.stringify(
-      memories
-    )
+    JSON.stringify(memories)
   );
 
 }
@@ -942,19 +1184,16 @@ function saveData() {
 // HEARTS
 // ========================================
 
-function addHearts(
-  amount
-) {
+function addHearts(amount) {
 
-  hearts +=
-    amount;
-
+  hearts += amount;
 
   heartCount.textContent =
     hearts;
 
-
   saveData();
+
+  renderAlbum();
 
 }
 
@@ -963,9 +1202,7 @@ function addHearts(
 // DIALOGUE
 // ========================================
 
-function setDialogue(
-  text
-) {
+function setDialogue(text) {
 
   heroDialogue.style.opacity =
     "0";
@@ -981,6 +1218,7 @@ function setDialogue(
         "1";
 
     },
+
     120
   );
 
@@ -991,9 +1229,24 @@ function setDialogue(
 // MEMORIES
 // ========================================
 
-function unlockMemory(
-  memory
-) {
+function memoryContains(text) {
+
+  return memories.some(
+    function(memory) {
+
+      return memory.text
+        .toLowerCase()
+        .includes(
+          text.toLowerCase()
+        );
+
+    }
+  );
+
+}
+
+
+function unlockMemory(memory) {
 
   const exists =
     memories.some(
@@ -1010,14 +1263,13 @@ function unlockMemory(
 
   if (!exists) {
 
-    memories.push(
-      memory
-    );
-
+    memories.push(memory);
 
     saveData();
 
     renderMemories();
+
+    renderAlbum();
 
   }
 
@@ -1093,12 +1345,242 @@ function renderMemories() {
 
 
 // ========================================
-// GENERIC SCENE OPENER
+// ALBUM RENDERING
 // ========================================
 
-function openScene(
-  scene
-) {
+function renderAlbum() {
+
+  albumGrid.innerHTML =
+    "";
+
+
+  let unlockedCount =
+    0;
+
+
+  albumPhotos.forEach(
+    function(photo) {
+
+      const unlocked =
+        photo.requirement();
+
+
+      if (unlocked) {
+
+        unlockedCount++;
+
+      }
+
+
+      const card =
+        document.createElement(
+          "button"
+        );
+
+
+      card.type =
+        "button";
+
+
+      card.className =
+        unlocked
+          ? "album-photo"
+          : "album-photo locked";
+
+
+      const image =
+        document.createElement(
+          "img"
+        );
+
+
+      image.src =
+        photo.image;
+
+
+      image.alt =
+        photo.title;
+
+
+      image.className =
+        "album-photo-image";
+
+
+      card.appendChild(
+        image
+      );
+
+
+      if (!unlocked) {
+
+        const lock =
+          document.createElement(
+            "div"
+          );
+
+
+        lock.className =
+          "album-lock";
+
+
+        lock.innerHTML =
+          `
+          <span>🔒</span>
+          <small>
+            ${photo.lockedText}
+          </small>
+          `;
+
+
+        card.appendChild(
+          lock
+        );
+
+      }
+
+
+      const info =
+        document.createElement(
+          "div"
+        );
+
+
+      info.className =
+        "album-photo-info";
+
+
+      info.innerHTML =
+        `
+        <strong>
+          ${
+            unlocked
+              ? photo.title
+              : "Locked Memory"
+          }
+        </strong>
+
+        <small>
+          ${
+            unlocked
+              ? "Tap to open ♡"
+              : "Keep making memories..."
+          }
+        </small>
+        `;
+
+
+      card.appendChild(
+        info
+      );
+
+
+      if (unlocked) {
+
+        card.addEventListener(
+          "click",
+          function() {
+
+            openPhoto(
+              photo
+            );
+
+          }
+        );
+
+      }
+
+
+      albumGrid.appendChild(
+        card
+      );
+
+    }
+  );
+
+
+  albumProgress.textContent =
+    `${unlockedCount} / ${albumPhotos.length} unlocked`;
+
+
+  const percent =
+    (
+      unlockedCount /
+      albumPhotos.length
+    ) * 100;
+
+
+  albumProgressFill.style.width =
+    `${percent}%`;
+
+}
+
+
+// ========================================
+// PHOTO VIEWER
+// ========================================
+
+function openPhoto(photo) {
+
+  photoViewerImage.src =
+    photo.image;
+
+
+  photoViewerImage.alt =
+    photo.title;
+
+
+  photoViewerTitle.textContent =
+    photo.title;
+
+
+  photoViewerCaption.textContent =
+    photo.caption;
+
+
+  photoOverlay.classList.remove(
+    "hidden"
+  );
+
+}
+
+
+function closePhotoViewer() {
+
+  photoOverlay.classList.add(
+    "hidden"
+  );
+
+}
+
+
+closePhoto.addEventListener(
+  "click",
+  closePhotoViewer
+);
+
+
+photoOverlay.addEventListener(
+  "click",
+  function(event) {
+
+    if (
+      event.target ===
+      photoOverlay
+    ) {
+
+      closePhotoViewer();
+
+    }
+
+  }
+);
+
+
+// ========================================
+// GENERIC SCENE
+// ========================================
+
+function openScene(scene) {
 
   sceneImage.src =
     scene.image;
@@ -1123,25 +1605,25 @@ function openScene(
   scene.choices.forEach(
     function(choice) {
 
-      const choiceButton =
+      const button =
         document.createElement(
           "button"
         );
 
 
-      choiceButton.type =
+      button.type =
         "button";
 
 
-      choiceButton.className =
+      button.className =
         "scene-choice";
 
 
-      choiceButton.textContent =
+      button.textContent =
         choice.text;
 
 
-      choiceButton.addEventListener(
+      button.addEventListener(
         "click",
         function() {
 
@@ -1154,7 +1636,7 @@ function openScene(
 
 
       sceneChoices.appendChild(
-        choiceButton
+        button
       );
 
     }
@@ -1169,95 +1651,10 @@ function openScene(
 
 
 // ========================================
-// DATE SCENES
-// ========================================
-
-function openDateScene(
-  dateName
-) {
-
-  const scene =
-    dateScenes[
-      dateName
-    ];
-
-
-  if (!scene) {
-    return;
-  }
-
-
-  openScene(
-    scene
-  );
-
-}
-
-
-// ========================================
-// RANDOM SCENES
-// ========================================
-
-function getRandomScene() {
-
-  const unlockedSpecials =
-    specialRandomScenes
-      .filter(
-        function(item) {
-
-          return (
-            hearts >=
-            item.minimumHearts
-          );
-
-        }
-      );
-
-
-  const specialChance =
-    Math.random();
-
-
-  if (
-    unlockedSpecials.length > 0 &&
-    specialChance < 0.25
-  ) {
-
-    const selectedSpecial =
-      unlockedSpecials[
-        Math.floor(
-          Math.random() *
-          unlockedSpecials.length
-        )
-      ];
-
-
-    return (
-      selectedSpecial.scene
-    );
-
-  }
-
-
-  return (
-    randomScenes[
-      Math.floor(
-        Math.random() *
-        randomScenes.length
-      )
-    ]
-  );
-
-}
-
-
-// ========================================
 // CHOOSE SCENE OPTION
 // ========================================
 
-function chooseSceneOption(
-  choice
-) {
+function chooseSceneOption(choice) {
 
   sceneChoices.innerHTML =
     "";
@@ -1349,9 +1746,19 @@ document
         "click",
         function() {
 
-          openDateScene(
-            card.dataset.date
-          );
+          const scene =
+            dateScenes[
+              card.dataset.date
+            ];
+
+
+          if (scene) {
+
+            openScene(
+              scene
+            );
+
+          }
 
         }
       );
@@ -1361,19 +1768,59 @@ document
 
 
 // ========================================
-// RANDOM EVENT BUTTON
+// RANDOM EVENTS
 // ========================================
+
+function getRandomScene() {
+
+  const availableSpecials =
+    specialRandomScenes.filter(
+      function(item) {
+
+        return (
+          hearts >=
+          item.minimumHearts
+        );
+
+      }
+    );
+
+
+  if (
+    availableSpecials.length > 0 &&
+    Math.random() < 0.25
+  ) {
+
+    const special =
+      availableSpecials[
+        Math.floor(
+          Math.random() *
+          availableSpecials.length
+        )
+      ];
+
+
+    return special.scene;
+
+  }
+
+
+  return randomScenes[
+    Math.floor(
+      Math.random() *
+      randomScenes.length
+    )
+  ];
+
+}
+
 
 randomEventButton.addEventListener(
   "click",
   function() {
 
-    const scene =
-      getRandomScene();
-
-
     openScene(
-      scene
+      getRandomScene()
     );
 
   }
@@ -1445,7 +1892,7 @@ petMoriButton.addEventListener(
 
 
 // ========================================
-// NAVIGATION
+// PAGE NAVIGATION
 // ========================================
 
 function hideAllPages() {
@@ -1525,11 +1972,14 @@ navButtons.forEach(
                   ".memory-area"
                 )
                 .scrollIntoView({
+
                   behavior:
                     "smooth"
+
                 });
 
             },
+
             100
           );
 
@@ -1571,6 +2021,9 @@ navButtons.forEach(
           "album"
         ) {
 
+          renderAlbum();
+
+
           albumPage.classList.remove(
             "hidden"
           );
@@ -1596,9 +2049,13 @@ navButtons.forEach(
 
 
         window.scrollTo({
-          top: 0,
+
+          top:
+            0,
+
           behavior:
             "smooth"
+
         });
 
       }
@@ -1623,7 +2080,9 @@ resetButton.addEventListener(
 
 
     if (!confirmed) {
+
       return;
+
     }
 
 
@@ -1643,6 +2102,8 @@ resetButton.addEventListener(
 
 
     renderMemories();
+
+    renderAlbum();
 
 
     setDialogue(
@@ -1727,5 +2188,7 @@ function startupGreeting() {
 // ========================================
 
 renderMemories();
+
+renderAlbum();
 
 startupGreeting();
