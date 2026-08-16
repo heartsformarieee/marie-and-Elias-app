@@ -8,6 +8,7 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100%;
+
   background: #0b070c;
   color: #f8eef4;
 
@@ -25,7 +26,6 @@ body {
 
 button {
   font: inherit;
-  cursor: pointer;
 }
 
 .app {
@@ -43,13 +43,17 @@ button {
 
 .hero {
   position: relative;
+
   height: 690px;
+
   overflow: hidden;
+
   background: #0b070c;
 }
 
 .couple-art {
   position: absolute;
+
   inset: 0;
 
   width: 100%;
@@ -61,6 +65,7 @@ button {
 
 .hero-overlay {
   position: absolute;
+
   inset: 0;
 
   z-index: 2;
@@ -95,6 +100,7 @@ button {
   z-index: 10;
 
   display: flex;
+
   justify-content: space-between;
   align-items: flex-start;
 
@@ -110,10 +116,6 @@ button {
   font-weight: 700;
 
   letter-spacing: 4px;
-
-  text-shadow:
-    0 2px 9px
-    rgba(0,0,0,0.7);
 }
 
 h1 {
@@ -128,21 +130,15 @@ h1 {
     serif;
 
   font-size: 34px;
-
   font-weight: 400;
-  line-height: 1;
 
-  text-shadow:
-    0 3px 14px
-    rgba(0,0,0,0.75);
+  line-height: 1;
 }
 
 .heart-counter {
   min-width: 95px;
 
-  padding:
-    11px
-    13px;
+  padding: 11px 13px;
 
   border:
     1px solid
@@ -196,10 +192,6 @@ h1 {
   border:
     1px solid
     rgba(255,150,180,0.16);
-
-  box-shadow:
-    0 12px 28px
-    rgba(0,0,0,0.5);
 }
 
 
@@ -215,9 +207,7 @@ h1 {
 
   z-index: 9;
 
-  padding:
-    15px
-    16px;
+  padding: 15px 16px;
 
   border:
     1px solid
@@ -251,21 +241,190 @@ h1 {
   font-size: 14px;
 
   line-height: 1.45;
-
-  transition:
-    opacity 0.15s ease;
 }
 
 
-/* RELATIONSHIP CARD */
+/* TODAY */
 
-.relationship-section {
+.today-section {
   padding:
     18px
     16px
     0;
 
   background: #0b070c;
+}
+
+.today-card {
+  padding: 17px;
+
+  border:
+    1px solid
+    rgba(255,142,174,0.14);
+
+  border-radius: 22px;
+
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(255,127,165,0.10),
+      transparent 42%
+    ),
+    linear-gradient(
+      145deg,
+      #25151f,
+      #120b13
+    );
+}
+
+.today-top {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
+}
+
+.today-label {
+  margin:
+    0
+    0
+    5px;
+
+  color: #c77992;
+
+  font-size: 8px;
+  font-weight: 700;
+
+  letter-spacing: 3px;
+}
+
+.today-card h2 {
+  margin: 0;
+
+  color: #fff0f5;
+
+  font-family:
+    Georgia,
+    serif;
+
+  font-size: 24px;
+
+  font-weight: 400;
+}
+
+.streak-badge {
+  min-width: 58px;
+
+  height: 46px;
+
+  padding: 0 10px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 5px;
+
+  border-radius: 15px;
+
+  background:
+    rgba(255,126,164,0.08);
+
+  color: #f5b0c3;
+
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.today-text {
+  margin:
+    10px
+    0
+    14px;
+
+  color: #ad8a98;
+
+  font-size: 12px;
+
+  line-height: 1.5;
+}
+
+.today-stats {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, 1fr);
+
+  gap: 8px;
+
+  margin-bottom: 13px;
+}
+
+.today-stats div {
+  padding: 10px;
+
+  border-radius: 14px;
+
+  background:
+    rgba(255,255,255,0.025);
+}
+
+.today-stats small {
+  display: block;
+
+  margin-bottom: 4px;
+
+  color: #9c7081;
+
+  font-size: 7px;
+  font-weight: 700;
+
+  letter-spacing: 1.5px;
+}
+
+.today-stats strong {
+  color: #ead6df;
+
+  font-size: 12px;
+}
+
+.daily-button {
+  width: 100%;
+
+  min-height: 48px;
+
+  border: none;
+
+  border-radius: 16px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #d46d8c,
+      #f19ab4
+    );
+
+  color: #241119;
+
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.daily-button:disabled {
+  opacity: 0.42;
+}
+
+
+/* RELATIONSHIP */
+
+.relationship-section {
+  padding:
+    14px
+    16px
+    0;
 }
 
 .relationship-card {
@@ -283,10 +442,6 @@ h1 {
       #25151f,
       #120b13
     );
-
-  box-shadow:
-    0 14px 30px
-    rgba(0,0,0,0.22);
 }
 
 .relationship-top {
@@ -334,8 +489,6 @@ h1 {
 
   align-items: center;
   justify-content: center;
-
-  flex-shrink: 0;
 
   border-radius: 50%;
 
@@ -396,29 +549,21 @@ h1 {
       #f49ab4
     );
 
-  transition:
-    width
-    0.35s
-    ease;
+  transition: width 0.35s ease;
 }
 
 
-/* DATE AREA */
+/* DATES */
 
 .section {
   padding:
     20px
     16px
     2px;
-
-  background: #0b070c;
 }
 
 .section h2 {
-  margin:
-    0
-    0
-    15px;
+  margin: 0 0 15px;
 
   color: #df93aa;
 
@@ -440,9 +585,7 @@ h1 {
 .date-card {
   min-height: 158px;
 
-  padding:
-    7px
-    5px;
+  padding: 7px 5px;
 
   border:
     1px solid
@@ -465,10 +608,6 @@ h1 {
 
   align-items: center;
   justify-content: space-between;
-}
-
-.date-card:active {
-  transform: scale(0.96);
 }
 
 .date-card img {
@@ -668,12 +807,10 @@ h1 {
   color: #c9aab5;
 
   font-size: 9px;
-
-  line-height: 1.3;
 }
 
 
-/* OTHER PAGES */
+/* PAGES */
 
 .page {
   padding:
@@ -712,6 +849,7 @@ h1 {
 
 .mori-page-image {
   width: 190px;
+
   max-height: 240px;
 
   object-fit: cover;
@@ -738,6 +876,7 @@ h1 {
     serif;
 
   font-size: 28px;
+
   font-weight: 400;
 }
 
@@ -749,7 +888,8 @@ h1 {
 
 .primary-button,
 .danger-button,
-.level-button {
+.level-button,
+.daily-popup-button {
   margin-top: 14px;
 
   min-height: 50px;
@@ -766,7 +906,8 @@ h1 {
 }
 
 .primary-button,
-.level-button {
+.level-button,
+.daily-popup-button {
   background: #ef9ab2;
 
   color: #24131c;
@@ -779,15 +920,15 @@ h1 {
 }
 
 
-/* SETTINGS LEVEL */
+/* SETTINGS */
 
 .settings-level {
   width: 100%;
 
   margin:
-    20px
+    15px
     0
-    6px;
+    0;
 
   padding: 16px;
 
@@ -866,18 +1007,8 @@ h1 {
     serif;
 
   font-size: 34px;
+
   font-weight: 400;
-}
-
-.album-header > p:not(.album-eyebrow) {
-  margin:
-    8px
-    0
-    18px;
-
-  color: #a98896;
-
-  font-size: 13px;
 }
 
 .album-progress {
@@ -999,8 +1130,6 @@ h1 {
   filter:
     blur(8px)
     brightness(0.25);
-
-  transform: scale(1.08);
 }
 
 .album-lock {
@@ -1032,20 +1161,15 @@ h1 {
   color: #c390a1;
 
   font-size: 9px;
-
-  text-align: center;
-
-  padding:
-    0
-    15px;
 }
 
 
-/* SCENE POPUP */
+/* OVERLAYS */
 
 .scene-overlay,
 .level-overlay,
-.photo-overlay {
+.photo-overlay,
+.daily-overlay {
   position: fixed;
 
   inset: 0;
@@ -1081,14 +1205,140 @@ h1 {
   z-index: 650;
 }
 
+.daily-overlay {
+  z-index: 660;
+}
+
 .photo-overlay {
   z-index: 700;
 }
+
+
+/* DAILY POPUP */
+
+.daily-popup {
+  width: 100%;
+
+  max-width: 350px;
+
+  padding:
+    30px
+    24px;
+
+  border:
+    1px solid
+    rgba(255,142,174,0.18);
+
+  border-radius: 28px;
+
+  background:
+    radial-gradient(
+      circle at top,
+      #3a1d2b,
+      #150c14 65%
+    );
+
+  text-align: center;
+}
+
+.daily-popup-icon {
+  width: 74px;
+  height: 74px;
+
+  margin:
+    0
+    auto
+    17px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background:
+    rgba(255,135,170,0.08);
+
+  font-size: 37px;
+}
+
+.daily-small {
+  margin:
+    0
+    0
+    7px;
+
+  color: #d57f9a;
+
+  font-size: 8px;
+
+  font-weight: 700;
+
+  letter-spacing: 3px;
+}
+
+.daily-popup h2 {
+  margin:
+    0
+    0
+    10px;
+
+  color: #fff0f6;
+
+  font-family:
+    Georgia,
+    serif;
+
+  font-size: 30px;
+
+  font-weight: 400;
+}
+
+.daily-popup > p:last-of-type {
+  margin:
+    0
+    0
+    14px;
+
+  color: #c2a0ad;
+
+  font-size: 13px;
+
+  line-height: 1.5;
+}
+
+.daily-reward {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  padding:
+    9px
+    13px;
+
+  border-radius: 100px;
+
+  background:
+    rgba(255,126,164,0.08);
+
+  color: #efabc0;
+
+  font-size: 12px;
+
+  font-weight: 700;
+}
+
+
+/* SCENE */
 
 .scene-card {
   position: relative;
 
   width: 100%;
+
   max-width: 410px;
 
   max-height: 88vh;
@@ -1096,10 +1346,6 @@ h1 {
   overflow-y: auto;
 
   padding: 17px;
-
-  border:
-    1px solid
-    rgba(255,135,170,0.18);
 
   border-radius: 26px;
 
@@ -1124,6 +1370,7 @@ h1 {
   height: 38px;
 
   border: none;
+
   border-radius: 50%;
 
   background:
@@ -1243,15 +1490,12 @@ h1 {
 
 .level-up-card {
   width: 100%;
+
   max-width: 350px;
 
   padding:
     32px
     24px;
-
-  border:
-    1px solid
-    rgba(255,142,174,0.18);
 
   border-radius: 28px;
 
@@ -1263,10 +1507,6 @@ h1 {
     );
 
   text-align: center;
-
-  box-shadow:
-    0 25px 70px
-    rgba(0,0,0,0.6);
 }
 
 .level-up-icon {
@@ -1323,26 +1563,14 @@ h1 {
   font-weight: 400;
 }
 
-.level-up-card > p:last-of-type {
-  margin:
-    0
-    0
-    5px;
 
-  color: #c2a0ad;
-
-  font-size: 13px;
-
-  line-height: 1.5;
-}
-
-
-/* PHOTO VIEWER */
+/* PHOTO */
 
 .photo-viewer {
   position: relative;
 
   width: 100%;
+
   max-width: 430px;
 
   overflow: hidden;
@@ -1370,43 +1598,11 @@ h1 {
 }
 
 .photo-small-title {
-  margin:
-    0
-    0
-    5px !important;
-
   color: #da8ba4 !important;
 
   font-size: 8px !important;
 
   letter-spacing: 3px;
-}
-
-.photo-viewer-text h2 {
-  margin:
-    0
-    0
-    8px;
-
-  color: #fff1f6;
-
-  font-family:
-    Georgia,
-    serif;
-
-  font-size: 25px;
-
-  font-weight: 400;
-}
-
-.photo-viewer-text p:last-child {
-  margin: 0;
-
-  color: #c2a3af;
-
-  font-size: 13px;
-
-  line-height: 1.5;
 }
 
 
