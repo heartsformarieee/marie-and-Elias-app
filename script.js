@@ -1,11 +1,11 @@
 // ========================================
-// OUR LITTLE WORLD 1.1
-// FULL SCRIPT
+// OUR LITTLE WORLD 1.2
+// CLEAN REBUILD
 // ========================================
 
 
 // ========================================
-// ELEMENTS
+// GET ELEMENTS
 // ========================================
 
 const heartCount =
@@ -33,6 +33,26 @@ const randomEventButton =
     "randomEventButton"
   );
 
+const moriPage =
+  document.getElementById(
+    "moriPage"
+  );
+
+const albumPage =
+  document.getElementById(
+    "albumPage"
+  );
+
+const settingsPage =
+  document.getElementById(
+    "settingsPage"
+  );
+
+const homePage =
+  document.getElementById(
+    "homePage"
+  );
+
 const petMoriButton =
   document.getElementById(
     "petMoriButton"
@@ -48,10 +68,13 @@ const resetButton =
     "resetButton"
   );
 
+const navButtons =
+  document.querySelectorAll(
+    ".nav-button"
+  );
 
-// ========================================
-// DATE SCENE ELEMENTS
-// ========================================
+
+// DATE SCENE
 
 const sceneOverlay =
   document.getElementById(
@@ -123,7 +146,7 @@ const dateScenes = {
       "sushi.PNG",
 
     intro:
-      "The restaurant is warm and quiet. Elias immediately slides into the seat beside you instead of sitting across from you.",
+      "The restaurant is warm and quiet. Elias immediately sits beside you instead of across from you.",
 
     choices: [
 
@@ -132,7 +155,7 @@ const dateScenes = {
           "Steal one of his sushi pieces.",
 
         result:
-          "Elias stares at the empty spot on his plate, then at you. “You know you could've just asked.” He pushes another piece toward you anyway.",
+          "Elias looks at the empty spot on his plate, then at you. “You know you could've just asked.” He pushes another piece toward you anyway.",
 
         hearts:
           3,
@@ -146,12 +169,13 @@ const dateScenes = {
         }
       },
 
+
       {
         text:
           "Rest your head on his shoulder.",
 
         result:
-          "He goes completely still for half a second, then quietly leans his head against yours. “Comfortable?”",
+          "He goes still for half a second, then quietly leans his head against yours. “Comfortable?”",
 
         hearts:
           5,
@@ -161,11 +185,12 @@ const dateScenes = {
             "🖤",
 
           text:
-            "Sushi date — you rested against Elias while you waited for dessert."
+            "Sushi date — you rested against Elias while waiting for dessert."
         }
       }
 
     ]
+
   },
 
 
@@ -178,7 +203,7 @@ const dateScenes = {
       "movie.PNG",
 
     intro:
-      "The lights are off, the movie has barely started, and Elias has already taken more than half the blanket.",
+      "The lights are off, the movie has barely started, and Elias has somehow already taken most of the blanket.",
 
     choices: [
 
@@ -187,7 +212,7 @@ const dateScenes = {
           "Steal the blanket back.",
 
         result:
-          "You yank it toward yourself. Elias looks offended for approximately two seconds before pulling you closer so you both fit underneath it.",
+          "You tug it toward yourself. Elias looks offended for two seconds before pulling you closer so you both fit underneath it.",
 
         hearts:
           4,
@@ -201,12 +226,13 @@ const dateScenes = {
         }
       },
 
+
       {
         text:
           "Pretend to fall asleep on him.",
 
         result:
-          "Elias lowers the volume and stops moving entirely. A few minutes later he whispers, “I know you're awake, by the way.”",
+          "Elias lowers the volume and stops moving. A few minutes later he whispers, “I know you're awake, by the way.”",
 
         hearts:
           5,
@@ -216,11 +242,12 @@ const dateScenes = {
             "🍿",
 
           text:
-            "Movie night — Elias knew you were pretending to sleep but let you stay there anyway."
+            "Movie night — Elias knew you were pretending to sleep but let you stay there."
         }
       }
 
     ]
+
   },
 
 
@@ -233,7 +260,7 @@ const dateScenes = {
       "walk.PNG",
 
     intro:
-      "The streets are quiet and cool. Elias notices your hands are cold before you even say anything.",
+      "The streets are quiet and cool. Elias notices your hands are cold before you say anything.",
 
     choices: [
 
@@ -252,16 +279,17 @@ const dateScenes = {
             "🌙",
 
           text:
-            "Night walk — you held hands the whole way home."
+            "Night walk — you held hands the entire way home."
         }
       },
+
 
       {
         text:
           "Tell him you're freezing.",
 
         result:
-          "Without answering, Elias pulls one sleeve over your hand and keeps you tucked against his side. “You're dramatic.”",
+          "Elias keeps you tucked against his side. “You're dramatic.” He doesn't let go, though.",
 
         hearts:
           4,
@@ -271,11 +299,12 @@ const dateScenes = {
             "✨",
 
           text:
-            "Night walk — Elias complained you were dramatic while keeping you warm."
+            "Night walk — Elias called you dramatic while keeping you warm."
         }
       }
 
     ]
+
   },
 
 
@@ -288,7 +317,7 @@ const dateScenes = {
       "home.PNG",
 
     intro:
-      "You barely sit down before Mori climbs between you and Elias like he personally arranged the evening.",
+      "You barely sit down before Mori climbs between you and Elias like he personally planned the evening.",
 
     choices: [
 
@@ -297,7 +326,7 @@ const dateScenes = {
           "Give Mori all your attention.",
 
         result:
-          "Mori immediately starts purring. Elias watches from beside you. “Wow. Okay. I see where I rank.”",
+          "Mori starts purring immediately. Elias watches from beside you. “Wow. Okay. I see where I rank.”",
 
         hearts:
           3,
@@ -311,12 +340,13 @@ const dateScenes = {
         }
       },
 
+
       {
         text:
           "Pull Elias closer too.",
 
         result:
-          "Now Mori is on your lap and Elias is leaning against you. Elias sighs. “Fine. Shared custody.”",
+          "Mori stays on your lap while Elias leans against you. He sighs. “Fine. Shared custody.”",
 
         hearts:
           6,
@@ -326,11 +356,12 @@ const dateScenes = {
             "♡",
 
           text:
-            "Stayed home — somehow you ended up cuddling Elias and Mori at the same time."
+            "Stayed home — you ended up cuddling Elias and Mori at the same time."
         }
       }
 
     ]
+
   }
 
 };
@@ -362,7 +393,7 @@ const randomEvents = [
 
   {
     text:
-      "You catch Elias staring. He immediately goes, “What?”",
+      "You catch Elias staring at you. He immediately says, “What?”",
 
     hearts:
       2
@@ -445,7 +476,7 @@ const moriEvents = [
 
 
 // ========================================
-// SAVE DATA
+// DATA HELPERS
 // ========================================
 
 function saveData() {
@@ -466,10 +497,6 @@ function saveData() {
 }
 
 
-// ========================================
-// HEARTS
-// ========================================
-
 function addHearts(
   amount
 ) {
@@ -486,10 +513,6 @@ function addHearts(
 
 }
 
-
-// ========================================
-// HERO DIALOGUE
-// ========================================
 
 function setDialogue(
   text
@@ -525,9 +548,14 @@ function unlockMemory(
 
   const exists =
     memories.some(
-      item =>
-        item.text ===
-        memory.text
+      function(item) {
+
+        return (
+          item.text ===
+          memory.text
+        );
+
+      }
     );
 
 
@@ -616,7 +644,7 @@ function renderMemories() {
 
 
 // ========================================
-// OPEN DATE SCENE
+// DATE POPUP
 // ========================================
 
 function openDateScene(
@@ -657,21 +685,25 @@ function openDateScene(
   scene.choices.forEach(
     function(choice) {
 
-      const button =
+      const choiceButton =
         document.createElement(
           "button"
         );
 
 
-      button.className =
+      choiceButton.type =
+        "button";
+
+
+      choiceButton.className =
         "scene-choice";
 
 
-      button.textContent =
+      choiceButton.textContent =
         choice.text;
 
 
-      button.addEventListener(
+      choiceButton.addEventListener(
         "click",
         function() {
 
@@ -684,7 +716,7 @@ function openDateScene(
 
 
       sceneChoices.appendChild(
-        button
+        choiceButton
       );
 
     }
@@ -698,16 +730,27 @@ function openDateScene(
 }
 
 
-// ========================================
-// CHOOSE DATE OPTION
-// ========================================
-
 function chooseSceneOption(
   choice
 ) {
 
   sceneChoices.innerHTML =
     "";
+
+
+  addHearts(
+    choice.hearts
+  );
+
+
+  unlockMemory(
+    choice.memory
+  );
+
+
+  setDialogue(
+    choice.result
+  );
 
 
   const result =
@@ -729,36 +772,25 @@ function chooseSceneOption(
   );
 
 
-  addHearts(
-    choice.hearts
-  );
-
-
-  unlockMemory(
-    choice.memory
-  );
-
-
-  setDialogue(
-    choice.result
-  );
-
-
-  const closeButton =
+  const continueButton =
     document.createElement(
       "button"
     );
 
 
-  closeButton.className =
+  continueButton.type =
+    "button";
+
+
+  continueButton.className =
     "scene-choice";
 
 
-  closeButton.textContent =
+  continueButton.textContent =
     `♡ Continue  +${choice.hearts}`;
 
 
-  closeButton.addEventListener(
+  continueButton.addEventListener(
     "click",
     function() {
 
@@ -771,29 +803,29 @@ function chooseSceneOption(
 
 
   sceneChoices.appendChild(
-    closeButton
+    continueButton
   );
 
 }
 
 
 // ========================================
-// DATE BUTTON EVENTS
+// DATE CARD LISTENERS
 // ========================================
 
 document
   .querySelectorAll(
-    "[data-date]"
+    ".date-card"
   )
   .forEach(
-    function(button) {
+    function(card) {
 
-      button.addEventListener(
+      card.addEventListener(
         "click",
         function() {
 
           openDateScene(
-            button.dataset.date
+            card.dataset.date
           );
 
         }
@@ -803,9 +835,7 @@ document
   );
 
 
-// ========================================
-// CLOSE SCENE
-// ========================================
+// CLOSE POPUP
 
 closeScene.addEventListener(
   "click",
@@ -842,107 +872,70 @@ sceneOverlay.addEventListener(
 // RANDOM EVENT
 // ========================================
 
-randomEventButton
-  .addEventListener(
-    "click",
-    function() {
+randomEventButton.addEventListener(
+  "click",
+  function() {
 
-      const event =
-        randomEvents[
-          Math.floor(
-            Math.random() *
-            randomEvents.length
-          )
-        ];
-
-
-      setDialogue(
-        event.text
-      );
+    const event =
+      randomEvents[
+        Math.floor(
+          Math.random() *
+          randomEvents.length
+        )
+      ];
 
 
-      addHearts(
-        event.hearts
-      );
+    setDialogue(
+      event.text
+    );
 
-    }
-  );
+
+    addHearts(
+      event.hearts
+    );
+
+  }
+);
 
 
 // ========================================
 // MORI
 // ========================================
 
-petMoriButton
-  .addEventListener(
-    "click",
-    function() {
+petMoriButton.addEventListener(
+  "click",
+  function() {
 
-      const event =
-        moriEvents[
-          Math.floor(
-            Math.random() *
-            moriEvents.length
-          )
-        ];
-
-
-      moriText.textContent =
-        event;
+    const event =
+      moriEvents[
+        Math.floor(
+          Math.random() *
+          moriEvents.length
+        )
+      ];
 
 
-      addHearts(
-        1
-      );
+    moriText.textContent =
+      event;
 
-    }
-  );
+
+    addHearts(
+      1
+    );
+
+  }
+);
 
 
 // ========================================
-// PAGE NAVIGATION
+// NAVIGATION
 // ========================================
 
-const navButtons =
-  document.querySelectorAll(
-    ".nav-button"
+function hideAllPages() {
+
+  homePage.classList.add(
+    "hidden"
   );
-
-
-const homeSections = [
-
-  document.querySelector(
-    ".hero"
-  ),
-
-  document.querySelector(
-    ".section"
-  ),
-
-  document.querySelector(
-    ".memory-area"
-  )
-
-];
-
-
-const moriPage =
-  document.getElementById(
-    "moriPage"
-  );
-
-const albumPage =
-  document.getElementById(
-    "albumPage"
-  );
-
-const settingsPage =
-  document.getElementById(
-    "settingsPage"
-  );
-
-
-function hidePages() {
 
   moriPage.classList.add(
     "hidden"
@@ -959,31 +952,17 @@ function hidePages() {
 }
 
 
-function showHome() {
+function setActiveNav(
+  pageName
+) {
 
-  homeSections.forEach(
-    function(section) {
+  navButtons.forEach(
+    function(button) {
 
-      section.classList.remove(
-        "hidden"
-      );
-
-    }
-  );
-
-
-  hidePages();
-
-}
-
-
-function hideHome() {
-
-  homeSections.forEach(
-    function(section) {
-
-      section.classList.add(
-        "hidden"
+      button.classList.toggle(
+        "active",
+        button.dataset.page ===
+          pageName
       );
 
     }
@@ -991,10 +970,6 @@ function hideHome() {
 
 }
 
-
-// ========================================
-// NAV BUTTON EVENTS
-// ========================================
 
 navButtons.forEach(
   function(button) {
@@ -1003,43 +978,26 @@ navButtons.forEach(
       "click",
       function() {
 
-        navButtons.forEach(
-          item =>
-            item.classList.remove(
-              "active"
-            )
-        );
-
-
-        button.classList.add(
-          "active"
-        );
-
-
         const page =
           button.dataset.page;
 
 
         if (
-          page === "home"
-        ) {
-
-          showHome();
-
-          window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-          });
-
-        }
-
-
-        else if (
           page ===
           "memories"
         ) {
 
-          showHome();
+          hideAllPages();
+
+
+          homePage.classList.remove(
+            "hidden"
+          );
+
+
+          setActiveNav(
+            "memories"
+          );
 
 
           setTimeout(
@@ -1058,58 +1016,68 @@ navButtons.forEach(
             100
           );
 
+
+          return;
+
+        }
+
+
+        hideAllPages();
+
+
+        if (
+          page === "home"
+        ) {
+
+          homePage.classList.remove(
+            "hidden"
+          );
+
         }
 
 
-        else {
+        if (
+          page === "mori"
+        ) {
 
-          hideHome();
-
-          hidePages();
-
-
-          if (
-            page ===
-            "mori"
-          ) {
-
-            moriPage.classList.remove(
-              "hidden"
-            );
-
-          }
-
-
-          if (
-            page ===
-            "album"
-          ) {
-
-            albumPage.classList.remove(
-              "hidden"
-            );
-
-          }
-
-
-          if (
-            page ===
-            "settings"
-          ) {
-
-            settingsPage.classList.remove(
-              "hidden"
-            );
-
-          }
-
-
-          window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-          });
+          moriPage.classList.remove(
+            "hidden"
+          );
 
         }
+
+
+        if (
+          page === "album"
+        ) {
+
+          albumPage.classList.remove(
+            "hidden"
+          );
+
+        }
+
+
+        if (
+          page === "settings"
+        ) {
+
+          settingsPage.classList.remove(
+            "hidden"
+          );
+
+        }
+
+
+        setActiveNav(
+          page
+        );
+
+
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
 
       }
     );
@@ -1119,55 +1087,65 @@ navButtons.forEach(
 
 
 // ========================================
-// RESET PROGRESS
+// RESET
 // ========================================
 
-resetButton
-  .addEventListener(
-    "click",
-    function() {
+resetButton.addEventListener(
+  "click",
+  function() {
 
-      const confirmed =
-        confirm(
-          "Reset all hearts and memories?"
-        );
-
-
-      if (
-        !confirmed
-      ) {
-        return;
-      }
-
-
-      hearts =
-        0;
-
-
-      memories =
-        [];
-
-
-      saveData();
-
-
-      heartCount.textContent =
-        hearts;
-
-
-      renderMemories();
-
-
-      setDialogue(
-        "A fresh start? Okay. Come here."
+    const confirmed =
+      confirm(
+        "Reset all hearts and memories?"
       );
 
+
+    if (!confirmed) {
+      return;
     }
-  );
+
+
+    hearts =
+      0;
+
+
+    memories =
+      [];
+
+
+    saveData();
+
+
+    heartCount.textContent =
+      hearts;
+
+
+    renderMemories();
+
+
+    setDialogue(
+      "A fresh start? Okay. Come here."
+    );
+
+
+    hideAllPages();
+
+
+    homePage.classList.remove(
+      "hidden"
+    );
+
+
+    setActiveNav(
+      "home"
+    );
+
+  }
+);
 
 
 // ========================================
-// TIME GREETING
+// GREETING
 // ========================================
 
 function startupGreeting() {
