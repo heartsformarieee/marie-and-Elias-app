@@ -19,229 +19,233 @@
 
   <main class="app">
 
-    <!-- HERO -->
+    <!-- HOME -->
 
-    <section class="hero">
+    <section id="homePage">
 
-      <div class="hero-darken"></div>
-
-      <div class="topbar">
-
-        <div>
-          <p class="eyebrow">
-            MARIE × ELIAS
-          </p>
-
-          <h1>
-            Our Little World
-            <span>♡</span>
-          </h1>
-        </div>
-
-        <div class="heart-counter">
-          <div>
-            💗
-            <span id="heartCount">0</span>
-          </div>
-
-          <small>our hearts</small>
-        </div>
-
-      </div>
-
-
-      <div class="hero-people">
+      <section class="hero">
 
         <img
           src="couple.PNG"
-          alt="Marie and Elias"
           class="couple-art"
+          alt="Marie and Elias"
         >
+
+        <div class="hero-overlay"></div>
+
+        <header class="topbar">
+
+          <div>
+            <p class="eyebrow">
+              MARIE × ELIAS
+            </p>
+
+            <h1>
+              Our Little World ♡
+            </h1>
+          </div>
+
+          <div class="heart-counter">
+            💗
+            <span id="heartCount">0</span>
+
+            <small>
+              our hearts
+            </small>
+          </div>
+
+        </header>
+
 
         <img
           src="morii.PNG"
-          alt="Mori"
           class="mori-art"
+          alt="Mori"
         >
 
-      </div>
 
+        <div class="elias-dialogue">
 
-      <div class="elias-dialogue">
+          <div class="speaker">
+            ♥ Elias
+          </div>
 
-        <div class="speaker">
-          ♥ Elias
+          <p id="heroDialogue">
+            There you are.<br>
+            What are we doing tonight?
+          </p>
+
         </div>
 
-        <p id="heroDialogue">
-          There you are.<br>
-          What are we doing tonight?
-        </p>
+      </section>
 
-      </div>
+
+      <!-- DATE CHOICES -->
+
+      <section class="section">
+
+        <h2>
+          ← What should we do? →
+        </h2>
+
+
+        <div class="date-grid">
+
+          <button
+            class="date-card"
+            data-date="sushi"
+          >
+
+            <img
+              src="sushi.PNG"
+              alt="Sushi Date"
+            >
+
+            <span>
+              Sushi Date
+            </span>
+
+            <small>
+              💗 +3
+            </small>
+
+          </button>
+
+
+          <button
+            class="date-card"
+            data-date="movie"
+          >
+
+            <img
+              src="movie.PNG"
+              alt="Movie Night"
+            >
+
+            <span>
+              Movie Night
+            </span>
+
+            <small>
+              💗 +2
+            </small>
+
+          </button>
+
+
+          <button
+            class="date-card"
+            data-date="walk"
+          >
+
+            <img
+              src="walk.PNG"
+              alt="Night Walk"
+            >
+
+            <span>
+              Night Walk
+            </span>
+
+            <small>
+              💗 +4
+            </small>
+
+          </button>
+
+
+          <button
+            class="date-card"
+            data-date="home"
+          >
+
+            <img
+              src="home.PNG"
+              alt="Stay Home with Mori"
+            >
+
+            <span>
+              Stay Home<br>
+              with Mori
+            </span>
+
+            <small>
+              💗 +2
+            </small>
+
+          </button>
+
+        </div>
+
+      </section>
+
+
+      <!-- MEMORIES -->
+
+      <section class="memory-area">
+
+        <div class="memories-card">
+
+          <div class="memories-heading">
+
+            <h2>
+              Memories ♡
+            </h2>
+
+            <span id="memoryCount">
+              0 unlocked
+            </span>
+
+          </div>
+
+          <div
+            id="memoriesList"
+            class="memory-list"
+          ></div>
+
+        </div>
+
+
+        <button
+          id="randomEventButton"
+          class="random-card"
+        >
+
+          <span>
+            Something<br>
+            happens...
+          </span>
+
+          <strong>
+            💗
+          </strong>
+
+          <small>
+            Tap for a<br>
+            random event!
+          </small>
+
+        </button>
+
+      </section>
 
     </section>
 
 
-    <!-- DATE OPTIONS -->
-
-    <section class="section">
-
-      <h2>
-        ← What should we do? →
-      </h2>
-
-      <div class="date-grid">
-
-        <button
-          class="date-card"
-          data-date="sushi"
-        >
-
-          <div class="date-image">
-            <img src="sushi.PNG" alt="Sushi Date">
-         </div>
-
-         <span>
-            Sushi Date
-          </span>
-
-          <small>
-            💗 +3
-          </small>
-
-        </button>
-
-
-        <button
-          class="date-card"
-          data-date="movie"
-        >
-
-          <div class="date-image">
-            <img src="movie.PNG" alt="Movie Night">
-         </div>
-
-          <span>
-            Movie Night
-          </span>
-
-          <small>
-            💗 +2
-          </small>
-
-        </button>
-
-
-        <button
-          class="date-card"
-          data-date="walk"
-        >
-
-          <div class="date-image">
-            <img src="walk.PNG" alt="Night Walk">
-         </div>
-
-          <span>
-            Night Walk
-          </span>
-
-          <small>
-            💗 +4
-          </small>
-
-        </button>
-
-
-        <button
-          class="date-card"
-          data-date="home"
-        >
-
-          <div class="date-image">
-           <img src="home.PNG" alt="Stay Home with Mori">
-         </div>
-
-          <span>
-            Stay Home<br>
-            with Mori
-          </span>
-
-          <small>
-            💗 +2
-          </small>
-
-        </button>
-
-      </div>
-
-    </section>
-
-
-    <!-- MEMORIES + RANDOM EVENT -->
-
-    <section class="memory-area">
-
-      <div class="memories-card">
-
-        <div class="memories-heading">
-
-          <h2>
-            Memories ♡
-          </h2>
-
-          <span id="memoryCount">
-            0 unlocked
-          </span>
-
-        </div>
-
-
-        <div
-          id="memoriesList"
-          class="memory-list"
-        >
-        </div>
-
-      </div>
-
-
-      <button
-        id="randomEventButton"
-        class="random-card"
-      >
-
-        <span class="random-title">
-          Something<br>
-          happens...
-        </span>
-
-        <span class="random-heart">
-          💗
-        </span>
-
-        <small>
-          Tap for a<br>
-          random event!
-        </small>
-
-      </button>
-
-    </section>
-
-
-    <!-- PAGES -->
+    <!-- MORI PAGE -->
 
     <section
       id="moriPage"
       class="page hidden"
     >
 
-      <div class="page-inner">
+      <div class="page-card">
 
-        <div class="big-icon">
-          🐈‍⬛
-        </div>
+        <img
+          src="morii.PNG"
+          class="mori-page-image"
+          alt="Mori"
+        >
 
         <h2>
           Mori
@@ -253,7 +257,7 @@
 
         <button
           id="petMoriButton"
-          class="pink-button"
+          class="primary-button"
         >
           Pet Mori
         </button>
@@ -263,14 +267,16 @@
     </section>
 
 
+    <!-- ALBUM PAGE -->
+
     <section
       id="albumPage"
       class="page hidden"
     >
 
-      <div class="page-inner">
+      <div class="page-card">
 
-        <div class="big-icon">
+        <div class="large-icon">
           📷
         </div>
 
@@ -279,7 +285,7 @@
         </h2>
 
         <p>
-          Your future photo memories will live here ♡
+          Our future photo memories will live here ♡
         </p>
 
       </div>
@@ -287,14 +293,16 @@
     </section>
 
 
+    <!-- SETTINGS PAGE -->
+
     <section
       id="settingsPage"
       class="page hidden"
     >
 
-      <div class="page-inner">
+      <div class="page-card">
 
-        <div class="big-icon">
+        <div class="large-icon">
           ⚙️
         </div>
 
@@ -314,13 +322,63 @@
     </section>
 
 
-    <!-- BOTTOM NAV -->
+    <!-- DATE SCENE POPUP -->
+
+    <div
+      id="sceneOverlay"
+      class="scene-overlay hidden"
+    >
+
+      <div class="scene-card">
+
+        <button
+          id="closeScene"
+          class="scene-close"
+          type="button"
+        >
+          ×
+        </button>
+
+        <img
+          id="sceneImage"
+          class="scene-image"
+          src=""
+          alt=""
+        >
+
+        <p class="scene-label">
+          MARIE × ELIAS
+        </p>
+
+        <h2 id="sceneTitle">
+          Date
+        </h2>
+
+        <p
+          id="sceneText"
+          class="scene-text"
+        >
+          ...
+        </p>
+
+        <div
+          id="sceneChoices"
+          class="scene-choices"
+        ></div>
+
+      </div>
+
+    </div>
+
+
+    <!-- NAV -->
 
     <nav class="bottom-nav">
 
       <button
         class="nav-button active"
         data-page="home"
+        type="button"
       >
         <span>⌂</span>
         Home
@@ -330,6 +388,7 @@
       <button
         class="nav-button"
         data-page="memories"
+        type="button"
       >
         <span>▧</span>
         Memories
@@ -339,6 +398,7 @@
       <button
         class="nav-button"
         data-page="mori"
+        type="button"
       >
         <span>🐈‍⬛</span>
         Mori
@@ -348,6 +408,7 @@
       <button
         class="nav-button"
         data-page="album"
+        type="button"
       >
         <span>♡</span>
         Album
@@ -357,6 +418,7 @@
       <button
         class="nav-button"
         data-page="settings"
+        type="button"
       >
         <span>⚙︎</span>
         Settings
@@ -371,42 +433,3 @@
 
 </body>
 </html>
-
-<!-- DATE SCENE POPUP -->
-
-<div id="sceneOverlay" class="scene-overlay hidden">
-
-  <div class="scene-card">
-
-    <button id="closeScene" class="scene-close">
-      ×
-    </button>
-
-    <img
-      id="sceneImage"
-      class="scene-image"
-      src=""
-      alt=""
-    >
-
-    <p class="scene-label">
-      MARIE × ELIAS
-    </p>
-
-    <h2 id="sceneTitle">
-      Date
-    </h2>
-
-    <p id="sceneText" class="scene-text">
-      ...
-    </p>
-
-    <div
-      id="sceneChoices"
-      class="scene-choices"
-    >
-    </div>
-
-  </div>
-
-</div>
