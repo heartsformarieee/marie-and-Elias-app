@@ -26,11 +26,9 @@
 
   <main class="app">
 
-
     <!-- HOME -->
 
     <section id="homePage">
-
 
       <!-- HERO -->
 
@@ -43,7 +41,6 @@
         >
 
         <div class="hero-overlay"></div>
-
 
         <header class="topbar">
 
@@ -58,7 +55,6 @@
             </h1>
 
           </div>
-
 
           <div class="heart-counter">
 
@@ -75,13 +71,11 @@
 
         </header>
 
-
         <img
           src="morii.PNG"
           class="mori-art"
           alt="Mori"
         >
-
 
         <div class="elias-dialogue">
 
@@ -99,7 +93,87 @@
       </section>
 
 
-      <!-- RELATIONSHIP LEVEL -->
+      <!-- TODAY -->
+
+      <section class="today-section">
+
+        <div class="today-card">
+
+          <div class="today-top">
+
+            <div>
+
+              <p class="today-label">
+                TODAY
+              </p>
+
+              <h2 id="todayTitle">
+                Daily Check-In ♡
+              </h2>
+
+            </div>
+
+            <div class="streak-badge">
+              🔥
+              <span id="streakCount">
+                0
+              </span>
+            </div>
+
+          </div>
+
+
+          <p
+            id="todayText"
+            class="today-text"
+          >
+            Come say hi and collect today's little moment.
+          </p>
+
+
+          <div class="today-stats">
+
+            <div>
+
+              <small>
+                CURRENT STREAK
+              </small>
+
+              <strong id="currentStreakText">
+                0 days
+              </strong>
+
+            </div>
+
+            <div>
+
+              <small>
+                BEST STREAK
+              </small>
+
+              <strong id="bestStreakText">
+                0 days
+              </strong>
+
+            </div>
+
+          </div>
+
+
+          <button
+            id="dailyCheckInButton"
+            class="daily-button"
+            type="button"
+          >
+            Check in for today ♡
+          </button>
+
+        </div>
+
+      </section>
+
+
+      <!-- RELATIONSHIP -->
 
       <section class="relationship-section">
 
@@ -164,14 +238,13 @@
       </section>
 
 
-      <!-- DATE OPTIONS -->
+      <!-- DATES -->
 
       <section class="section">
 
         <h2>
           ← What should we do? →
         </h2>
-
 
         <div class="date-grid">
 
@@ -286,7 +359,6 @@
 
           </div>
 
-
           <div
             id="memoriesList"
             class="memory-list"
@@ -322,7 +394,7 @@
     </section>
 
 
-    <!-- MORI PAGE -->
+    <!-- MORI -->
 
     <section
       id="moriPage"
@@ -358,7 +430,7 @@
     </section>
 
 
-    <!-- ALBUM PAGE -->
+    <!-- ALBUM -->
 
     <section
       id="albumPage"
@@ -379,7 +451,6 @@
           Little moments we've collected together.
         </p>
 
-
         <div class="album-progress">
 
           <span id="albumProgress">
@@ -398,7 +469,6 @@
         </div>
 
       </div>
-
 
       <div
         id="albumGrid"
@@ -447,6 +517,23 @@
         </div>
 
 
+        <div class="settings-level">
+
+          <small>
+            DAILY STREAK
+          </small>
+
+          <strong id="settingsStreak">
+            0 days
+          </strong>
+
+          <span id="settingsBestStreak">
+            Best: 0 days
+          </span>
+
+        </div>
+
+
         <button
           id="resetButton"
           class="danger-button"
@@ -477,14 +564,12 @@
           ×
         </button>
 
-
         <img
           id="sceneImage"
           class="scene-image"
           src=""
           alt=""
         >
-
 
         <p class="scene-label">
           MARIE × ELIAS
@@ -511,7 +596,55 @@
     </div>
 
 
-    <!-- LEVEL-UP POPUP -->
+    <!-- DAILY POPUP -->
+
+    <div
+      id="dailyOverlay"
+      class="daily-overlay hidden"
+    >
+
+      <div class="daily-popup">
+
+        <div
+          id="dailyPopupIcon"
+          class="daily-popup-icon"
+        >
+          ☀️
+        </div>
+
+        <p class="daily-small">
+          TODAY'S LITTLE MOMENT
+        </p>
+
+        <h2 id="dailyPopupTitle">
+          Good Morning ♡
+        </h2>
+
+        <p id="dailyPopupText">
+          There you are.
+        </p>
+
+        <div class="daily-reward">
+          💗
+          <span id="dailyRewardText">
+            +3 hearts
+          </span>
+        </div>
+
+        <button
+          id="closeDaily"
+          class="daily-popup-button"
+          type="button"
+        >
+          Keep it ♡
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- LEVEL UP -->
 
     <div
       id="levelOverlay"
@@ -569,13 +702,11 @@
           ×
         </button>
 
-
         <img
           id="photoViewerImage"
           src=""
           alt=""
         >
-
 
         <div class="photo-viewer-text">
 
@@ -598,7 +729,7 @@
     </div>
 
 
-    <!-- NAVIGATION -->
+    <!-- NAV -->
 
     <nav class="bottom-nav">
 
@@ -611,7 +742,6 @@
         Home
       </button>
 
-
       <button
         class="nav-button"
         data-page="memories"
@@ -620,7 +750,6 @@
         <span>▧</span>
         Memories
       </button>
-
 
       <button
         class="nav-button"
@@ -631,7 +760,6 @@
         Mori
       </button>
 
-
       <button
         class="nav-button"
         data-page="album"
@@ -640,7 +768,6 @@
         <span>♡</span>
         Album
       </button>
-
 
       <button
         class="nav-button"
@@ -654,7 +781,6 @@
     </nav>
 
   </main>
-
 
   <script src="script.js"></script>
 
