@@ -1,6 +1,6 @@
 // ========================================
-// OUR LITTLE WORLD 1.2
-// CLEAN REBUILD
+// OUR LITTLE WORLD 1.3
+// RANDOM EVENT SCENES
 // ========================================
 
 
@@ -74,7 +74,9 @@ const navButtons =
   );
 
 
-// DATE SCENE
+// ========================================
+// SCENE ELEMENTS
+// ========================================
 
 const sceneOverlay =
   document.getElementById(
@@ -169,7 +171,6 @@ const dateScenes = {
         }
       },
 
-
       {
         text:
           "Rest your head on his shoulder.",
@@ -225,7 +226,6 @@ const dateScenes = {
             "Movie night — the blanket fight ended with both of you squeezed underneath it."
         }
       },
-
 
       {
         text:
@@ -283,7 +283,6 @@ const dateScenes = {
         }
       },
 
-
       {
         text:
           "Tell him you're freezing.",
@@ -340,7 +339,6 @@ const dateScenes = {
         }
       },
 
-
       {
         text:
           "Pull Elias closer too.",
@@ -368,89 +366,532 @@ const dateScenes = {
 
 
 // ========================================
-// RANDOM EVENTS
+// RANDOM EVENT SCENES
 // ========================================
 
-const randomEvents = [
+const randomScenes = [
 
   {
-    text:
-      "Mori climbs onto your lap. Elias looks personally betrayed.",
+    title:
+      "Mori Stole My Spot",
 
-    hearts:
-      1
+    image:
+      "morii.PNG",
+
+    intro:
+      "You sit down for maybe three seconds before Mori climbs straight into the spot beside you. Elias stops in front of the couch and stares at him.",
+
+    choices: [
+
+      {
+        text:
+          "Let Mori stay.",
+
+        result:
+          "You keep petting Mori. Elias slowly sits on the other side and mutters, “Unbelievable.” Mori looks extremely pleased with himself.",
+
+        hearts:
+          2,
+
+        memory: {
+          icon:
+            "🐈‍⬛",
+
+          text:
+            "Mori stole Elias's spot and looked very proud of himself."
+        }
+      },
+
+      {
+        text:
+          "Pull Elias down beside you too.",
+
+        result:
+          "You grab Elias's sleeve and make room. He sits down against you while Mori stays put. “Okay. Fine. This works.”",
+
+        hearts:
+          5,
+
+        memory: {
+          icon:
+            "🤍",
+
+          text:
+            "You refused to choose between Elias and Mori, so both stayed."
+        }
+      }
+
+    ]
+
   },
 
 
   {
-    text:
-      "Elias quietly rests his head against yours.",
+    title:
+      "Caught Staring",
 
-    hearts:
-      3
+    image:
+      "couple.PNG",
+
+    intro:
+      "You look up and catch Elias staring at you from across the room. He looks away approximately half a second too late.",
+
+    choices: [
+
+      {
+        text:
+          "Ask, “What?”",
+
+        result:
+          "Elias shrugs like nothing happened. “Nothing.” You keep looking at him. “…You're pretty. Happy?”",
+
+        hearts:
+          4,
+
+        memory: {
+          icon:
+            "👀",
+
+          text:
+            "You caught Elias staring and forced him to admit why."
+        }
+      },
+
+      {
+        text:
+          "Just stare back.",
+
+        result:
+          "Neither of you says anything for a few seconds. Elias finally breaks first. “Okay, this is getting weird.”",
+
+        hearts:
+          3,
+
+        memory: {
+          icon:
+            "😭",
+
+          text:
+            "A staring contest somehow became a relationship moment."
+        }
+      }
+
+    ]
+
   },
 
 
   {
-    text:
-      "You catch Elias staring at you. He immediately says, “What?”",
+    title:
+      "Phone Thief",
 
-    hearts:
-      2
+    image:
+      "couple.PNG",
+
+    intro:
+      "Elias casually takes your phone out of your hand and immediately opens the camera.",
+
+    choices: [
+
+      {
+        text:
+          "Try to grab it back.",
+
+        result:
+          "He holds it just out of reach and takes a horribly timed selfie of both of you. “Perfect. Album material.”",
+
+        hearts:
+          3,
+
+        memory: {
+          icon:
+            "📱",
+
+          text:
+            "Elias stole your phone and took an absolutely terrible selfie."
+        }
+      },
+
+      {
+        text:
+          "Pose dramatically.",
+
+        result:
+          "You pose like it's a magazine cover. Elias actually starts laughing. “Why did you commit that hard?”",
+
+        hearts:
+          4,
+
+        memory: {
+          icon:
+            "📸",
+
+          text:
+            "You turned Elias's phone theft into a dramatic photoshoot."
+        }
+      }
+
+    ]
+
   },
 
 
   {
-    text:
-      "Elias steals your phone and takes the worst selfie imaginable.",
+    title:
+      "Too Sleepy",
 
-    hearts:
-      2
+    image:
+      "home.PNG",
+
+    intro:
+      "You end up half asleep beside Elias. He notices your eyes closing and lowers his voice immediately.",
+
+    choices: [
+
+      {
+        text:
+          "Fall asleep on him.",
+
+        result:
+          "You wake up later in almost the exact same position. Elias clearly refused to move because he didn't want to wake you.",
+
+        hearts:
+          6,
+
+        memory: {
+          icon:
+            "🌙",
+
+          text:
+            "You fell asleep on Elias and he stayed still so you could sleep."
+        }
+      },
+
+      {
+        text:
+          "Mumble that you're not tired.",
+
+        result:
+          "Elias raises an eyebrow. “Sure.” Less than five minutes later, you're asleep anyway.",
+
+        hearts:
+          4,
+
+        memory: {
+          icon:
+            "😴",
+
+          text:
+            "You insisted you weren't tired and immediately proved yourself wrong."
+        }
+      }
+
+    ]
+
   },
 
 
   {
-    text:
-      "You fall asleep beside Elias. He stays completely still so he doesn't wake you.",
+    title:
+      "The Hoodie",
 
-    hearts:
-      5
+    image:
+      "home.PNG",
+
+    intro:
+      "You find one of Elias's hoodies lying nearby and put it on without asking. He notices instantly.",
+
+    choices: [
+
+      {
+        text:
+          "Act completely innocent.",
+
+        result:
+          "Elias looks at the hoodie, then at you. “Interesting. Didn't know my clothes had relocated.” He makes no attempt to take it back.",
+
+        hearts:
+          5,
+
+        memory: {
+          icon:
+            "🖤",
+
+          text:
+            "You stole Elias's hoodie and he quietly decided it belonged to you now."
+        }
+      },
+
+      {
+        text:
+          "Tell him it's yours now.",
+
+        result:
+          "“Oh, is it?” Elias says. A second later he pulls the hood over your face. “Fine. Keep it.”",
+
+        hearts:
+          5,
+
+        memory: {
+          icon:
+            "🧥",
+
+          text:
+            "You officially claimed one of Elias's hoodies."
+        }
+      }
+
+    ]
+
   },
 
 
   {
-    text:
-      "Mori knocks something over. Neither of you gets up.",
+    title:
+      "Forehead Kiss",
 
-    hearts:
-      1
+    image:
+      "couple.PNG",
+
+    intro:
+      "You're talking about something completely unrelated when Elias suddenly leans over and kisses your forehead.",
+
+    choices: [
+
+      {
+        text:
+          "Immediately call him out.",
+
+        result:
+          "He looks completely unbothered. “What? I felt like it.”",
+
+        hearts:
+          5,
+
+        memory: {
+          icon:
+            "💗",
+
+          text:
+            "Elias kissed your forehead in the middle of a conversation and refused to elaborate."
+        }
+      },
+
+      {
+        text:
+          "Pretend nothing happened.",
+
+        result:
+          "You continue talking. Elias waits a few seconds, then laughs. “You're seriously not going to say anything?”",
+
+        hearts:
+          4,
+
+        memory: {
+          icon:
+            "♡",
+
+          text:
+            "You tried to out-casual Elias after a surprise forehead kiss."
+        }
+      }
+
+    ]
+
+  }
+
+];
+
+
+// ========================================
+// SPECIAL RANDOM EVENTS
+// ========================================
+
+const specialRandomScenes = [
+
+  {
+    minimumHearts:
+      25,
+
+    scene: {
+
+      title:
+        "Stay Here",
+
+      image:
+        "couple.PNG",
+
+      intro:
+        "You're about to get up when Elias catches your hand gently. “Where are you going?”",
+
+      choices: [
+
+        {
+          text:
+            "Sit back down.",
+
+          result:
+            "You sit beside him again. Elias looks far too satisfied. “Good choice.”",
+
+          hearts:
+            6,
+
+          memory: {
+            icon:
+              "🤍",
+
+            text:
+              "Elias asked you to stay, so you did."
+          }
+        },
+
+        {
+          text:
+            "Ask if he missed you already.",
+
+          result:
+            "Elias gives you a look. “You were gone for three seconds.” A pause. “…Yes.”",
+
+          hearts:
+            7,
+
+          memory: {
+            icon:
+              "😭",
+
+            text:
+              "Elias admitted he missed you after approximately three seconds."
+          }
+        }
+
+      ]
+
+    }
+
   },
 
 
   {
-    text:
-      "Elias looks at you for a second and quietly says, “Come here.”",
+    minimumHearts:
+      50,
 
-    hearts:
-      4
+    scene: {
+
+      title:
+        "My Favorite Person",
+
+      image:
+        "couple.PNG",
+
+      intro:
+        "Elias is unusually quiet for a moment before saying, “You know you're my favorite person, right?”",
+
+      choices: [
+
+        {
+          text:
+            "Tell him he's yours too.",
+
+          result:
+            "His expression softens immediately. “Yeah? Good.”",
+
+          hearts:
+            8,
+
+          memory: {
+            icon:
+              "💞",
+
+            text:
+              "You and Elias admitted you're each other's favorite person."
+          }
+        },
+
+        {
+          text:
+            "Tease him about being sentimental.",
+
+          result:
+            "Elias groans. “Forget I said anything.” He is very obviously smiling.",
+
+          hearts:
+            6,
+
+          memory: {
+            icon:
+              "🫶",
+
+            text:
+              "You teased Elias for being sentimental and he failed to hide his smile."
+          }
+        }
+
+      ]
+
+    }
+
   },
 
 
   {
-    text:
-      "You steal Elias's hoodie. He notices immediately and decides not to ask for it back.",
+    minimumHearts:
+      100,
 
-    hearts:
-      3
-  },
+    scene: {
 
+      title:
+        "Us",
 
-  {
-    text:
-      "Elias kisses your forehead and then acts like absolutely nothing happened.",
+      image:
+        "couple.PNG",
 
-    hearts:
-      4
+      intro:
+        "It's one of those quiet moments where neither of you is doing anything important. Elias looks at you and smiles slightly. “I really like this. Us, I mean.”",
+
+      choices: [
+
+        {
+          text:
+            "Lean into him.",
+
+          result:
+            "You lean against him without saying anything. Elias rests his cheek against your hair. “Yeah. Exactly this.”",
+
+          hearts:
+            10,
+
+          memory: {
+            icon:
+              "💗",
+
+            text:
+              "At 100 hearts, Elias told you how much he loves your little world together."
+          }
+        },
+
+        {
+          text:
+            "Tell him you do too.",
+
+          result:
+            "Elias looks at you for a second, then quietly says, “Good. Because I'm keeping you.”",
+
+          hearts:
+            10,
+
+          memory: {
+            icon:
+              "♡",
+
+            text:
+              "You reached 100 hearts and chose each other all over again."
+          }
+        }
+
+      ]
+
+    }
+
   }
 
 ];
@@ -476,7 +917,7 @@ const moriEvents = [
 
 
 // ========================================
-// DATA HELPERS
+// SAVE DATA
 // ========================================
 
 function saveData() {
@@ -497,6 +938,10 @@ function saveData() {
 }
 
 
+// ========================================
+// HEARTS
+// ========================================
+
 function addHearts(
   amount
 ) {
@@ -513,6 +958,10 @@ function addHearts(
 
 }
 
+
+// ========================================
+// DIALOGUE
+// ========================================
 
 function setDialogue(
   text
@@ -644,23 +1093,12 @@ function renderMemories() {
 
 
 // ========================================
-// DATE POPUP
+// GENERIC SCENE OPENER
 // ========================================
 
-function openDateScene(
-  dateName
+function openScene(
+  scene
 ) {
-
-  const scene =
-    dateScenes[
-      dateName
-    ];
-
-
-  if (!scene) {
-    return;
-  }
-
 
   sceneImage.src =
     scene.image;
@@ -729,6 +1167,93 @@ function openDateScene(
 
 }
 
+
+// ========================================
+// DATE SCENES
+// ========================================
+
+function openDateScene(
+  dateName
+) {
+
+  const scene =
+    dateScenes[
+      dateName
+    ];
+
+
+  if (!scene) {
+    return;
+  }
+
+
+  openScene(
+    scene
+  );
+
+}
+
+
+// ========================================
+// RANDOM SCENES
+// ========================================
+
+function getRandomScene() {
+
+  const unlockedSpecials =
+    specialRandomScenes
+      .filter(
+        function(item) {
+
+          return (
+            hearts >=
+            item.minimumHearts
+          );
+
+        }
+      );
+
+
+  const specialChance =
+    Math.random();
+
+
+  if (
+    unlockedSpecials.length > 0 &&
+    specialChance < 0.25
+  ) {
+
+    const selectedSpecial =
+      unlockedSpecials[
+        Math.floor(
+          Math.random() *
+          unlockedSpecials.length
+        )
+      ];
+
+
+    return (
+      selectedSpecial.scene
+    );
+
+  }
+
+
+  return (
+    randomScenes[
+      Math.floor(
+        Math.random() *
+        randomScenes.length
+      )
+    ]
+  );
+
+}
+
+
+// ========================================
+// CHOOSE SCENE OPTION
+// ========================================
 
 function chooseSceneOption(
   choice
@@ -810,7 +1335,7 @@ function chooseSceneOption(
 
 
 // ========================================
-// DATE CARD LISTENERS
+// DATE BUTTONS
 // ========================================
 
 document
@@ -835,7 +1360,29 @@ document
   );
 
 
-// CLOSE POPUP
+// ========================================
+// RANDOM EVENT BUTTON
+// ========================================
+
+randomEventButton.addEventListener(
+  "click",
+  function() {
+
+    const scene =
+      getRandomScene();
+
+
+    openScene(
+      scene
+    );
+
+  }
+);
+
+
+// ========================================
+// CLOSE SCENE
+// ========================================
 
 closeScene.addEventListener(
   "click",
@@ -863,36 +1410,6 @@ sceneOverlay.addEventListener(
       );
 
     }
-
-  }
-);
-
-
-// ========================================
-// RANDOM EVENT
-// ========================================
-
-randomEventButton.addEventListener(
-  "click",
-  function() {
-
-    const event =
-      randomEvents[
-        Math.floor(
-          Math.random() *
-          randomEvents.length
-        )
-      ];
-
-
-    setDialogue(
-      event.text
-    );
-
-
-    addHearts(
-      event.hearts
-    );
 
   }
 );
@@ -1026,7 +1543,8 @@ navButtons.forEach(
 
 
         if (
-          page === "home"
+          page ===
+          "home"
         ) {
 
           homePage.classList.remove(
@@ -1037,7 +1555,8 @@ navButtons.forEach(
 
 
         if (
-          page === "mori"
+          page ===
+          "mori"
         ) {
 
           moriPage.classList.remove(
@@ -1048,7 +1567,8 @@ navButtons.forEach(
 
 
         if (
-          page === "album"
+          page ===
+          "album"
         ) {
 
           albumPage.classList.remove(
@@ -1059,7 +1579,8 @@ navButtons.forEach(
 
 
         if (
-          page === "settings"
+          page ===
+          "settings"
         ) {
 
           settingsPage.classList.remove(
@@ -1076,7 +1597,8 @@ navButtons.forEach(
 
         window.scrollTo({
           top: 0,
-          behavior: "smooth"
+          behavior:
+            "smooth"
         });
 
       }
@@ -1145,7 +1667,7 @@ resetButton.addEventListener(
 
 
 // ========================================
-// GREETING
+// STARTUP GREETING
 // ========================================
 
 function startupGreeting() {
